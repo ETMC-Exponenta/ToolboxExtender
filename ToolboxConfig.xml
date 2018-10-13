@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+   <name>Toolbox Updater</name>
+   <pname>Toolbox-Updater.prj</pname>
+   <remote/>
+   <updaterv>0.1</updaterv>
+</config>
+<!--ToolboxUpdater configuration file-->
