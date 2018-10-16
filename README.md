@@ -25,12 +25,23 @@ At the same time Updater class provide you with functions for easy:
 
 Download and run **Toolbox-Updater.mltbx**
 
+# How to update installed Toolbox Updater itself
+
+Check installed and latest version
+```MATLAB
+ToolboxUpdater.version
+```
+Update to the latest version if available
+```MATLAB
+ToolboxUpdater.upd
+```
+
 # How to add Updater to your custom toolbox project
 
 - In toolbox project directory create toolbox project file (.prj)
 - Upload your project to GitHub
 - Run command
-``` MATLAB
+```MATLAB
 ToolboxUpdater.init
 ```
 - This will add to project directory: Updater class **...Updater.m**, **ToolboxConfig.xml** with project and Updater info, **dev_on.m** script to activate developer tools
@@ -39,15 +50,15 @@ ToolboxUpdater.init
 # How to use Updater functionality
 
 Create object of your **...Updater.m** class
-``` MATLAB
+```MATLAB
 tu = ToolboxUpdater
 ```
 Check internet connection
-``` MATLAB
+```MATLAB
 onl = tu.isonline
 ```
 Check installed and latest version
-``` MATLAB
+```MATLAB
 tu.ver
 ```
 Check update is available
@@ -55,7 +66,7 @@ Check update is available
 upd = tu.isupdate
 ```
 Update to latest version
-``` MATLAB
+```MATLAB
 tu.update
 ```
 Use this functions in your toolbox to provide automatic update check and install.
@@ -63,11 +74,11 @@ Use this functions in your toolbox to provide automatic update check and install
 # How to use Developer functionality
 
 Run **dev_on.m** script
-``` MATLAB
+```MATLAB
 dev_on
 ```
 Build .mltbx of specified version, commit, push to GitHub and create tag
-``` MATLAB
+```MATLAB
 dev.deploy('0.0.1')
 ```
 Create from tag new release on GitHub page and **attach .mltbx file to it** 
