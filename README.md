@@ -2,6 +2,8 @@
 
 Improve your custom toolbox and develop process with one-file Updater class
 
+File Exchange: [Toolbox Updater](https://www.mathworks.com/matlabcentral/fileexchange/69126)
+
 ## Updater functionality
 
 Updater class will add to your custom addon:
