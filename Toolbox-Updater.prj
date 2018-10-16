@@ -21,6 +21,7 @@
 % A single file in the toolbox folder:
 *.asv
 *.git
+dev_on.m
 %
 % A single file in a subfolder of the toolbox folder:
 % example/.svn
