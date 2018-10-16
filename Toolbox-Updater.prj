@@ -1,12 +1,12 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="D:\MATLAB\Toolbox-Updater\Toolbox-Updater.prj" location="D:\MATLAB\Toolbox-Updater" name="Toolbox-Updater" target="target.toolbox" target-name="Package Toolbox">
+  <configuration file="D:\MATLAB\ToolboxUpdater\Toolbox-Updater.prj" location="D:\MATLAB\ToolboxUpdater" name="Toolbox-Updater" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>Toolbox Updater</param.appname>
     <param.authnamewatermark>Pavel Roslovets</param.authnamewatermark>
     <param.email>roslovets@exponenta.ru</param.email>
     <param.company>ETMC Exponenta</param.company>
-    <param.summary>Provide your custom toolbox with ability to auto update from GitHub</param.summary>
-    <param.description />
-    <param.screenshot />
+    <param.summary>Add to your custom addon ability to automatically update itself to the latest release from GitHub</param.summary>
+    <param.description>Improve your custom toolbox and develop process with one-file Updater class</param.description>
+    <param.screenshot>${PROJECT_ROOT}\icon.png</param.screenshot>
     <param.version>0.1</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Updater.mltbx</param.output>
     <param.products.name />
@@ -21,7 +21,6 @@
 % A single file in the toolbox folder:
 *.asv
 *.git
-dev_on.m
 %
 % A single file in a subfolder of the toolbox folder:
 % example/.svn
@@ -62,8 +61,6 @@ dev_on.m
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.description />
-      <param.screenshot />
       <param.output />
       <param.products.name />
       <param.products.id />
@@ -92,11 +89,13 @@ dev_on.m
       <param.additional.sw.linux.url />
     </unset>
     <fileset.rootdir>
-      <file>D:\MATLAB\Toolbox-Updater</file>
+      <file>D:\MATLAB\ToolboxUpdater</file>
     </fileset.rootdir>
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+ToolboxUpdater</file>
       <file>${PROJECT_ROOT}\.gitignore</file>
+      <file>${PROJECT_ROOT}\icon.png</file>
+      <file>${PROJECT_ROOT}\README.md</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
       <file>${PROJECT_ROOT}\ToolboxUpdater.m</file>
@@ -105,7 +104,7 @@ dev_on.m
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="D:\MATLAB\Toolbox-Updater" name="Toolbox Updater.mltbx" optional="false">D:\MATLAB\Toolbox-Updater\Toolbox Updater.mltbx</file>
+      <file location="D:\MATLAB\ToolboxUpdater" name="Toolbox Updater.mltbx" optional="false">D:\MATLAB\ToolboxUpdater\Toolbox Updater.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>
