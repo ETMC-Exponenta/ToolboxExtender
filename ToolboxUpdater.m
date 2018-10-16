@@ -313,6 +313,16 @@ classdef ToolboxUpdater < handle
             obj.echo('has been tagged');
         end
         
+        function untag(obj, v)
+            % Delete tag from local and remote
+            untagcmd1 = sprintf('git push --delete origin v%s', v);
+            untagcmd2 = sprintf('git tag -d v%s', v);
+            system(untagcmd1);
+            system(untagcmd2);
+            system('git push --tags');
+            obj.echo('has been untagged');
+        end
+        
         function deploy(obj, pv)
             % Build toolbox, push and tag version
             if nargin > 1
