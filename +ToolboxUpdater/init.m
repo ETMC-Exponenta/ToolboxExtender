@@ -1,6 +1,10 @@
 function init()
 % Add Toolbox Builder tools to current projetc folder
 fprintf('* ToolboxUpdater will be initialized in current directory *\n');
+confname = 'ToolboxConfig.xml';
+if isfile(confname)
+    delete(confname);
+end
 TU0 = ToolboxUpdater;
 [uname, upath] = TU0.clone;
 echo(upath);

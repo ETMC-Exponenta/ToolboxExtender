@@ -127,9 +127,9 @@ classdef ToolboxUpdater < handle
                 iv = erase(iv, 'v');
             catch e
                 iv = '';
+                r = '';
             end
             obj.iv = iv;
-            r = '';
         end
         
         function [cv, iv, r] = ver(obj, echo)
@@ -235,7 +235,7 @@ classdef ToolboxUpdater < handle
             % Read config from xml file
             confname = 'ToolboxConfig.xml';
             confpath = fullfile(obj.root, confname);
-            ok = isfile(confname);
+            ok = isfile(confpath);
             if ok
                 xml = xmlread(confpath);
                 conf = obj.getxmlitem(xml, 'config', 0);
@@ -293,7 +293,7 @@ classdef ToolboxUpdater < handle
             obj.seticons();
             name = strrep(obj.name, ' ', '-');
             matlab.addons.toolbox.packageToolbox(ppath, name);
-            obj.echo('has been deployed');
+            obj.echo('has been built');
         end
         
         function push(obj)
@@ -309,7 +309,7 @@ classdef ToolboxUpdater < handle
             % Tag git project and push tag
             tagcmd = sprintf('git tag -a v%s -m v%s', obj.pv, obj.pv);
             system(tagcmd);
-            system('git push --tags')
+            system('git push --tags');
             obj.echo('has been tagged');
         end
         
@@ -321,7 +321,8 @@ classdef ToolboxUpdater < handle
                 obj.build();
             end
             obj.push();
-            obj.commit();
+            obj.tag();
+            obj.echo('has been deployed');
         end
         
         function echo(obj, msg)
