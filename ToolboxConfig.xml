@@ -2,7 +2,7 @@
 <config>
    <name>Toolbox Updater</name>
    <pname>Toolbox-Updater.prj</pname>
-   <remote/>
+   <remote>https://github.com/ETMC-Exponenta/ToolboxUpdater.git</remote>
    <updaterv>0.1</updaterv>
 </config>
 <!--ToolboxUpdater configuration file-->
