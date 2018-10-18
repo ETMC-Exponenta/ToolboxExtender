@@ -329,9 +329,9 @@ classdef ToolboxUpdater < handle
                 end
                 obj.pv = pv;
             end
-            obj.seticons();
-            name = strrep(obj.name, ' ', '-');
             if obj.ptype == "toolbox"
+                obj.seticons();
+                name = strrep(obj.name, ' ', '-');
                 matlab.addons.toolbox.packageToolbox(ppath, name);
             else
                 matlab.apputil.package(ppath);
