@@ -7,7 +7,7 @@
     <param.summary>Add to your custom addon ability to automatically update itself to the latest release from GitHub</param.summary>
     <param.description>Improve your custom toolbox and develop process with one-file Updater class</param.description>
     <param.screenshot>${PROJECT_ROOT}\icon.png</param.screenshot>
-    <param.version>0.1</param.version>
+    <param.version>0.2</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Updater.mltbx</param.output>
     <param.products.name />
     <param.products.id />
