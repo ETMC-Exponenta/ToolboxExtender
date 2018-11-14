@@ -79,8 +79,12 @@ Run **dev_on.m** script
 ```MATLAB
 dev_on
 ```
-Build .mltbx of specified version, commit, push to GitHub and create tag
+Build toolbox (app) file of specified version
+```MATLAB
+dev.build('0.0.1')
+```
+Build toolbox (app) file of specified version, commit, push to GitHub and create tag
 ```MATLAB
 dev.deploy('0.0.1')
 ```
-Create from tag new release on GitHub page and **attach .mltbx file to it** 
+Then create from tag new release on GitHub page and **attach toolbox (app) file to it** 
