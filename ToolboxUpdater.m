@@ -392,13 +392,14 @@ classdef ToolboxUpdater < handle
         function gendoc(obj)
             % Generate html from mlx doc
             docdir = fullfile(obj.root, 'doc');
-            fs = struct2table(dir(fullfile(docdir, '*.mlx')));
+            fs = struct2table(dir(fullfile(docdir, '*.mlx')), 'AsArray', true);
+            fs = convertvars(fs, 1:3, 'string');
             for i = 1 : height(fs)
-                [~, fname] = fileparts(fs.name{i});
+                [~, fname] = fileparts(fs.name(i));
                 fprintf('Converting %s...\n', fname);
-                fpath = fullfile(fs.folder{i}, fs.name{i});
-                htmlpath = fullfile(fs.folder{i}, fname + ".html");
-                matlab.internal.liveeditor.openAndConvert(fpath, char(htmlpath));
+                fpath = fullfile(fs.folder(i), fs.name{i});
+                htmlpath = fullfile(fs.folder(i), fname + ".html");
+                matlab.internal.liveeditor.openAndConvert(char(fpath), char(htmlpath));
                 disp('Doc has been generated');
             end
         end
