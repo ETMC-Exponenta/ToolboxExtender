@@ -54,7 +54,7 @@ ToolboxUpdater.upd
 ToolboxUpdater.init
 ```
 - This will add to project directory: Updater class **...Updater.m**, **ToolboxConfig.xml** with project and Updater info, **dev_on.m** script to activate developer tools
-- Add **dev_on.m** to excluded files of your project
+- Manually add **dev_on.m** to excluded files of your project
 
 # How to use Updater functionality
 
