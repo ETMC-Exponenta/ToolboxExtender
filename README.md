@@ -29,6 +29,7 @@ At the same time Updater class provide you with functions for easy:
 
 - [MATLAB WEB API](https://github.com/ETMC-Exponenta/MATLAB-WEB-API)
 - [MATLAB Course for Educators](https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators)
+- (send me your examples)
 
 # Installation
 
