@@ -389,7 +389,7 @@ classdef ToolboxUpdater < handle
             fprintf('%s v%s %s\n', obj.name, obj.pv, msg);
         end
         
-        function gendoc(~)
+        function gendoc(obj)
             % Generate html from mlx doc
             docdir = fullfile(obj.root, 'doc');
             fs = struct2table(dir(fullfile(docdir, '*.mlx')));
