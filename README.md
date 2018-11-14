@@ -48,14 +48,14 @@ ToolboxUpdater.upd
 
 # How to add Updater to your custom toolbox project
 
-- In toolbox project directory create toolbox project file (.prj)
-- Upload your project to GitHub
-- Run command
+1. In toolbox project directory create toolbox project file (.prj)
+2. Upload your project to GitHub
+3. Run command
 ```MATLAB
 ToolboxUpdater.init
 ```
-- This will add to project directory: Updater class **...Updater.m**, **ToolboxConfig.xml** with project and Updater info, **dev_on.m** script to activate developer tools
-- Manually add **dev_on.m** to excluded files of your project
+4. This will add to project directory: Updater class **...Updater.m**, **ToolboxConfig.xml** with project and Updater info, **dev_on.m** script to activate developer tools
+5. Manually add **dev_on.m** to excluded files of your project
 
 # How to use Updater functionality
 
@@ -95,4 +95,9 @@ Build toolbox (app) file of specified version, commit, push to GitHub and create
 ```MATLAB
 dev.deploy('0.0.1')
 ```
-Then create from tag new release on GitHub page and **attach toolbox (app) file to it** 
+Then create from tag new release on GitHub page and **attach toolbox (app) file to it**.
+
+If you've made mistake: delete specified tag from GitHub
+```MATLAB
+dev.untag('0.0.1')
+```
