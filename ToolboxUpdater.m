@@ -66,9 +66,9 @@ classdef ToolboxUpdater < handle
             % Get generated binary file path            
             [~, name] = fileparts(obj.pname);
             if obj.ptype == "toolbox"
-                ext = + ".mltbx";
+                ext = ".mltbx";
             else
-                ext = + ".mlappinstall";
+                ext = ".mlappinstall";
             end
             bpath = fullfile(obj.root, name + ext);
         end
