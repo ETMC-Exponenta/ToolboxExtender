@@ -62,6 +62,17 @@ classdef ToolboxUpdater < handle
             end
         end
         
+        function bpath = getbinpath(obj)
+            % Get generated binary file path            
+            [~, name] = fileparts(obj.pname);
+            if obj.ptype == "toolbox"
+                ext = + ".mltbx";
+            else
+                ext = + ".mlappinstall";
+            end
+            bpath = fullfile(obj.root, name + ext);
+        end
+        
         function ptype = getptype(obj)
             % Get project type (Toolbox/App)
             ppath = fullfile(obj.root, obj.pname);
@@ -330,12 +341,14 @@ classdef ToolboxUpdater < handle
                 end
                 obj.pv = pv;
             end
+            bname = strrep(obj.name, ' ', '-');
+            bpath = fullfile(obj.root, bname);
             if obj.ptype == "toolbox"
                 obj.seticons();
-                name = strrep(obj.name, ' ', '-');
-                matlab.addons.toolbox.packageToolbox(ppath, name);
+                matlab.addons.toolbox.packageToolbox(ppath, bname);
             else
                 matlab.apputil.package(ppath);
+                movefile(fullfile(obj.root, obj.name + ".mlappinstall"), bpath + ".mlappinstall",'f');
             end
             obj.echo('has been built');
         end
@@ -377,7 +390,7 @@ classdef ToolboxUpdater < handle
             obj.push();
             obj.tag();
             obj.echo('has been deployed');
-            clipboard('copy', ['"' fullfile(obj.root, obj.pname) '"'])
+            clipboard('copy', ['"' char(obj.getbinpath) '"'])
             disp("Binary path was copied to clipboard")
             disp("* Now create release on GitHub page with binary attached *")
             pause(1)
