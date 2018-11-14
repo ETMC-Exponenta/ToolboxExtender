@@ -79,7 +79,7 @@ Run **dev_on.m** script
 ```MATLAB
 dev_on
 ```
-Build toolbox (app) file of specified version
+Build toolbox (app) file of specified version (for test)
 ```MATLAB
 dev.build('0.0.1')
 ```
