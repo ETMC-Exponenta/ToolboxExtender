@@ -377,6 +377,11 @@ classdef ToolboxUpdater < handle
             obj.push();
             obj.tag();
             obj.echo('has been deployed');
+            clipboard('copy', ['"' fullfile(obj.root, obj.pname) '"'])
+            disp("Binary path was copied to clipboard")
+            disp("* Now create release on GitHub page with binary attached *")
+            pause(1)
+            web(obj.remote + "/releases/edit/v" + obj.pv, '-browser')
         end
         
         function echo(obj, msg)
