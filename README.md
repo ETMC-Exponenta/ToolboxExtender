@@ -19,9 +19,16 @@ At the same time Updater class provide you with functions for easy:
 - commit and push project to GitHub
 - create tag with version number and push it to GitHub
 
+## Requirements
+
+- MATLAB **R2018b** or newer
+- Installed **Git** (for Developer functionality)
+- **Public** toolbox project on GitHub
+
 ## Examples of usage Toolbox Updater
 
 - [MATLAB WEB API](https://github.com/ETMC-Exponenta/MATLAB-WEB-API)
+- [MATLAB Course for Educators](https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators)
 
 # Installation
 
