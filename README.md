@@ -32,7 +32,7 @@ At the same time Updater class provide you with functions for easy:
 
 # Installation
 
-Download and run **Toolbox-Updater.mltbx**
+Download and run [**Toolbox-Updater.mltbx**](https://github.com/ETMC-Exponenta/ToolboxUpdater/raw/master/Toolbox-Updater.mltbx)
 
 # How to update installed Toolbox Updater itself
 
