@@ -318,6 +318,7 @@ classdef ToolboxUpdater < handle
         function build(obj, pv)
             % Build toolbox for specified version
             ppath = fullfile(obj.root, obj.pname);
+            obj.gendoc();
             if nargin > 1
                 if obj.ptype == "toolbox"
                     matlab.addons.toolbox.toolboxVersion(ppath, pv);
@@ -381,6 +382,20 @@ classdef ToolboxUpdater < handle
         function echo(obj, msg)
             % Display service message
             fprintf('%s v%s %s\n', obj.name, obj.pv, msg);
+        end
+        
+        function gendoc(~)
+            % Generate html from mlx doc
+            docdir = fullfile(obj.root, 'doc');
+            fs = struct2table(dir(fullfile(docdir, '*.mlx')));
+            for i = 1 : height(fs)
+                [~, fname] = fileparts(fs.name{i});
+                fprintf('Converting %s...\n', fname);
+                fpath = fullfile(fs.folder{i}, fs.name{i});
+                htmlpath = fullfile(fs.folder{i}, fname + ".html");
+                matlab.internal.liveeditor.openAndConvert(fpath, char(htmlpath));
+                disp('Doc has been generated');
+            end
         end
         
         function seticons(obj)
