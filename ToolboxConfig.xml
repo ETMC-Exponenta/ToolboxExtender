@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-   <name>Toolbox Updater</name>
-   <pname>Toolbox-Updater.prj</pname>
-   <ptype>toolbox</ptype>
+   <name>Toolbox Extender</name>
+   <pname>ToolboxExtender.prj</pname>
+   <type>toolbox</type>
    <remote>https://github.com/ETMC-Exponenta/ToolboxUpdater.git</remote>
-   <updaterv/>
+   <extv>1.0</extv>
 </config>
 <!--ToolboxUpdater configuration file-->
