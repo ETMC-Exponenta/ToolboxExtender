@@ -50,9 +50,14 @@ classdef ToolboxUpdater < handle
         
         function [isupd, r] = isupdate(obj)
             % Check that update is available
-            cv = obj.E.gcv();
-            [rv, r] = obj.E.grv();
-            isupd = ~isempty(rv) & ~isequal(cv, rv);
+            if obj.isonline()
+                cv = obj.E.gcv();
+                [rv, r] = obj.E.grv();
+                isupd = ~isempty(rv) & ~isequal(cv, rv);
+            else
+                r = [];
+                isupd = false;
+            end
         end
         
         function update(obj)
