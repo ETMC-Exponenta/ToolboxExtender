@@ -31,22 +31,6 @@ classdef ToolboxStorage < handle
             end
         end
         
-        function root = getroot(obj, local)
-            % Get root folder
-            root = obj.E.root;
-            if ~local
-                target = "MATLAB Add-Ons";
-                path = extractBefore(root, target);
-                if ~isempty(path)
-                    root = fullfile(path + target, 'Data');
-                    if ~isfolder(root)
-                        mkdir(root);
-                    end
-                end
-                obj.root = root;
-            end
-        end
-        
         function [fpath, fname] = getpath(obj)
             % Generate data file name
             fname = obj.fname + ".mat";
@@ -125,6 +109,26 @@ classdef ToolboxStorage < handle
         function export(obj, fpath)
             % Export data to file
             obj.save(obj.data, fpath);
+        end
+        
+    end
+    
+    methods (Hidden)
+        
+        function root = getroot(obj, local)
+            % Get root folder
+            root = obj.E.root;
+            if ~local
+                target = "MATLAB Add-Ons";
+                path = extractBefore(root, target);
+                if ~isempty(path)
+                    root = fullfile(path + target, 'Data');
+                    if ~isfolder(root)
+                        mkdir(root);
+                    end
+                end
+                obj.root = root;
+            end
         end
         
     end

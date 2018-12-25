@@ -15,22 +15,12 @@ classdef ToolboxDev < handle
             end
         end
         
-        function res = install(obj)
-            % Install toolbox or app
-            res = obj.E.install();
-        end
-        
-        function uninstall(obj)
-            % Unstall toolbox or app
-            obj.E.uninstall();
-        end
-        
         function build(obj, pv)
             % Build toolbox for specified version
             ppath = fullfile(obj.E.root, obj.E.pname);
             obj.gendoc();
             if nargin > 1
-                if obj.E.ptype == "toolbox"
+                if obj.E.type == "toolbox"
                     matlab.addons.toolbox.toolboxVersion(ppath, pv);
                 else
                     txt = obj.E.readtxt(ppath);
@@ -42,7 +32,7 @@ classdef ToolboxDev < handle
             end
             [~, bname] = fileparts(obj.E.pname);
             bpath = fullfile(obj.E.root, bname);
-            if obj.E.ptype == "toolbox"
+            if obj.E.type == "toolbox"
                 obj.seticons();
                 matlab.addons.toolbox.packageToolbox(ppath, bname);
             else
@@ -55,24 +45,7 @@ classdef ToolboxDev < handle
         function test(obj)
             % Build and install
             obj.build();
-            obj.install();
-        end
-        
-        function push(obj)
-            % Commit and push project to GitHub
-            commitcmd = sprintf('git commit -m v%s', obj.E.pv);
-            system('git add .');
-            system(commitcmd);
-            system('git push');
-            obj.E.echo('has been pushed');
-        end
-        
-        function tag(obj)
-            % Tag git project and push tag
-            tagcmd = sprintf('git tag -a v%s -m v%s', obj.E.pv, obj.E.pv);
-            system(tagcmd);
-            system('git push --tags');
-            obj.E.echo('has been tagged');
+            obj.E.install();
         end
         
         function untag(obj, v)
@@ -85,7 +58,7 @@ classdef ToolboxDev < handle
             obj.E.echo('has been untagged');
         end
         
-        function deploy(obj, pv)
+        function release(obj, pv)
             % Build toolbox, push and tag version
             if nargin > 1
                 obj.build(pv);
@@ -101,6 +74,11 @@ classdef ToolboxDev < handle
             pause(1)
             web(obj.E.remote + "/releases/edit/v" + obj.E.pv, '-browser')
         end
+        
+    end
+    
+    
+    methods (Hidden)
         
         function gendoc(obj)
             % Generate html from mlx doc
@@ -131,6 +109,23 @@ classdef ToolboxDev < handle
                     end
                 end
             end
+        end
+        
+        function push(obj)
+            % Commit and push project to GitHub
+            commitcmd = sprintf('git commit -m v%s', obj.E.pv);
+            system('git add .');
+            system(commitcmd);
+            system('git push');
+            obj.E.echo('has been pushed');
+        end
+        
+        function tag(obj)
+            % Tag git project and push tag
+            tagcmd = sprintf('git tag -a v%s -m v%s', obj.E.pv, obj.E.pv);
+            system(tagcmd);
+            system('git push --tags');
+            obj.E.echo('has been tagged');
         end
         
     end
