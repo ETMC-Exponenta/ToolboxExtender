@@ -1,4 +1,4 @@
 dev_on;
-dev.uninstall;
+dev.TE.uninstall;
 dev_on;
-dev.test
+dev.test;

@@ -1,7 +1,4 @@
-function opendoc(name)
+function opendoc(varargin)
 % Open documentation
-if nargin < 1
-    name = 'GettingStarted';
-end
 TE = ToolboxExtender;
-TE.doc(name);
+TE.doc(varargin);

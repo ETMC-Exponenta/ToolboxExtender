@@ -5,11 +5,9 @@ classdef ToolboxExtender < handle
         name % project name
         pname % name of project file
         type % type of project
-        remote % GitHub link
-        pv % project version
-        cv % current installed version
-        rv % latest remote version form internet
         root % root dir
+        remote % GitHub link
+        vc % current installed version
         extv % Toolbox Extender version
     end
     
@@ -36,98 +34,28 @@ classdef ToolboxExtender < handle
                 obj.getname();
                 obj.getremote();
             end
-            obj.gpv();
-            obj.gcv();
+            obj.gvc();
         end
         
-        function init(obj, classes)
-            % Init Toolbox Extender in current project folder
-            if nargin < 2
-                classes = "Extender";
-            else
-                classes = lower(string(classes));
-            end
-            if ismember(classes, "all")
-                classes = ["Dev" "Storage" "Updater"];
-            end
-            classes = classes(classes ~= "extender");
-            fprintf('* Toolbox Extender will be initialized in current directory *\n');
-            if isfile(obj.config)
-                delete(obj.config);
-            end
-            v = obj.cv;
-            obj.root = pwd;
-            [nname, npath] = obj.cloneclass();
-            obj.echo(": " + npath + " was created");
-            for i = 1 : length(classes)
-                cname = obj.cloneclass(classes(i));
-                obj.echo(": " + cname + " was created");
-                if classes(i) == "Dev"
-                    nfname = obj.copyscript('dev_on', cname);
-                    obj.echo(": " + nfname + " was created");
-                    fprintf("!Don't forget to exclude %s and %s.m from project\n", nfname, cname);
-                end
-            end
-            TE = feval(nname);
-            if isempty(TE.remote)
-                disp('!If you want to use full Dev features please add GitHub remote address to project folder (via Git) and reinitialize Toolbox Extender');
-            end
-            TE.extv = v;
-            TE.writeconfig();
-            obj.echo(": " + obj.config + " was created");
-            fprintf('* Toolbox Extender initialized successfully in current directory *\n');
-        end
-        
-        function pv = gpv(obj)
-            % Get project version
-            ppath = fullfile(obj.root, obj.pname);
-            if isfile(ppath)
-                if obj.type == "toolbox"
-                    pv = matlab.addons.toolbox.toolboxVersion(ppath);
-                else
-                    txt = obj.readtxt(ppath);
-                    pv = char(regexp(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', 'match'));
-                end
-            else
-                pv = '';
-            end
-            obj.pv = pv;
-        end
-        
-        function [cv, guid] = gcv(obj)
+        function [vc, guid] = gvc(obj)
             % Get current installed version
             if obj.type == "toolbox"
                 tbx = matlab.addons.toolbox.installedToolboxes;
                 tbx = struct2table(tbx, 'AsArray', true);
                 idx = strcmp(tbx.Name, obj.name);
-                cv = tbx.Version(idx);
+                vc = tbx.Version(idx);
                 guid = tbx.Guid(idx);
-                if isscalar(cv)
-                    cv = char(cv);
-                elseif isempty(cv)
-                    cv = '';
+                if isscalar(vc)
+                    vc = char(vc);
+                elseif isempty(vc)
+                    vc = '';
                 end
             else
                 tbx = matlab.apputil.getInstalledAppInfo;
-                cv = '';
+                vc = '';
                 guid = '';
             end
-            obj.cv = cv;
-        end
-        
-        function [rv, r] = grv(obj)
-            % Get remote version from GitHub
-            iname = string(extractAfter(obj.remote, 'https://github.com/'));
-            url = "https://api.github.com/repos/" + iname + "/releases/latest";
-            try
-                r = webread(url);
-                rv = r.tag_name;
-                rv = erase(rv, 'v');
-            catch
-                rv = '';
-                r = '';
-            end
-            obj.rv = rv;
+            obj.vc = vc;
         end
         
         function res = install(obj, fpath)
@@ -140,29 +68,13 @@ classdef ToolboxExtender < handle
             else
                 res = matlab.apputil.install(fpath);
             end
-            obj.gcv();
+            obj.gvc();
             obj.echo('has been installed');
-        end
-        
-        function installweb(obj, r)
-            % Download and install latest version from remote (GitHub)
-            if nargin < 2
-                [~, r] = obj.grv();
-            end
-            fprintf('* Installation of %s is started *\n', obj.E.name);
-            fprintf('Installing the latest version: v%s...\n', obj.E.rv);
-            dpath = tempname;
-            mkdir(dpath);
-            fpath = fullfile(dpath, r.assets.name);
-            websave(fpath, r.assets.browser_download_url);
-            res = obj.install(fpath);
-            fprintf('%s v%s has been installed\n', res.Name{1}, res.Version{1});
-            delete(fpath);
         end
         
         function uninstall(obj)
             % Uninstall toolbox or app
-            [~, guid] = obj.gcv();
+            [~, guid] = obj.gvc();
             if isempty(guid)
                 disp('Nothing to uninstall');
             else
@@ -172,7 +84,7 @@ classdef ToolboxExtender < handle
                     matlab.apputil.uninstall(guid);
                 end
                 disp('Uninstalled successfully');
-                obj.gcv();
+                obj.gvc();
             end
         end
         
@@ -201,12 +113,11 @@ classdef ToolboxExtender < handle
     end
     
     
-    
     methods (Hidden)
         
         function echo(obj, msg)
             % Display service message
-            fprintf('%s v%s %s\n', obj.name, obj.pv, msg);
+            fprintf('%s %s\n', obj.name, msg);
         end
         
         function [nname, npath] = cloneclass(obj, classname)
@@ -224,7 +135,7 @@ classdef ToolboxExtender < handle
             opath = fullfile(root, oname + ".m");
             copyfile(opath, npath);
             obj.txtrep(npath, oname, nname);
-            obj.txtrep(npath, "obj.E = ToolboxExtender", "obj.E = " + obj.getvalidname + "Extender");
+            obj.txtrep(npath, "obj.TE = ToolboxExtender", "obj.TE = " + obj.getvalidname + "Extender");
         end
         
         function name = getname(obj)

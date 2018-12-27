@@ -2,7 +2,7 @@ classdef ToolboxStorage < handle
     %Store data locally in installed toolbox folder
     
     properties
-        E % Toolbox Extender
+        TE % Toolbox Extender
         root % data folder
         fname % File name
         data % storage data
@@ -13,12 +13,13 @@ classdef ToolboxStorage < handle
         function obj = ToolboxStorage(fname, varargin)
             % Constructor
             p = inputParser();
+            p.addParameter('TE', ToolboxExtender);
             p.addParameter('local', false);
             p.parse();
-            obj.E = ToolboxExtender;
+            obj.TE = p.Results.TE;
             obj.getroot(p.Results.local);
             if nargin < 1
-                fname = matlab.lang.makeValidName(obj.E.name) + "_data";
+                fname = matlab.lang.makeValidName(obj.TE.name) + "_data";
             end
             obj.fname = fname;
         end
@@ -73,42 +74,53 @@ classdef ToolboxStorage < handle
             save(fpath, 'data');
         end
         
-        function [val, isf] = get(obj, varname, type)
+        function [value, isf] = get(obj, varname, type)
             % Get variable from data
             if isstruct(obj.data) && isfield(obj.data, varname)
-                val = obj.data.(varname);
+                value = obj.data.(varname);
                 isf = true;
             else
-                val = [];
+                value = [];
                 isf = false;
             end
             if nargin > 2
-                val = cast(val, type);
+                value = cast(value, type);
             end
         end
         
-        function set(obj, varname, val, type)
+        function data = set(obj, varname, value, type)
             % Set variable in data
             if nargin > 3
-                val = cast(val, type);
+                value = cast(value, type);
             end
-            obj.data.(varname) = val;
+            obj.data.(varname) = value;
             if obj.auto
                 obj.save();
             end
+            data = obj.data;
         end
         
-        function import(obj, fpath)
+        function data = import(obj, fpath)
             % Import data from file
             obj.load(fpath);
             if obj.auto
                 obj.save();
             end
+            data = obj.data;
         end
         
         function export(obj, fpath)
             % Export data to file
             obj.save(obj.data, fpath);
+        end
+        
+        function clear(obj)
+            % Clear data and delete data file
+            obj.data = [];
+            fpath = obj.getpath;
+            if isfile(fpath)
+                delete(fpath);
+            end
         end
         
     end
@@ -117,7 +129,7 @@ classdef ToolboxStorage < handle
         
         function root = getroot(obj, local)
             % Get root folder
-            root = obj.E.root;
+            root = obj.TE.root;
             if ~local
                 target = "MATLAB Add-Ons";
                 path = extractBefore(root, target);
