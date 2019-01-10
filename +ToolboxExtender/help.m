@@ -1,4 +1,4 @@
-function opendoc(varargin)
+function help(varargin)
 % Open documentation
 TE = ToolboxExtender;
 TE.doc(varargin);
