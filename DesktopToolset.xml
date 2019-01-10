@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toolset id="user_apps_toolset" template="false">
+   <tool app_file_path="ToolboxExtenderApp.mlapp" handler_class="com.mathworks.deployment.desktop.toolstrip.ToolboxToolSetExtensionHandler" id="b1e0dde9-3478-4965-a2ff-90642308ab18:ToolboxExtenderApp.mlapp" label="Toolbox Extender App" quick_access_eligible="false" toolset_id="user_apps_toolset">
+      <callback>ToolboxExtenderApp</callback>
+      <summary>Improve your custom toolbox (app) and develop process with powerful features</summary>
+      <description>Improve your custom toolbox (app) and develop process with powerful features:
+- Easily install/uninstall toolbox and check current version (Extender)
+- Access to toolbox documentation and examples (Extender)
+- Automatic toolbox building and deployment to GitHub (Dev)
+- Ability of installed toolbox to automatically update itself to the latest version from GitHub (Updater)
+- Toolbox ability to store any data within itself, i.e. settings (Storage)</description>
+      <icon path="./" filename="icon_24.png"/>
+      <icon path="./" filename="icon_16.png"/>
+      <parent_tool id="my_apps" toolset_id="apps_toolset"/>
+   </tool>
+</toolset>

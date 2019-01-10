@@ -45,7 +45,9 @@ retest.m
     <param.examples />
     <param.demosxml />
     <param.apps />
-    <param.registered.apps />
+    <param.registered.apps>
+      <file>${PROJECT_ROOT}\ToolboxExtenderApp.mlapp</file>
+    </param.registered.apps>
     <param.docs>${PROJECT_ROOT}\info.xml</param.docs>
     <param.getting.started.guide>${PROJECT_ROOT}\doc\GettingStarted.mlx</param.getting.started.guide>
     <param.matlabpath.excludes />
@@ -78,7 +80,6 @@ retest.m
       <param.examples />
       <param.demosxml />
       <param.apps />
-      <param.registered.apps />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
       <param.exported.on.package />
@@ -100,14 +101,19 @@ retest.m
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+ToolboxExtender</file>
       <file>${PROJECT_ROOT}\.gitignore</file>
+      <file>${PROJECT_ROOT}\DesktopToolset.xml</file>
       <file>${PROJECT_ROOT}\doc</file>
+      <file>${PROJECT_ROOT}\icon-help.png</file>
+      <file>${PROJECT_ROOT}\icon-update.png</file>
       <file>${PROJECT_ROOT}\info.xml</file>
       <file>${PROJECT_ROOT}\README.md</file>
+      <file>${PROJECT_ROOT}\resources</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
+      <file>${PROJECT_ROOT}\ToolboxExtenderApp.mlapp</file>
       <file>${PROJECT_ROOT}\ToolboxStorage.m</file>
       <file>${PROJECT_ROOT}\ToolboxUpdater.m</file>
     </fileset.rootfiles>

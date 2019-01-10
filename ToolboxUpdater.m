@@ -36,23 +36,27 @@ classdef ToolboxUpdater < handle
         function [vc, vr] = ver(obj)
             % Check curent installed and remote versions
             vc = obj.TE.gvc();
-            if isempty(vc)
-                fprintf('%s is not installed\n', obj.TE.name);
-            else
-                fprintf('Installed version: %s\n', vc);
-            end
-            % Get latest version
-            vr = obj.gvr();
-            if ~isempty(vr)
-                fprintf('Latest version: %s\n', vr);
-                if isequal(vc, vr)
-                    fprintf('You use the latest version\n');
+            if nargout == 0
+                if isempty(vc)
+                    fprintf('%s is not installed\n', obj.TE.name);
                 else
-                    fprintf('* Update is available: %s->%s *\n', vc, vr);
-                    fprintf("To update call 'update' method of " + mfilename + "\n");
+                    fprintf('Installed version: %s\n', vc);
                 end
-            else
-                fprintf('No remote version is available\n');
+            end
+            % Check remote version
+            vr = obj.gvr();
+            if nargout == 0
+                if ~isempty(vr)
+                    fprintf('Latest version: %s\n', vr);
+                    if isequal(vc, vr)
+                        fprintf('You use the latest version\n');
+                    else
+                        fprintf('* Update is available: %s->%s *\n', vc, vr);
+                        fprintf("To update call 'update' method of " + mfilename + "\n");
+                    end
+                else
+                    fprintf('No remote version is available\n');
+                end
             end
         end
         

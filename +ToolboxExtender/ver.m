@@ -1,4 +1,8 @@
-function ver()
+function [vc, vr] = ver()
 % Check Toolbox Updater version
 TU = ToolboxUpdater;
-TU.ver;
+if nargout > 0
+    [vc, vr] = TU.ver;
+else
+    TU.ver;
+end
