@@ -85,7 +85,7 @@ classdef ToolboxExtender < handle
                 else
                     matlab.apputil.uninstall(guid);
                 end
-                obj.echo('has been installed');
+                obj.echo('has been uninstalled');
                 obj.gvc();
             end
         end
