@@ -49,7 +49,7 @@ classdef ToolboxUpdater < handle
                     fprintf('You use the latest version\n');
                 else
                     fprintf('* Update is available: %s->%s *\n', vc, vr);
-                    fprintf("To update call 'update' method\n");
+                    fprintf("To update call 'update' method of " + mfilename + "\n");
                 end
             else
                 fprintf('No remote version is available\n');
