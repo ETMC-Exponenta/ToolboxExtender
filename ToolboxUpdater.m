@@ -1,5 +1,7 @@
 classdef ToolboxUpdater < handle
-    %Control version of installed toolbox and update it from GitHub
+    % Control version of installed toolbox and update it from GitHub
+    % By Pavel Roslovets, ETMC Exponenta
+    % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
         TE % Toolbox Extender

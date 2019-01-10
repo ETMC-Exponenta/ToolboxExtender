@@ -1,5 +1,7 @@
 classdef ToolboxExtender < handle
-    %A lot of powerful features for custom toolbox
+    % Contains core functions. Required for other classes and functionality
+    % By Pavel Roslovets, ETMC Exponenta
+    % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
         name % project name
@@ -83,7 +85,7 @@ classdef ToolboxExtender < handle
                 else
                     matlab.apputil.uninstall(guid);
                 end
-                disp('Uninstalled successfully');
+                obj.echo('has been installed');
                 obj.gvc();
             end
         end
@@ -118,24 +120,6 @@ classdef ToolboxExtender < handle
         function echo(obj, msg)
             % Display service message
             fprintf('%s %s\n', obj.name, msg);
-        end
-        
-        function [nname, npath] = cloneclass(obj, classname)
-            % Clone Toolbox Extander class to current Project folder
-            if nargin < 2
-                classname = "Extender";
-            else
-                classname = lower(char(classname));
-                classname(1) = upper(classname(1));
-            end
-            nname = obj.getvalidname + string(classname);
-            npath = nname + ".m";
-            oname = "Toolbox" + classname;
-            root = fileparts(mfilename('fullpath'));
-            opath = fullfile(root, oname + ".m");
-            copyfile(opath, npath);
-            obj.txtrep(npath, oname, nname);
-            obj.txtrep(npath, "obj.TE = ToolboxExtender", "obj.TE = " + obj.getvalidname + "Extender");
         end
         
         function name = getname(obj)
@@ -189,17 +173,6 @@ classdef ToolboxExtender < handle
             % Get valid variable name
             name = char(obj.name);
             name = name(isstrprop(name, 'alpha'));
-        end  
-        
-        function nfname = copyscript(obj, sname, newclass)
-            % Copy script to Project folder
-            root = fileparts(mfilename('fullpath'));
-            spath = fullfile(root, 'scripts', sname + ".m");
-            nfname = sname + ".m";
-            copyfile(spath, nfname);
-            if nargin > 2
-                obj.txtrep(nfname, 'ToolboxDev', newclass);
-            end
         end
         
         function txt = readtxt(~, fpath)
@@ -249,20 +222,6 @@ classdef ToolboxExtender < handle
             end
         end
         
-        function [confname, confpath] = writeconfig(obj)
-            % Write config to xml file
-            docNode = com.mathworks.xml.XMLUtils.createDocument('config');
-            docNode.appendChild(docNode.createComment('ToolboxUpdater configuration file'));
-            obj.addxmlitem(docNode, 'name', obj.name);
-            obj.addxmlitem(docNode, 'pname', obj.pname);
-            obj.addxmlitem(docNode, 'type', obj.type);
-            obj.addxmlitem(docNode, 'remote', obj.remote);
-            obj.addxmlitem(docNode, 'extv', obj.extv);
-            confpath = fullfile(obj.root, obj.config);
-            confname = obj.config;
-            xmlwrite(confpath, docNode);
-        end
-        
         function i = getxmlitem(~, xml, name, getData)
             % Get item from XML
             if nargin < 4
@@ -277,14 +236,6 @@ classdef ToolboxExtender < handle
                 end
                 i = char(i);
             end
-        end
-        
-        function addxmlitem(~, node, name, value)
-            % Add item to XML
-            doc = node.getDocumentElement;
-            el = node.createElement(name);
-            el.appendChild(node.createTextNode(value));
-            doc.appendChild(el);
         end
         
     end

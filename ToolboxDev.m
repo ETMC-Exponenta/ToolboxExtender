@@ -1,5 +1,7 @@
 classdef ToolboxDev < handle
-    %Easily build toolbox and push to GitHub
+    % Helps you to build toolbox and deploy it to GitHub
+    % By Pavel Roslovets, ETMC Exponenta
+    % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
         TE % Toolbox Extender

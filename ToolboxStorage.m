@@ -1,5 +1,7 @@
 classdef ToolboxStorage < handle
-    %Store data locally in installed toolbox folder
+    % Helps you easily store any data within installed toolbox, i.e. user settings
+    % By Pavel Roslovets, ETMC Exponenta
+    % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
         TE % Toolbox Extender
