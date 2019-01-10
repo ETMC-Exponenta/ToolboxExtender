@@ -90,7 +90,7 @@ classdef ToolboxExtender < handle
         
         function doc(obj, name)
             % Open page from documentation
-            if nargin < 2
+            if (nargin < 2) || isempty(name)
                 name = 'GettingStarted';
             end
             if ~any(endsWith(name, {'.mlx' '.html'}))

@@ -1,58 +1,83 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB R2018b"><title>Toolbox Extender</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.8px; min-height: 0px; white-space: pre-wrap; color: rgb(213, 80, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: 400; text-align: left;  }
 .S1 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
-.S2 { margin-bottom: 20px; padding-bottom: 4px;  }
-.S3 { margin: 0px; padding: 10px 0px 10px 5px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 700; text-align: start;  }
-.S4 { margin: -1px 0px 0px; padding: 10px 0px 10px 7px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: start;  }
-.S5 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
-.S6 { margin: 10px 0px 20px; padding-left: 0px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;  }
-.S7 { margin-left: 56px; line-height: 21px; min-height: 0px; text-align: left; white-space: pre-wrap;  }
+.S2 { margin: 10px 0px 20px; padding-left: 0px; font-family: Helvetica, Arial, sans-serif; font-size: 14px;  }
+.S3 { margin-left: 56px; line-height: 21px; min-height: 0px; text-align: left; white-space: pre-wrap;  }
+.S4 { margin-bottom: 20px; padding-bottom: 4px;  }
+.S5 { margin: 0px; padding: 10px 0px 10px 5px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 700; text-align: start;  }
+.S6 { margin: -1px 0px 0px; padding: 10px 0px 10px 7px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: start;  }
+.S7 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
 .S8 { margin: 20px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
-.S9 { margin: 15px 10px 5px 4px; padding: 0px; line-height: 18px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 17px; font-weight: 700; text-align: left;  }
-.S10 { border-left: 0px none rgb(0, 0, 0); border-right: 0px none rgb(0, 0, 0); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px; line-height: 16px; min-height: 0px; white-space: pre; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;  }</style></head><body><div class = rtcContent><h1  class = 'S0' id = 'T_8311D159' ><span>Toolbox Extender</span></h1><div  class = 'S1'><span>Improve your custom toolbox and develop process with a lot of powerful features</span></div><div  class = 'S1'><span>File Exchange:</span><span> </span><a href = "https://www.mathworks.com/matlabcentral/fileexchange/69126"><span>Toolbox Extender</span></a></div><div  class = 'S2'><div  class = 'S3'><span style=' font-weight: bold;'>Table of Contents</span></div><div  class = 'S4'><a href = "#H_1AD8D806"><span>Extender Class
+.CodeBlock { background-color: #F7F7F7; margin: 10px 0 10px 0;}
+.S9 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 4px; padding: 6px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S10 { border-left: 0px none rgb(0, 0, 0); border-right: 0px none rgb(0, 0, 0); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px; line-height: 16px; min-height: 0px; white-space: pre; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;  }</style></head><body><div class = rtcContent><h1  class = 'S0' id = 'T_8311D159' ><span>Toolbox Extender</span></h1><div  class = 'S1'><span>Improve your custom toolbox (app) and develop process with powerful features:</span></div><ul  class = 'S2'><li  class = 'S3'><span>Easily install/uninstall toolbox and check current version (</span><a href = "#H_1AD8D806"><span>Extender</span></a><span>)</span></li><li  class = 'S3'><span>Access to toolbox documentation and examples (</span><a href = "#H_1AD8D806"><span>Extender</span></a><span>)</span></li><li  class = 'S3'><span>Automatic toolbox building and deployment to GitHub (</span><a href = "matlab:ToolboxExtender.opendoc('ToolboxDev')"><span>Dev</span></a><span>)</span></li><li  class = 'S3'><span>Ability of installed toolbox to automatically update itself to the latest version from GitHub (</span><a href = "matlab:ToolboxExtender.opendoc('ToolboxUpdater')"><span>Updater</span></a><span>)</span></li><li  class = 'S3'><span>Toolbox ability to store any data within itself, i.e. settings (</span><a href = "matlab:ToolboxExtender.opendoc('ToolboxStorage')"><span>Storage</span></a><span>)</span></li></ul><div  class = 'S1'><span>File Exchange entry: </span><a href = "https://www.mathworks.com/matlabcentral/fileexchange/69126"><span>Toolbox Extender</span></a></div><div  class = 'S4'><div  class = 'S5'><span style=' font-weight: bold;'>Table of Contents</span></div><div  class = 'S6'><a href = "#H_AC5CD9B6"><span>Requirements
+</span></a><a href = "#H_1AD8D806"><span>Extender Class
 </span></a><a href = "#H_CC44416F"><span>Dev Class
+</span></a><a href = "#H_2A0CB91C"><span>Updater Class
 </span></a><a href = "#H_415444E6"><span>Storage Class
-</span></a><a href = "#H_1B3C05E3"><span>Updater Class
-</span></a><span>    </span><a href = "#H_D24949F2"><span>Requirements
-</span></a><span>    </span><a href = "#H_957465EF"><span>Examples of Toolbox Updater usage
+</span></a><a href = "#H_D9679341"><span>Examples of Toolbox Updater usage
 </span></a><a href = "#H_E804940C"><span>Installation
-</span></a><a href = "#H_21DC9D0A"><span>How to update installed Toolbox Extender
-</span></a><a href = "#H_C42DE482"><span>How to add Updater to your custom toolbox project
-</span></a><a href = "#H_BC7425F0"><span>How to use Updater functionality
-</span></a><a href = "#H_8F03A0A0"><span>How to use Developer functionality</span></a></div></div><h2  class = 'S5' id = 'H_1AD8D806' ><span>Extender Class</span></h2><div  class = 'S1' id = 'H_749E4A46' ><span>Contains core functions. Required for other classes and functionality.</span></div><div  class = 'S1'><span>Can be useful itself:</span></div><ul  class = 'S6'><li  class = 'S7'><span>check versions of installed toolbox and latest remote release (GitHub)</span></li><li  class = 'S7'><span>install latest version of toolbox from remote</span></li></ul><div  class = 'S1'><span>See </span><a href = "matlab:ToolboxExtender.opendoc('ToolboxExtender')"><span>ToolboxExtender (class) documentation</span></a></div><h2  class = 'S8' id = 'H_CC44416F' ><span>Dev Class</span></h2><div  class = 'S1'><span>At the same time Updater class provide you with functions for easy:</span></div><ul  class = 'S6'><li  class = 'S7'><span>update toolbox project file version and build .mltbx</span></li><li  class = 'S7'><span>commit and push project to GitHub</span></li><li  class = 'S7'><span>create tag with version number and push it to GitHub</span></li></ul><h2  class = 'S8' id = 'H_415444E6' ><span>Storage Class</span></h2><h2  class = 'S8' id = 'H_1B3C05E3' ><span>Updater Class</span></h2><div  class = 'S1'><span>Updater class will add to your custom addon:</span></div><ul  class = 'S6'><li  class = 'S7'><span>feature to check the latest version on GitHub</span></li><li  class = 'S7'><span>feature to automatically download and install the latest version</span></li></ul><h3  class = 'S9' id = 'H_D24949F2' ><span>Requirements</span></h3><ul  class = 'S6'><li  class = 'S7'><span>MATLAB </span><span style=' font-weight: bold;'>R2018b</span><span> or newer</span></li><li  class = 'S7'><span>Installed </span><span style=' font-weight: bold;'>Git</span><span> for Dev functionality</span></li><li  class = 'S7'><span style=' font-weight: bold;'>Public</span><span> toolbox project on GitHub for Updater functionality</span></li></ul><h3  class = 'S9' id = 'H_957465EF' ><span>Examples of Toolbox Updater usage</span></h3><ul  class = 'S6'><li  class = 'S7'><a href = "https://github.com/ETMC-Exponenta/MATLAB-WEB-API"><span>MATLAB WEB API</span></a></li><li  class = 'S7'><a href = "https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators"><span>MATLAB Course for Educators</span></a></li><li  class = 'S7'><span>(send us your examples)</span></li></ul><h2  class = 'S5' id = 'H_E804940C' ><span>Installation</span></h2><div  class = 'S1'><span>Download and run</span><span> </span><a href = "https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx"><span>ToolboxExtender.mltbx</span></a></div><h2  class = 'S5' id = 'H_21DC9D0A' ><span>How to update installed Toolbox Extender</span></h2><div  class = 'S1'><span>Check installed and latest version</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.ver</span></span></div></div><div  class = 'S1'><span>Update to the latest version if available</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.update</span></span></div></div><h2  class = 'S5' id = 'H_C42DE482' ><span>How to add Updater to your custom toolbox project</span></h2><div  class = 'S1'><span>1. In toolbox project directory create toolbox project file (.prj)</span></div><div  class = 'S1'><span>2. Upload your project to GitHub</span></div><div  class = 'S1'><span>3. Run command</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.add</span></span></div></div><div  class = 'S1'><span>4. his will add to project directory: Updater class </span><span style=' font-weight: bold;'>...Updater.m</span><span>,</span><span> </span><span style=' font-weight: bold;'>ToolboxConfig.xml</span><span> </span><span>with project and Updater info,</span><span> </span><span style=' font-weight: bold;'>dev_on.m </span><span>script to activate developer tools</span></div><div  class = 'S1'><span>5. Manually add </span><span style=' font-weight: bold;'>dev_on.m</span><span> to excluded files of your project</span></div><h2  class = 'S5' id = 'H_BC7425F0' ><span>How to use Updater functionality</span></h2><div  class = 'S1'><span>Create object of your</span><span> </span><span style=' font-weight: bold;'>...Updater.m</span><span> </span><span>class</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>tu = ToolboxUpdater</span></span></div></div><div  class = 'S1'><span>Check internet connection</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>onl = tu.isonline</span></span></div></div><div  class = 'S1'><span>Check installed and latest version</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>tu.ver</span></span></div></div><div  class = 'S1'><span>Check update is available</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>upd = tu.isupdate</span></span></div></div><div  class = 'S1'><span>Update to latest version</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>tu.update</span></span></div></div><div  class = 'S1'><span>Use this functions in your toolbox to provide automatic update check and install.</span></div><h2  class = 'S5' id = 'H_8F03A0A0' ><span>How to use Developer functionality</span></h2><div  class = 'S1'><span>Run</span><span> </span><span style=' font-weight: bold;'>dev_on.m</span><span> </span><span>script</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>dev_on</span></span></div></div><div  class = 'S1'><span>Build toolbox (app) file of specified version (for test)</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>dev.build(</span><span style="color: rgb(160, 32, 240);">'0.0.1'</span><span>)</span></span></div></div><div  class = 'S1'><span>Build toolbox (app) file of specified version, commit, push to GitHub and create tag</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>dev.deploy(</span><span style="color: rgb(160, 32, 240);">'0.0.1'</span><span>)</span></span></div></div><div  class = 'S1'><span>Then create from tag new release on GitHub page and</span><span> </span><span style=' font-weight: bold;'>attach toolbox (app) file to it.</span></div><div  class = 'S1'><span>If you've made mistake: delete specified tag from GitHub</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>dev.untag(</span><span style="color: rgb(160, 32, 240);">'0.0.1'</span><span>)</span></span></div></div><div  class = 'S1'></div></div><br>
+</span></a><a href = "#H_AEEA6F62"><span>How to open documentation
+</span></a><a href = "#H_BF558392"><span>How to use
+</span></a><a href = "#H_57D5CF4E"><span>How to update installed Toolbox Extender</span></a></div></div><h2  class = 'S7' id = 'H_AC5CD9B6' ><span>Requirements</span></h2><ul  class = 'S2'><li  class = 'S3'><span>MATLAB </span><span style=' font-weight: bold;'>R2018b</span></li><li  class = 'S3'><span>Installed </span><span style=' font-weight: bold;'>Git</span><span> for </span><span style=' font-family: monospace;'>Dev</span><span> functionality</span></li><li  class = 'S3'><span style=' font-weight: bold;'>Public</span><span> toolbox project on GitHub for </span><span style=' font-family: monospace;'>Updater</span><span> functionality</span></li></ul><h2  class = 'S7' id = 'H_1AD8D806' ><span>Extender Class</span></h2><div  class = 'S1' id = 'H_749E4A46' ><span>Contains core functions. Required for other classes and functionality.</span></div><div  class = 'S1'><span>Can be useful itself:</span></div><ul  class = 'S2'><li  class = 'S3'><span>open toolbox documentation or examples</span></li><li  class = 'S3'><span>get current toolbox version</span></li><li  class = 'S3'><span>uninstall toolbox</span></li></ul><div  class = 'S1'><span>See </span><a href = "matlab:ToolboxExtender.opendoc('ToolboxExtender')"><span>ToolboxExtender (class) documentation</span></a></div><h2  class = 'S8' id = 'H_CC44416F' ><span>Dev Class</span></h2><div  class = 'S1'><span>Help you to build toolbox and deploy it to GitHub:</span></div><ul  class = 'S2'><li  class = 'S3'><span>update toolbox version and build </span><span style=' font-style: italic;'>.mltbx</span></li><li  class = 'S3'><span>commit and push project to GitHub</span></li><li  class = 'S3'><span>create tag with version number and push it to GitHub</span></li><li  class = 'S3'><span>create release page and upload </span><span style=' font-style: italic;'>.mltbx</span><span> binary</span></li></ul><div  class = 'S1'><span>See </span><a href = "matlab:ToolboxExtender.opendoc('ToolboxDev')"><span>ToolboxDev (class) documentation</span></a></div><h2  class = 'S8' id = 'H_2A0CB91C' ><span>Updater Class</span></h2><div  class = 'S1'><span>Updater class will add to your custom </span><span style=' font-style: italic;'>evergreen</span><span> toolbox:</span></div><ul  class = 'S2'><li  class = 'S3'><span>feature to check the latest version on GitHub</span></li><li  class = 'S3'><span>ability to automatically download and install the latest version</span></li></ul><div  class = 'S1'><span>See </span><a href = "matlab:ToolboxExtender.opendoc('ToolboxUpdater')"><span>ToolboxUpdater (class) documentation</span></a></div><h2  class = 'S8' id = 'H_415444E6' ><span>Storage Class</span></h2><div  class = 'S1' id = 'H_1423B39B' ><span>Helps you easily store any data within installed toolbox, i.e. user settings</span></div><ul  class = 'S2'><li  class = 'S3'><span>Store all toolbox data in one </span><span style=' font-style: italic;'>.mat</span><span> file in convenient </span><span style=' font-style: italic;'>Add-ons</span><span> folder</span></li><li  class = 'S3'><span>Load any data you need by name</span></li><li  class = 'S3'><span>Clear storage if you don't need it</span></li></ul><div  class = 'S1'><span>See </span><a href = "matlab:ToolboxExtender.opendoc('ToolboxStorage')"><span>ToolboxStorage (class) documentation</span></a></div><h2  class = 'S8' id = 'H_D9679341' ><span>Examples of Toolbox Updater usage</span></h2><ul  class = 'S2'><li  class = 'S3'><a href = "https://github.com/ETMC-Exponenta/MATLAB-WEB-API"><span>MATLAB WEB API</span></a></li><li  class = 'S3'><a href = "https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators"><span>MATLAB Course for Educators</span></a></li><li  class = 'S3'><span>(send us your examples)</span></li></ul><h2  class = 'S7' id = 'H_E804940C' ><span>Installation</span></h2><div  class = 'S1'><span>Download and run</span><span> </span><a href = "https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx"><span>ToolboxExtender.mltbx</span></a></div><h2  class = 'S7' id = 'H_AEEA6F62' ><span>How to open documentation</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre;"><span>ToolboxExtender.opendoc</span></span></div></div></div><h2  class = 'S7' id = 'H_BF558392' ><span>How to use</span></h2><div  class = 'S1'><span>1. In toolbox project directory create toolbox project file (.prj)</span></div><div  class = 'S1'><span>2. Upload your project to GitHub (optionally)</span></div><div  class = 'S1'><span>3. Run command</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.add([classname])</span></span></div></div><div  class = 'S1'><span>This will initialize in the curent toolbox project folder a copy of the </span><span style=' font-family: monospace;'>ToolboxExtender </span><span>class and </span><span style=' font-style: italic; font-family: monospace;'>classname</span><span style=' font-family: monospace;'> (optional)</span><span>:</span></div><ul  class = 'S2'><li  class = 'S3'><span style=' font-family: monospace;'>'all'</span><span> - ToolboxExtender, ToolboxDev, ToolboxStorage, ToolboxUpdater classes</span></li><li  class = 'S3'><span style=' font-family: monospace;'>'extender'</span><span> or without argument - only ToolboxExtender class</span></li><li  class = 'S3'><span style=' font-family: monospace;'>'dev' </span><span>- ToolboxExtender, ToolboxDev classes</span></li><li  class = 'S3'><span style=' font-family: monospace;'>'storage'</span><span> - ToolboxExtender, ToolboxStorage classes</span></li><li  class = 'S3'><span style=' font-family: monospace;'>'updater'</span><span> - ToolboxExtender, ToolboxUpdater classes</span></li></ul><div  class = 'S1'><span>Initialized classes will have names depended on the project name, i.e.: </span><span style=' font-style: italic;'>ProjectNameExtender</span><span>, </span><span style=' font-style: italic;'>ProjectNameDev</span><span>, etc.</span></div><div  class = 'S1'><span>4. Also files will be generated in project directory: </span><span style=' font-weight: bold;'>ToolboxConfig.xml</span><span> </span><span>with project and Extender info,</span><span> </span><span style=' font-weight: bold;'>dev_on.m </span><span>script to activate developer tools (optionally). </span><span style=' font-weight: bold;'>Do not delete ToolboxConfig.xml!</span></div><div  class = 'S1'><span>5. Manually add </span><span style=' font-weight: bold;'>...Dev.m</span><span> class and </span><span style=' font-weight: bold;'>dev_on.m</span><span> script to excluded files of your project</span></div><h2  class = 'S7' id = 'H_57D5CF4E' ><span>How to update installed Toolbox Extender</span></h2><div  class = 'S1'><span>Check installed and latest version</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.ver</span></span></div></div><div  class = 'S1'><span>Update to the latest version if available</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S10'><span style="white-space: pre;"><span>ToolboxExtender.update</span></span></div></div><div  class = 'S1' id = 'H_97C25030' ><span style=' font-style: italic;'>by Pavel Roslovets, </span><a href = "http://exponenta.ru"><span style=' font-style: italic;'>ETMC Exponenta</span></a></div></div><br>
 <!-- 
 ##### SOURCE BEGIN #####
 %% Toolbox Extender
-% Improve your custom toolbox and develop process with a lot of powerful features
+% Improve your custom toolbox (app) and develop process with powerful features:
 % 
-% File Exchange: <https://www.mathworks.com/matlabcentral/fileexchange/69126 
+% * Easily install/uninstall toolbox and check current version (<internal:H_1AD8D806 
+% Extender>)
+% * Access to toolbox documentation and examples (<internal:H_1AD8D806 Extender>)
+% * Automatic toolbox building and deployment to GitHub (<matlab:ToolboxExtender.opendoc('ToolboxDev') 
+% Dev>)
+% * Ability of installed toolbox to automatically update itself to the latest 
+% version from GitHub (<matlab:ToolboxExtender.opendoc('ToolboxUpdater') Updater>)
+% * Toolbox ability to store any data within itself, i.e. settings (<matlab:ToolboxExtender.opendoc('ToolboxStorage') 
+% Storage>)
+% 
+% File Exchange entry: <https://www.mathworks.com/matlabcentral/fileexchange/69126 
 % Toolbox Extender>
+%% Requirements
+% * MATLAB *R2018b*
+% * Installed *Git* for |Dev| functionality
+% * *Public* toolbox project on GitHub for |Updater| functionality
 %% Extender Class
 % Contains core functions. Required for other classes and functionality.
 % 
 % Can be useful itself:
 % 
-% * check versions of installed toolbox and latest remote release (GitHub)
-% * install latest version of toolbox from remote
+% * open toolbox documentation or examples
+% * get current toolbox version
+% * uninstall toolbox
 % 
 % See <matlab:ToolboxExtender.opendoc('ToolboxExtender') ToolboxExtender 
 % (class) documentation>
 %% Dev Class
-% At the same time Updater class provide you with functions for easy:
+% Help you to build toolbox and deploy it to GitHub:
 % 
-% * update toolbox project file version and build .mltbx
+% * update toolbox version and build _.mltbx_
 % * commit and push project to GitHub
 % * create tag with version number and push it to GitHub
-%% Storage Class
+% * create release page and upload _.mltbx_ binary
+% 
+% See <matlab:ToolboxExtender.opendoc('ToolboxDev') ToolboxDev (class) documentation>
 %% Updater Class
-% Updater class will add to your custom addon:
+% Updater class will add to your custom _evergreen_ toolbox:
 % 
 % * feature to check the latest version on GitHub
-% * feature to automatically download and install the latest version
-%% Requirements
-% * MATLAB *R2018b* or newer
-% * Installed *Git* for Dev functionality
-% * *Public* toolbox project on GitHub for Updater functionality
+% * ability to automatically download and install the latest version
+% 
+% See <matlab:ToolboxExtender.opendoc('ToolboxUpdater') ToolboxUpdater (class) 
+% documentation>
+%% Storage Class
+% Helps you easily store any data within installed toolbox, i.e. user settings
+% 
+% * Store all toolbox data in one _.mat_ file in convenient _Add-ons_ folder
+% * Load any data you need by name
+% * Clear storage if you don't need it
+% 
+% See <matlab:ToolboxExtender.opendoc('ToolboxStorage') ToolboxStorage (class) 
+% documentation>
 %% Examples of Toolbox Updater usage
 % * <https://github.com/ETMC-Exponenta/MATLAB-WEB-API MATLAB WEB API>
 % * <https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators MATLAB Course 
@@ -61,6 +86,38 @@
 %% Installation
 % Download and run <https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx 
 % ToolboxExtender.mltbx>
+%% How to open documentation
+%%
+ToolboxExtender.opendoc
+%% How to use
+% 1. In toolbox project directory create toolbox project file (.prj)
+% 
+% 2. Upload your project to GitHub (optionally)
+% 
+% 3. Run command
+%%
+% 
+%   ToolboxExtender.add([classname])
+%
+% 
+% This will initialize in the curent toolbox project folder a copy of the 
+% |ToolboxExtender |class and |_classname_ (optional)|:
+% 
+% * |'all'| - ToolboxExtender, ToolboxDev, ToolboxStorage, ToolboxUpdater classes
+% * |'extender'| or without argument - only ToolboxExtender class
+% * |'dev' |- ToolboxExtender, ToolboxDev classes
+% * |'storage'| - ToolboxExtender, ToolboxStorage classes
+% * |'updater'| - ToolboxExtender, ToolboxUpdater classes
+% 
+% Initialized classes will have names depended on the project name, i.e.: 
+% _ProjectNameExtender_, _ProjectNameDev_, etc.
+% 
+% 4. Also files will be generated in project directory: *ToolboxConfig.xml* 
+% with project and Extender info, *dev_on.m *script to activate developer tools 
+% (optionally). *Do not delete ToolboxConfig.xml!*
+% 
+% 5. Manually add *...Dev.m* class and *dev_on.m* script to excluded files 
+% of your project
 %% How to update installed Toolbox Extender
 % Check installed and latest version
 %%
@@ -73,83 +130,7 @@
 % 
 %   ToolboxExtender.update
 %
-%% How to add Updater to your custom toolbox project
-% 1. In toolbox project directory create toolbox project file (.prj)
 % 
-% 2. Upload your project to GitHub
-% 
-% 3. Run command
-%%
-% 
-%   ToolboxExtender.add
-%
-% 
-% 4. his will add to project directory: Updater class *...Updater.m*, *ToolboxConfig.xml* 
-% with project and Updater info, *dev_on.m *script to activate developer tools
-% 
-% 5. Manually add *dev_on.m* to excluded files of your project
-%% How to use Updater functionality
-% Create object of your *...Updater.m* class
-%%
-% 
-%   tu = ToolboxUpdater
-%
-% 
-% Check internet connection
-%%
-% 
-%   onl = tu.isonline
-%
-% 
-% Check installed and latest version
-%%
-% 
-%   tu.ver
-%
-% 
-% Check update is available
-%%
-% 
-%   upd = tu.isupdate
-%
-% 
-% Update to latest version
-%%
-% 
-%   tu.update
-%
-% 
-% Use this functions in your toolbox to provide automatic update check and 
-% install.
-%% How to use Developer functionality
-% Run *dev_on.m* script
-%%
-% 
-%   dev_on
-%
-% 
-% Build toolbox (app) file of specified version (for test)
-%%
-% 
-%   dev.build('0.0.1')
-%
-% 
-% Build toolbox (app) file of specified version, commit, push to GitHub and 
-% create tag
-%%
-% 
-%   dev.deploy('0.0.1')
-%
-% 
-% Then create from tag new release on GitHub page and *attach toolbox (app) 
-% file to it.*
-% 
-% If you've made mistake: delete specified tag from GitHub
-%%
-% 
-%   dev.untag('0.0.1')
-%
-% 
-% ||
+% _by Pavel Roslovets, <http://exponenta.ru ETMC Exponenta>_
 ##### SOURCE END #####
 --></body></html>
