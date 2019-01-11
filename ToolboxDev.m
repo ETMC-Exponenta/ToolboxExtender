@@ -52,7 +52,7 @@ classdef ToolboxDev < handle
                     txt = strrep(txt, '<param.version />', '');
                     obj.TE.writetxt(txt, ppath);
                 end
-                obj.TE.vp = vp;
+                obj.vp = vp;
             end
             [~, bname] = fileparts(obj.TE.pname);
             bpath = fullfile(obj.TE.root, bname);
@@ -96,7 +96,7 @@ classdef ToolboxDev < handle
             disp("Binary path was copied to clipboard")
             disp("* Now create release on GitHub page with binary attached *")
             pause(1)
-            web(obj.TE.remote + "/releases/edit/v" + obj.TE.vp, '-browser')
+            web(obj.TE.remote + "/releases/edit/v" + obj.vp, '-browser')
         end
         
     end
@@ -137,7 +137,7 @@ classdef ToolboxDev < handle
         
         function push(obj)
             % Commit and push project to GitHub
-            commitcmd = sprintf('git commit -m v%s', obj.TE.vp);
+            commitcmd = sprintf('git commit -m v%s', obj.vp);
             system('git add .');
             system(commitcmd);
             system('git push');
@@ -146,7 +146,7 @@ classdef ToolboxDev < handle
         
         function tag(obj)
             % Tag git project and push tag
-            tagcmd = sprintf('git tag -a v%s -m v%s', obj.TE.vp, obj.TE.vp);
+            tagcmd = sprintf('git tag -a v%s -m v%s', obj.vp, obj.vp);
             system(tagcmd);
             system('git push --tags');
             obj.TE.echo('has been tagged');
