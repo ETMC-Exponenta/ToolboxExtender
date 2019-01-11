@@ -72,7 +72,8 @@ npath = nname + ".m";
 oname = "Toolbox" + classname;
 opath = fullfile(getroot(), oname + ".m");
 copyfile(opath, npath);
-obj.txtrep(npath, oname, nname);
+obj.txtrep(npath, "obj = " + oname, "obj = " + nname);
+obj.txtrep(npath, "classdef " + oname, "classdef " + nname);
 obj.txtrep(npath, "obj.TE = ToolboxExtender", "obj.TE = " + obj.getvalidname + "Extender");
 end
 

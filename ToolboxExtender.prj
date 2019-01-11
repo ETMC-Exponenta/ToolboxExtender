@@ -12,7 +12,7 @@
 - Ability of installed toolbox to automatically update itself to the latest version from GitHub (Updater)
 - Toolbox ability to store any data within itself, i.e. settings (Storage)</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>1.0</param.version>
+    <param.version>1.1</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -70,7 +70,6 @@ retest.m
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.version />
       <param.output />
       <param.products.name />
       <param.products.id />

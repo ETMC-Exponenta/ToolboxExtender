@@ -15,10 +15,14 @@ classdef ToolboxStorage < handle
         function obj = ToolboxStorage(fname, varargin)
             % Constructor
             p = inputParser();
-            p.addParameter('TE', ToolboxExtender);
+            p.addParameter('TE', []);
             p.addParameter('local', false);
             p.parse();
-            obj.TE = p.Results.TE;
+            if ~isempty(p.Results.TE)
+                obj.TE = p.Results.TE;
+            else
+                obj.TE = ToolboxExtender;
+            end
             obj.getroot(p.Results.local);
             if nargin < 1
                 fname = matlab.lang.makeValidName(obj.TE.name) + "_data";
