@@ -2,19 +2,19 @@
 
 Improve your custom toolbox (app) and develop process with powerful features:
 
-- Easily install/uninstall toolbox and check current version (Extender)
-- Access to toolbox documentation and examples (Extender)
-- Automatic toolbox building and deployment to GitHub (Dev)
-- Ability of installed toolbox to automatically update itself to the latest version from GitHub (Updater)
-- Toolbox ability to store any data within itself, i.e. settings (Storage)
+- Easily install/uninstall toolbox and check current version ([Extender](./README.md/#extender-class))
+- Access to toolbox documentation and examples ([Extender](./README.md/#extender-class))
+- Automatic toolbox building and deployment to GitHub ([Dev](./README.md/#dev-class))
+- Ability of installed toolbox to automatically update itself to the latest version from GitHub ([Updater](./README.md/#updater-class))
+- Toolbox ability to store any data within itself, i.e. settings ([Storage](./README.md/#storage-class))
 
 File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/fileexchange/69126)
 
 ## Requirements
 
-- MATLAB R2018b
-- Installed Git for Dev functionality
-- Public toolbox project on GitHub for Updater functionality
+- **MATLAB R2018b**
+- Installed **Git** for **Dev** functionality
+- Public toolbox project on GitHub for **Updater** functionality
 
 ## Extender Class
 
@@ -70,7 +70,7 @@ Download and run [ToolboxExtender.mltbx](https://github.com/ETMC-Exponenta/Toolb
 
 ## Toolbox Extender App
 
-You can use **Toolbox Extender** App to work with the main Toolbox Extender functionality.
+You can use **Toolbox Extender App** to work with the main Toolbox Extender functionality.
 
 The app can be found in APPS section of main MATLAB Window or
 
@@ -78,7 +78,7 @@ The app can be found in APPS section of main MATLAB Window or
 
 ## How to open documentation
 
-Use **Toolbox Extender App** or
+Use [Toolbox Extender App](./README.md/#toolbox-extender-app) or
 
 ```ToolboxExtender.help```
 
@@ -88,7 +88,7 @@ Use **Toolbox Extender App** or
 
 2. Upload your project to GitHub (optionally)
 
-3. Use Toolbox Extender App to initialize required classes or run command
+3. Use [Toolbox Extender App](./README.md/#toolbox-extender-app) to initialize required classes or run command
 
 ```ToolboxExtender.add([classname])```
 
@@ -100,11 +100,11 @@ This will initialize in the curent toolbox project folder a copy of the ToolboxE
 - 'storage' - ToolboxExtender, ToolboxStorage classes
 - 'updater' - ToolboxExtender, ToolboxUpdater classes
 
-Initialized classes will have names depended on the project name, i.e.: ProjectNameExtender, ProjectNameDev, etc.
+Initialized classes will have names depended on the project name, i.e.: *ProjectNameExtender*, *ProjectNameDev*, etc.
 
-4. Also files will be generated in project directory: ToolboxConfig.xml with project and Extender info, dev_on.m script to activate developer tools (optionally). Do not delete ToolboxConfig.xml!
+4. Also files will be generated in project directory: **ToolboxConfig.xml** with project and Extender info, **dev_on.m** script to activate developer tools (optionally). **Do not delete ToolboxConfig.xml**!
 
-5. Manually add ...Dev.m class and dev_on.m script to excluded files of your project
+5. Manually add *...Dev.m* class and *dev_on.m* script to excluded files of your project
 
 ## How to update installed Toolbox Extender
 
@@ -119,4 +119,4 @@ Update to the latest version if available
 ```ToolboxExtender.update```
 
 ***
-*by Pavel Roslovets, ETMC Exponenta*
+by Pavel Roslovets, ETMC Exponenta
