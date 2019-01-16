@@ -1,14 +1,32 @@
 # Toolbox Extender
 
-Improve your custom toolbox (app) and develop process with powerful features:
+When you [create toolbox](https://www.mathworks.com/help/matlab/matlab_prog/create-and-share-custom-matlab-toolboxes.html) you often face issues, i.e.:
+
+- how to automate routine tasks related to the toolbox building end using
+- how to easily and correctly distribute your toolbox via the internet
+- how to make users notice that a newer version of the toolbox is available
+- how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
+
+**Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.**
+
+File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/fileexchange/69126)
+
+## Why should I use?
+
+- It will save your time spended on toolbox developing
+- You will avoid some typical errors related to toolbox building and distribution due to automation
+- Your toolboxes will have unique features (autoupdating via internet and user preferences storing)
+- It's easy to add exdended capabilities to your toolbox
+- It's easy to use them due to built-in documentation and examples
+
+## Core features:
 
 - Easily install/uninstall toolbox and check current version ([Extender](./README.md/#extender-class))
-- Access to toolbox documentation and examples ([Extender](./README.md/#extender-class))
+- Access toolbox documentation and examples ([Extender](./README.md/#extender-class))
 - Automatic toolbox building and deployment to GitHub ([Dev](./README.md/#dev-class))
 - Ability of installed toolbox to automatically update itself to the latest version from GitHub ([Updater](./README.md/#updater-class))
 - Toolbox ability to store any data within itself, i.e. settings ([Storage](./README.md/#storage-class))
 
-File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/fileexchange/69126)
 
 ## Requirements
 

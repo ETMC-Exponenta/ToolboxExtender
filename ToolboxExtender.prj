@@ -4,15 +4,15 @@
     <param.authnamewatermark>Pavel Roslovets</param.authnamewatermark>
     <param.email>roslovets@exponenta.ru</param.email>
     <param.company>ETMC Exponenta</param.company>
-    <param.summary>Improve your custom toolbox (app) and develop process with powerful features</param.summary>
-    <param.description>Improve your custom toolbox (app) and develop process with powerful features:
-- Easily install/uninstall toolbox and check current version (Extender)
-- Access to toolbox documentation and examples (Extender)
-- Automatic toolbox building and deployment to GitHub (Dev)
-- Ability of installed toolbox to automatically update itself to the latest version from GitHub (Updater)
-- Toolbox ability to store any data within itself, i.e. settings (Storage)</param.description>
+    <param.summary>Extends built-in MATLAB capabilities of toolbox creating</param.summary>
+    <param.description>When you create toolbox you often face issues, i.e.:
+- how to automate routine tasks related to the toolbox building end using
+- how to easily and correctly distribute your toolbox via the internet
+- how to make users notice that a newer version of the toolbox is available
+- how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
+Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>1.1</param.version>
+    <param.version>1.2</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
