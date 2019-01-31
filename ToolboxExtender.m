@@ -137,8 +137,19 @@ classdef ToolboxExtender < handle
             % Get project file name
             fs = dir(fullfile(obj.root, '*.prj'));
             if ~isempty(fs)
-                pname = fs(1).name;
-                obj.pname = pname;
+                names = {fs.name};
+                isproj = false(1, length(names));
+                for i = 1 : length(names)
+                    txt = obj.readtxt(fullfile(obj.root, names{i}));
+                    isproj(i) = ~contains(txt, '<MATLABProject');
+                end
+                if any(isproj)
+                    names = names(isproj);
+                    pname = names{1};
+                    obj.pname = pname;
+                else
+                    error('Project file was not found in a current folder');
+                end
             else
                 error('Project file was not found in a current folder');
             end
