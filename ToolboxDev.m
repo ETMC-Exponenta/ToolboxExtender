@@ -25,7 +25,7 @@ classdef ToolboxDev < handle
         
         function vp = gvp(obj)
             % Get project version
-            ppath = fullfile(obj.TE.root, obj.TE.pname);
+            ppath = obj.TE.getppath();
             if isfile(ppath)
                 if obj.TE.type == "toolbox"
                     vp = matlab.addons.toolbox.toolboxVersion(ppath);
@@ -41,7 +41,7 @@ classdef ToolboxDev < handle
         
         function build(obj, vp)
             % Build toolbox for specified version
-            ppath = fullfile(obj.TE.root, obj.TE.pname);
+            ppath = obj.TE.getppath();
             obj.gendoc();
             if nargin > 1
                 if obj.TE.type == "toolbox"
@@ -57,6 +57,7 @@ classdef ToolboxDev < handle
             [~, bname] = fileparts(obj.TE.pname);
             bpath = fullfile(obj.TE.root, bname);
             if obj.TE.type == "toolbox"
+                obj.updateroot();
                 obj.seticons();
                 matlab.addons.toolbox.packageToolbox(ppath, bname);
             else
@@ -103,6 +104,15 @@ classdef ToolboxDev < handle
     
     
     methods (Hidden)
+        
+        function updateroot(obj)
+            % Update project root
+            service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
+            configKey = service.openProject(obj.TE.getppath());
+            service.removeToolboxRoot(configKey);
+            service.setToolboxRoot(configKey, obj.TE.root);
+            service.closeProject(configKey);
+        end
         
         function gendoc(obj)
             % Generate html from mlx doc

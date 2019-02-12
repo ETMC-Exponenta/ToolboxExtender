@@ -125,7 +125,7 @@ classdef ToolboxExtender < handle
         function name = getname(obj)
             % Get project name from project file
             name = '';
-            ppath = fullfile(obj.root, obj.pname);
+            ppath = obj.getppath();
             if isfile(ppath)
                 txt = obj.readtxt(ppath);
                 name = char(extractBetween(txt, '<param.appname>', '</param.appname>'));
@@ -155,9 +155,14 @@ classdef ToolboxExtender < handle
             end
         end
         
+        function ppath = getppath(obj)
+            % Get project file full path
+            ppath = fullfile(obj.root, obj.pname);
+        end
+        
         function type = gettype(obj)
             % Get project type (Toolbox/App)
-            ppath = fullfile(obj.root, obj.pname);
+            ppath = obj.getppath();
             txt = obj.readtxt(ppath);
             if contains(txt, 'plugin.toolbox')
                 type = 'toolbox';
