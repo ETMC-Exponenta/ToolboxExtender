@@ -30,7 +30,7 @@ File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/
 
 ## Requirements
 
-- **MATLAB R2018b**
+- **MATLAB R2019a**
 - Installed **Git** for **Dev** functionality
 - Public toolbox project on GitHub for **Updater** functionality
 
@@ -137,4 +137,4 @@ Update to the latest version if available
 ```ToolboxExtender.update```
 
 ***
-by Pavel Roslovets, ETMC Exponenta
+by [Pavel Roslovets](https://www.linkedin.com/in/pavel-roslovets/), [ETMC Exponenta](https://exponenta.ru)
