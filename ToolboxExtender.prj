@@ -12,7 +12,7 @@
 - how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
 Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>1.3</param.version>
+    <param.version>1.4</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -53,6 +53,9 @@ retest.m
     <param.matlabpath.excludes />
     <param.javaclasspath.excludes />
     <param.exported.on.package>false</param.exported.on.package>
+    <param.required.addons />
+    <param.matlab.project.id />
+    <param.matlab.project.name />
     <param.release.start>R2018b</param.release.start>
     <param.release.end>latest</param.release.end>
     <param.release.current.only>false</param.release.current.only>
@@ -82,6 +85,9 @@ retest.m
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
       <param.exported.on.package />
+      <param.required.addons />
+      <param.matlab.project.id />
+      <param.matlab.project.name />
       <param.release.current.only />
       <param.compatiblity.windows />
       <param.compatiblity.macos />
@@ -95,7 +101,7 @@ retest.m
       <param.additional.sw.linux.url />
     </unset>
     <fileset.rootdir>
-      <file>D:\MATLAB\ToolboxExtender</file>
+      <file>${PROJECT_ROOT}</file>
     </fileset.rootdir>
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+ToolboxExtender</file>
@@ -112,7 +118,6 @@ retest.m
       <file>${PROJECT_ROOT}\retest.m</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
-      <file>${PROJECT_ROOT}\ToolboxDev.asv</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
@@ -126,18 +131,16 @@ retest.m
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="D:\MATLAB\ToolboxExtender" name="Toolbox Extender.mltbx" optional="false">D:\MATLAB\ToolboxExtender\Toolbox Extender.mltbx</file>
+      <file location="${PROJECT_ROOT}" name="Toolbox Extender.mltbx" optional="false">D:\MATLAB\ToolboxExtender\Toolbox Extender.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2018b</root>
+      <root>C:\Program Files\MATLAB\R2019a</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
         <toolbox name="embeddedcoder" />
         <toolbox name="gpucoder" />
         <toolbox name="fixedpoint" />
-        <toolbox name="matlabhdlcoder" />
-        <toolbox name="polyspacebugfinder" />
         <toolbox name="neuralnetwork" />
       </toolboxes>
       <toolbox>
@@ -159,16 +162,6 @@ retest.m
         <fixedpoint>
           <enabled>true</enabled>
         </fixedpoint>
-      </toolbox>
-      <toolbox>
-        <matlabhdlcoder>
-          <enabled>true</enabled>
-        </matlabhdlcoder>
-      </toolbox>
-      <toolbox>
-        <polyspacebugfinder>
-          <enabled>true</enabled>
-        </polyspacebugfinder>
       </toolbox>
       <toolbox>
         <neuralnetwork>
