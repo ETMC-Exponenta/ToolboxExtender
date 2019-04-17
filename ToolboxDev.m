@@ -48,7 +48,7 @@ classdef ToolboxDev < handle
             if gendoc
                 obj.gendoc();
             end
-            if nargin > 1
+            if nargin > 1 && ~isempty(vp)
                 if obj.TE.type == "toolbox"
                     matlab.addons.toolbox.toolboxVersion(ppath, vp);
                 else
