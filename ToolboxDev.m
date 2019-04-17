@@ -39,10 +39,15 @@ classdef ToolboxDev < handle
             obj.vp = vp;
         end
         
-        function build(obj, vp)
+        function build(obj, vp, gendoc)
             % Build toolbox for specified version
             ppath = obj.TE.getppath();
-            obj.gendoc();
+            if nargin < 3
+                gendoc = true;
+            end
+            if gendoc
+                obj.gendoc();
+            end
             if nargin > 1
                 if obj.TE.type == "toolbox"
                     matlab.addons.toolbox.toolboxVersion(ppath, vp);
@@ -67,9 +72,12 @@ classdef ToolboxDev < handle
             obj.TE.echo('has been built');
         end
         
-        function test(obj)
+        function test(obj, gendoc)
             % Build and install
-            obj.build();
+            if nargin < 2
+                gendoc = false;
+            end
+            obj.build(obj.vp, gendoc);
             obj.TE.install();
         end
         
