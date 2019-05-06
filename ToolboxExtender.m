@@ -51,6 +51,8 @@ classdef ToolboxExtender < handle
                     vc = char(vc);
                 elseif isempty(vc)
                     vc = '';
+                else
+                    vc = char(vc(end));
                 end
             else
                 tbx = matlab.apputil.getInstalledAppInfo;
@@ -85,8 +87,10 @@ classdef ToolboxExtender < handle
                 else
                     matlab.apputil.uninstall(char(guid));
                 end
-                obj.echo('has been uninstalled');
-                obj.gvc();
+                disp('Uninstalled');
+                try
+                    obj.gvc();
+                end
             end
         end
         
