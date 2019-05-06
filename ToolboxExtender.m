@@ -112,6 +112,11 @@ classdef ToolboxExtender < handle
             cd(expath);
         end
         
+        function web(obj)
+            % Open GitHub page
+            web(obj.remote, '-browser');
+        end
+        
     end
     
     
