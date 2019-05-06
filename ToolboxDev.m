@@ -14,7 +14,11 @@ classdef ToolboxDev < handle
             if nargin < 1
                 obj.TE = ToolboxExtender;
             else
-                obj.TE = extender;
+                if ischar(extender) || isStringScalar(extender)
+                    obj.TE = ToolboxExtender(extender);
+                else
+                    obj.TE = extender;
+                end
             end
             if ~strcmp(obj.TE.root, pwd)
                 warning("Project root folder does not math with current folder." +...
@@ -57,7 +61,6 @@ classdef ToolboxDev < handle
                     txt = strrep(txt, '<param.version />', '');
                     obj.TE.writetxt(txt, ppath);
                 end
-                obj.vp = vp;
             end
             [~, bname] = fileparts(obj.TE.pname);
             bpath = fullfile(obj.TE.root, bname);
@@ -94,15 +97,20 @@ classdef ToolboxDev < handle
         function release(obj, vp)
             % Build toolbox, push and tag version
             if nargin > 1
-                obj.build(vp);
+                obj.vp = vp;
             else
-                obj.build();
+                vp = '';
+            end
+            if ~isempty(obj.TE.pname)
+                obj.build(vp);
             end
             obj.push();
             obj.tag();
             obj.TE.echo('has been deployed');
-            clipboard('copy', ['"' char(obj.TE.getbinpath) '"'])
-            disp("Binary path was copied to clipboard")
+            if ~isempty(obj.TE.pname)
+                clipboard('copy', ['"' char(obj.TE.getbinpath) '"'])
+                disp("Binary path was copied to clipboard")
+            end
             disp("* Now create release on GitHub page with binary attached *")
             pause(1)
             web(obj.TE.remote + "/releases/edit/v" + obj.vp, '-browser')

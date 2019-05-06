@@ -148,16 +148,20 @@ classdef ToolboxExtender < handle
                     pname = names{1};
                     obj.pname = pname;
                 else
-                    error('Project file was not found in a current folder');
+                    warning('Project file was not found in a current folder');
                 end
             else
-                error('Project file was not found in a current folder');
+                warning('Project file was not found in a current folder');
             end
         end
         
         function ppath = getppath(obj)
             % Get project file full path
-            ppath = fullfile(obj.root, obj.pname);
+            if ~isempty(obj.pname)
+                ppath = fullfile(obj.root, obj.pname);
+            else
+                ppath = '';
+            end
         end
         
         function type = gettype(obj)
@@ -178,6 +182,10 @@ classdef ToolboxExtender < handle
             % Get remote (GitHub) address via Git
             [~, cmdout] = system('git remote -v');
             remote = extractBetween(cmdout, 'https://', '.git', 'Boundaries', 'inclusive');
+            if isempty(remote)
+                remote = extractBetween(cmdout, 'https://', '(', 'Boundaries', 'inclusive');
+                remote = strtrim(erase(remote, '('));
+            end
             if ~isempty(remote)
                 remote = remote(end);
             end
@@ -193,16 +201,22 @@ classdef ToolboxExtender < handle
         
         function txt = readtxt(~, fpath)
             % Read text from file
-            f = fopen(fpath, 'r', 'n', 'windows-1251');
-            txt = fread(f, '*char')';
-            fclose(f);
+            if isfile(fpath)
+                f = fopen(fpath, 'r', 'n', 'windows-1251');
+                txt = fread(f, '*char')';
+                fclose(f);
+            else
+                txt = '';
+            end
         end
         
         function writetxt(~, txt, fpath)
             % Wtite text to file
-            fid = fopen(fpath, 'w', 'n', 'windows-1251');
-            fwrite(fid, unicode2native(txt, 'windows-1251'));
-            fclose(fid);
+            if isfile(fpath)
+                fid = fopen(fpath, 'w', 'n', 'windows-1251');
+                fwrite(fid, unicode2native(txt, 'windows-1251'));
+                fclose(fid);
+            end
         end
         
         function txt = txtrep(obj, fpath, old, new)
