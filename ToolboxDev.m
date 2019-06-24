@@ -53,14 +53,7 @@ classdef ToolboxDev < handle
                 obj.gendoc();
             end
             if nargin > 1 && ~isempty(vp)
-                if obj.TE.type == "toolbox"
-                    matlab.addons.toolbox.toolboxVersion(ppath, vp);
-                else
-                    txt = obj.TE.readtxt(ppath);
-                    txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
-                    txt = strrep(txt, '<param.version />', '');
-                    obj.TE.writetxt(txt, ppath);
-                end
+                obj.setver(vp);
             end
             [~, bname] = fileparts(obj.TE.pname);
             bpath = fullfile(obj.TE.root, bname);
@@ -116,20 +109,6 @@ classdef ToolboxDev < handle
             web(obj.TE.remote + "/releases/edit/v" + obj.vp, '-browser')
         end
         
-    end
-    
-    
-    methods (Hidden)
-        
-        function updateroot(obj)
-            % Update project root
-            service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
-            configKey = service.openProject(obj.TE.getppath());
-            service.removeToolboxRoot(configKey);
-            service.setToolboxRoot(configKey, obj.TE.root);
-            service.closeProject(configKey);
-        end
-        
         function gendoc(obj)
             % Generate html from mlx doc
             docdir = fullfile(obj.TE.root, 'doc');
@@ -143,6 +122,33 @@ classdef ToolboxDev < handle
                 matlab.internal.liveeditor.openAndConvert(char(fpath), char(htmlpath));
                 disp('Doc has been generated');
             end
+        end
+        
+        function setver(obj, vp)
+            % Set version
+            ppath = obj.TE.getppath();
+            if obj.TE.type == "toolbox"
+                matlab.addons.toolbox.toolboxVersion(ppath, vp);
+            else
+                txt = obj.TE.readtxt(ppath);
+                txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
+                txt = strrep(txt, '<param.version />', '');
+                obj.TE.writetxt(txt, ppath);
+            end
+        end
+        
+    end
+    
+    
+    methods (Hidden)
+        
+        function updateroot(obj)
+            % Update project root
+            service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
+            configKey = service.openProject(obj.TE.getppath());
+            service.removeToolboxRoot(configKey);
+            service.setToolboxRoot(configKey, obj.TE.root);
+            service.closeProject(configKey);
         end
         
         function seticons(obj)
