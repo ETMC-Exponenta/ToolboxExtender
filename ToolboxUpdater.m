@@ -4,7 +4,7 @@ classdef ToolboxUpdater < handle
     % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
-        TE % Toolbox Extender
+        ext % Toolbox Extender
         vr % latest remote version form internet (GitHub)
     end
     
@@ -12,15 +12,15 @@ classdef ToolboxUpdater < handle
         function obj = ToolboxUpdater(extender)
             % Init
             if nargin < 1
-                obj.TE = ToolboxExtender;
+                obj.ext = ToolboxExtender;
             else
-                obj.TE = extender;
+                obj.ext = extender;
             end
         end        
         
         function [vr, r, err] = gvr(obj)
             % Get remote version from GitHub
-            iname = string(extractAfter(obj.TE.remote, 'https://github.com/'));
+            iname = string(extractAfter(obj.ext.remote, 'https://github.com/'));
             url = "https://api.github.com/repos/" + iname + "/releases/latest";
             try
                 r = webread(url);
@@ -36,10 +36,10 @@ classdef ToolboxUpdater < handle
         
         function [vc, vr] = ver(obj)
             % Check curent installed and remote versions
-            vc = obj.TE.gvc();
+            vc = obj.ext.gvc();
             if nargout == 0
                 if isempty(vc)
-                    fprintf('%s is not installed\n', obj.TE.name);
+                    fprintf('%s is not installed\n', obj.ext.name);
                 else
                     fprintf('Installed version: %s\n', vc);
                 end
@@ -74,7 +74,7 @@ classdef ToolboxUpdater < handle
         function [isupd, r] = isupdate(obj, cbfun, delay)
             % Check that update is available
             if obj.isonline()
-                vc = obj.TE.gvc();
+                vc = obj.ext.gvc();
                 if nargin < 2
                     [vr, r] = obj.gvr();
                     isupd = ~isempty(vr) & ~isequal(vc, vr);
@@ -100,13 +100,13 @@ classdef ToolboxUpdater < handle
             if nargin < 2
                 [~, r] = obj.gvr();
             end
-            fprintf('* Installation of %s is started *\n', obj.TE.name);
+            fprintf('* Installation of %s is started *\n', obj.ext.name);
             fprintf('Installing the latest version: v%s...\n', obj.vr);
             dpath = tempname;
             mkdir(dpath);
             fpath = fullfile(dpath, r.assets.name);
             websave(fpath, r.assets.browser_download_url);
-            res = obj.TE.install(fpath);
+            res = obj.ext.install(fpath);
             fprintf('%s v%s has been installed\n', res.Name{1}, res.Version{1});
             delete(fpath);
         end

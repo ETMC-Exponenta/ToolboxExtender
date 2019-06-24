@@ -4,7 +4,7 @@ classdef ToolboxStorage < handle
     % https://github.com/ETMC-Exponenta/ToolboxExtender
     
     properties
-        TE % Toolbox Extender
+        ext % Toolbox Extender
         root % data folder
         fname % File name
         data % storage data
@@ -15,17 +15,17 @@ classdef ToolboxStorage < handle
         function obj = ToolboxStorage(fname, varargin)
             % Constructor
             p = inputParser();
-            p.addParameter('TE', []);
+            p.addParameter('ext', []);
             p.addParameter('local', false);
             p.parse();
-            if ~isempty(p.Results.TE)
-                obj.TE = p.Results.TE;
+            if ~isempty(p.Results.ext)
+                obj.ext = p.Results.ext;
             else
-                obj.TE = ToolboxExtender;
+                obj.ext = ToolboxExtender;
             end
             obj.getroot(p.Results.local);
             if nargin < 1
-                fname = matlab.lang.makeValidName(obj.TE.name) + "_data";
+                fname = matlab.lang.makeValidName(obj.ext.name) + "_data";
             end
             obj.fname = fname;
         end
@@ -135,7 +135,7 @@ classdef ToolboxStorage < handle
         
         function root = getroot(obj, local)
             % Get root folder
-            root = obj.TE.root;
+            root = obj.ext.root;
             if ~local
                 target = "MATLAB Add-Ons";
                 path = extractBefore(root, target);
