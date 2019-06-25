@@ -116,12 +116,21 @@ classdef ToolboxDev < handle
             fs = convertvars(fs, 1:3, 'string');
             for i = 1 : height(fs)
                 [~, fname] = fileparts(fs.name(i));
-                fprintf('Converting %s...\n', fname);
-                fpath = fullfile(fs.folder(i), fs.name{i});
-                htmlpath = fullfile(fs.folder(i), fname + ".html");
-                matlab.internal.liveeditor.openAndConvert(char(fpath), char(htmlpath));
-                disp('Doc has been generated');
+                fpath = char(fullfile(fs.folder(i), fs.name{i}));
+                htmlpath = char(fullfile(docdir, fname + ".html"));
+                htmlinfo = dir(htmlpath);
+                convert = isempty(htmlinfo);
+                if ~convert
+                    fdate = datetime(fs.datenum(i), 'ConvertFrom', 'datenum');
+                    htmldate = datetime(htmlinfo.datenum, 'ConvertFrom', 'datenum');
+                    convert = fdate >= htmldate;
+                end
+                if convert
+                    fprintf('Converting %s...\n', fname);
+                    matlab.internal.liveeditor.openAndConvert(fpath, htmlpath);
+                end
             end
+            disp('Docs have been generated');
         end
         
         function setver(obj, vp)
