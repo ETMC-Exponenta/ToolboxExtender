@@ -8,6 +8,10 @@ classdef ToolboxUpdater < handle
         vr % latest remote version form internet (GitHub)
     end
     
+    properties (Hidden)
+        res % GitHub resources
+    end
+    
     methods
         function obj = ToolboxUpdater(extender)
             % Init
@@ -16,22 +20,28 @@ classdef ToolboxUpdater < handle
             else
                 obj.ext = extender;
             end
-        end        
+        end
         
-        function [vr, r, err] = gvr(obj)
-            % Get remote version from GitHub
+        function [res, err] = fetch(obj)
+            % Fetch resources from GitHub
             iname = string(extractAfter(obj.ext.remote, 'https://github.com/'));
             url = "https://api.github.com/repos/" + iname + "/releases/latest";
+            res = '';
             try
-                r = webread(url);
-                vr = r.tag_name;
-                vr = erase(vr, 'v');
+                res = webread(url);
                 err = [];
+                obj.res = res;
+                obj.vr = erase(res.tag_name, 'v');
             catch err
-                vr = '';
-                r = '';
             end
-            obj.vr = vr;
+        end
+        
+        function vr = gvr(obj)
+            % Get remote version from GitHub
+            if isempty(obj.vr)
+                [~, err] = obj.fetch();
+            end
+            vr = obj.vr;
         end
         
         function [vc, vr] = ver(obj)
@@ -71,51 +81,50 @@ classdef ToolboxUpdater < handle
             end
         end
         
-        function [isupd, r] = isupdate(obj, cbfun, delay)
+        function isupd = isupdate(obj, cbfun, delay)
             % Check that update is available
             if obj.isonline()
                 vc = obj.ext.gvc();
                 if nargin < 2
-                    [vr, r] = obj.gvr();
+                    vr = obj.gvr();
                     isupd = ~isempty(vr) & ~isequal(vc, vr);
                 else
                     if nargin < 3
                         delay = 1;
                     end
                     isupd = false;
-                    r = '';
                     t = timer('ExecutionMode', 'singleShot', 'StartDelay', delay);
                     t.TimerFcn = @(~, ~) obj.isupd_async(cbfun, vc);
                     t.Period = 1;
                     start(t);
                 end
             else
-                r = [];
                 isupd = false;
             end
         end
         
-        function installweb(obj, r)
+        function installweb(obj)
             % Download and install latest version from remote (GitHub)
-            if nargin < 2
-                [~, r] = obj.gvr();
+            if isempty(obj.res)
+                obj.gvr();
             end
-            fprintf('* Installation of %s is started *\n', obj.ext.name);
-            fprintf('Installing the latest version: v%s...\n', obj.vr);
-            dpath = tempname;
-            mkdir(dpath);
-            fpath = fullfile(dpath, r.assets.name);
-            websave(fpath, r.assets.browser_download_url);
-            res = obj.ext.install(fpath);
-            fprintf('%s v%s has been installed\n', res.Name{1}, res.Version{1});
-            delete(fpath);
+            if ~isempty(obj.vr)
+                fprintf('* Installation of %s is started *\n', obj.ext.name);
+                fprintf('Installing the latest version: v%s...\n', obj.vr);
+                dpath = tempname;
+                mkdir(dpath);
+                fpath = fullfile(dpath, obj.res.assets.name);
+                websave(fpath, obj.res.assets.browser_download_url);
+                r = obj.ext.install(fpath);
+                fprintf('%s v%s has been installed\n', r.Name{1}, r.Version{1});
+                delete(fpath);
+            end
         end
         
         function update(obj)
             % Update installed version to the latest from remote (GitHub)
-            [isupd, r] = obj.isupdate();
-            if isupd
-                obj.installweb(r);
+            if obj.isupdate()
+                obj.installweb();
             end
         end
         
