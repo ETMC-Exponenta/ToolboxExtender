@@ -10,6 +10,7 @@ classdef ToolboxUpdater < handle
     
     properties (Hidden)
         res % GitHub resources
+        rel % release notes
     end
     
     methods
@@ -32,6 +33,7 @@ classdef ToolboxUpdater < handle
                 err = [];
                 obj.res = res;
                 obj.vr = erase(res.tag_name, 'v');
+                obj.rel = res.body;
             catch err
             end
         end
@@ -39,9 +41,22 @@ classdef ToolboxUpdater < handle
         function vr = gvr(obj)
             % Get remote version from GitHub
             if isempty(obj.vr)
-                [~, err] = obj.fetch();
+                obj.fetch();
             end
             vr = obj.vr;
+        end
+        
+        function rel = getrel(obj)
+            % Get release notes
+            if isempty(obj.res)
+                obj.fetch();
+            end
+            rel = obj.rel;
+        end
+        
+        function webrel(obj)
+            % Open GitHub releases webpage
+            web(obj.ext.remote + "/releases");
         end
         
         function [vc, vr] = ver(obj)
