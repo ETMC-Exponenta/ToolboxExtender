@@ -65,7 +65,7 @@ classdef ToolboxDev < handle
                 matlab.apputil.package(ppath);
                 movefile(fullfile(obj.ext.root, obj.ext.name + ".mlappinstall"), bpath + ".mlappinstall",'f');
             end
-            obj.ext.echo('has been built');
+            obj.ext.echo("v" + vp + " has been built");
         end
         
         function test(obj, gendoc)
@@ -144,6 +144,7 @@ classdef ToolboxDev < handle
                 txt = strrep(txt, '<param.version />', '');
                 obj.ext.writetxt(txt, ppath);
             end
+            obj.gvp();
         end
         
     end
