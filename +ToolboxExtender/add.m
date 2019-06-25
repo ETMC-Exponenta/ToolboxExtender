@@ -22,7 +22,7 @@ TE.echo(": " + npath + " was created");
 for i = 1 : length(classes)
     cname = cloneclass(TE, classes(i));
     TE.echo(": " + cname + " was created");
-    if classes(i) == "Dev"
+    if strcmpi(classes(i), "dev")
         nfname = copyscript(TE, 'dev_on', cname);
         TE.echo(": " + nfname + " was created");
         fprintf("!Don't forget to exclude %s and %s.m from project\n", nfname, cname);
