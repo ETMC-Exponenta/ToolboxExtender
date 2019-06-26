@@ -54,6 +54,18 @@ classdef ToolboxUpdater < handle
             rel = obj.rel;
         end
         
+        function sum = getrelsum(obj)
+            % Get release notes summary
+            rel = obj.getrel();
+            if contains(rel, '# Summary')
+                sum = extractAfter(rel, '# Summary');
+                if contains(sum, '#')
+                    sum = extractBefore(sum, '#');
+                end
+            end
+            sum = string(strtrim(sum));
+        end
+        
         function webrel(obj)
             % Open GitHub releases webpage
             web(obj.ext.remote + "/releases");
@@ -183,7 +195,9 @@ classdef ToolboxUpdater < handle
             TU.installweb(dpath);
             cd(p0);
             stop(t);
-            cbpost();
+            if nargin > 5
+                cbpost();
+            end
             delete(t);
         end
         

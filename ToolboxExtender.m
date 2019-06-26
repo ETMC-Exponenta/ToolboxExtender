@@ -175,10 +175,10 @@ classdef ToolboxExtender < handle
                     pname = names{1};
                     obj.pname = pname;
                 else
-                    warning('Project file was not found in a current folder');
+                    %warning('Project file was not found in a current folder');
                 end
             else
-                warning('Project file was not found in a current folder');
+                %warning('Project file was not found in a current folder');
             end
         end
         
