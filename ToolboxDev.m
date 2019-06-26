@@ -96,7 +96,12 @@ classdef ToolboxDev < handle
                 clipboard('copy', ['"' char(obj.ext.getbinpath) '"'])
                 disp("Binary path was copied to clipboard")
             end
-            disp("* Now create release on GitHub page with binary attached *")
+            disp("* Now create release on GitHub *");
+            chapters = ["Summary" "Upgrade Steps" "Breaking Changes"...
+                "New Features" "Bug Fixes" "Improvements" "Other Changes"];
+            chapters = join("# " + chapters, newline);
+            fprintf("Release notes hint: fill\n%s\n", chapters);
+            disp("! Don't forget to attach binary from clipboard !");
             pause(1)
             web(obj.ext.remote + "/releases/edit/v" + obj.vp, '-browser')
         end
