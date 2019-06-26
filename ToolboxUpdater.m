@@ -118,16 +118,18 @@ classdef ToolboxUpdater < handle
             end
         end
         
-        function installweb(obj)
+        function installweb(obj, dpath)
             % Download and install latest version from remote (GitHub)
+            if nargin < 2
+                dpath = tempname;
+                mkdir(dpath);
+            end
             if isempty(obj.res)
                 obj.gvr();
             end
             if ~isempty(obj.vr)
                 fprintf('* Installation of %s is started *\n', obj.ext.name);
                 fprintf('Installing the latest version: v%s...\n', obj.vr);
-                dpath = tempname;
-                mkdir(dpath);
                 fpath = fullfile(dpath, obj.res.assets.name);
                 websave(fpath, obj.res.assets.browser_download_url);
                 r = obj.ext.install(fpath);
@@ -136,10 +138,30 @@ classdef ToolboxUpdater < handle
             end
         end
         
-        function update(obj)
+        function update(obj, delay, cbpre, varargin)
             % Update installed version to the latest from remote (GitHub)
             if obj.isupdate()
-                obj.installweb();
+                if nargin < 2
+                    delay = 1;
+                end
+                dpath = tempname;
+                mkdir(dpath);
+                TE = feval(obj.ext.getselfname());
+                TE.root = dpath;
+                TE.name = 'Temp';
+                vname = obj.ext.getvalidname();
+                if vname == "ToolboxExtender"
+                    vname = "Toolbox";
+                end
+                TE.cloneclass('Extender', obj.ext.root, vname);
+                cname = TE.cloneclass('Updater', obj.ext.root, vname);
+                copyfile(fullfile(obj.ext.root, obj.ext.config), dpath);
+                t = timer('StartDelay', delay, 'ExecutionMode', 'singleShot',...
+                    'TimerFcn', @(t, e) obj.installweb_async(t, e, dpath, cname, varargin{:}));
+                if nargin > 2 && ~isempty(cbpre)
+                    cbpre();
+                end
+                start(t);                
             end
         end
         
@@ -152,6 +174,17 @@ classdef ToolboxUpdater < handle
             vr = obj.gvr();
             isupd = ~isempty(vr) & ~isequal(vc, vr);
             cbfun(isupd);
+        end
+        
+        function installweb_async(obj, t, event, dpath, cname, cbpost)
+            % Task for update timer
+            p0 = cd(dpath);
+            TU = eval(cname);
+            TU.installweb(dpath);
+            cd(p0);
+            stop(t);
+            cbpost();
+            delete(t);
         end
         
     end
