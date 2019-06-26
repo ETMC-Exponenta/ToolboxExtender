@@ -43,15 +43,10 @@ classdef ToolboxDev < handle
             obj.vp = vp;
         end
         
-        function build(obj, vp, gendoc)
+        function build(obj, vp)
             % Build toolbox for specified version
             ppath = obj.ext.getppath();
-            if nargin < 3
-                gendoc = true;
-            end
-            if gendoc
-                obj.gendoc();
-            end
+            obj.gendoc();
             if nargin > 1 && ~isempty(vp)
                 obj.setver(vp);
             end
@@ -68,12 +63,9 @@ classdef ToolboxDev < handle
             obj.ext.echo("v" + vp + " has been built");
         end
         
-        function test(obj, gendoc)
+        function test(obj)
             % Build and install
-            if nargin < 2
-                gendoc = false;
-            end
-            obj.build(obj.vp, gendoc);
+            obj.build(obj.vp);
             obj.ext.install();
         end
         
@@ -126,7 +118,7 @@ classdef ToolboxDev < handle
                     convert = fdate >= htmldate;
                 end
                 if convert
-                    fprintf('Converting %s...\n', fname);
+                    fprintf('Converting %s.mlx...\n', fname);
                     matlab.internal.liveeditor.openAndConvert(fpath, htmlpath);
                 end
             end

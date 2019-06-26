@@ -126,7 +126,7 @@ classdef ToolboxExtender < handle
         
         function addfav(obj, code, label, icon)
             % Add favorite
-            fc = com.mathworks.mlwidgets.favoritecommands.FavoriteCommands.getInstance();
+            favs = com.mathworks.mlwidgets.favoritecommands.FavoriteCommands.getInstance();
             nfav = com.mathworks.mlwidgets.favoritecommands.FavoriteCommandProperties();
             nfav.setLabel(label);
             nfav.setCategoryLabel(obj.name);
@@ -136,7 +136,7 @@ classdef ToolboxExtender < handle
                 nfav.setIconName(icon);
             end
             nfav.setIsOnQuickToolBar(true);
-            fc.addCommand(nfav);
+            favs.addCommand(nfav);
         end
         
     end
