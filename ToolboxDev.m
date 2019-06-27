@@ -63,9 +63,9 @@ classdef ToolboxDev < handle
             obj.ext.echo("v" + vp + " has been built");
         end
         
-        function test(obj)
+        function test(obj, varargin)
             % Build and install
-            obj.build(obj.vp);
+            obj.build(varargin{:});
             obj.ext.install();
         end
         
@@ -130,20 +130,6 @@ classdef ToolboxDev < handle
             disp('Docs have been generated');
         end
         
-        function setver(obj, vp)
-            % Set version
-            ppath = obj.ext.getppath();
-            if obj.ext.type == "toolbox"
-                matlab.addons.toolbox.toolboxVersion(ppath, vp);
-            else
-                txt = obj.ext.readtxt(ppath);
-                txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
-                txt = strrep(txt, '<param.version />', '');
-                obj.ext.writetxt(txt, ppath);
-            end
-            obj.gvp();
-        end
-        
     end
     
     
@@ -156,6 +142,20 @@ classdef ToolboxDev < handle
             service.removeToolboxRoot(configKey);
             service.setToolboxRoot(configKey, obj.ext.root);
             service.closeProject(configKey);
+        end
+        
+        function setver(obj, vp)
+            % Set version
+            ppath = obj.ext.getppath();
+            if obj.ext.type == "toolbox"
+                matlab.addons.toolbox.toolboxVersion(ppath, vp);
+            else
+                txt = obj.ext.readtxt(ppath);
+                txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
+                txt = strrep(txt, '<param.version />', '');
+                obj.ext.writetxt(txt, ppath);
+            end
+            obj.gvp();
         end
         
         function seticons(obj)
