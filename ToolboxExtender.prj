@@ -19,28 +19,10 @@ Toolbox Extender address those issues extending built-in MATLAB capabilities of 
     <param.products.version />
     <param.platforms />
     <param.guid>b1e0dde9-3478-4965-a2ff-90642308ab18</param.guid>
-    <param.exclude.filters>% List files contained in your toolbox folder that you would like to exclude
-% from packaging.  Excludes should be listed relative to the toolbox folder.
-% Some examples of how to specify excludes are provided below:
-%
-% A single file in the toolbox folder:
-*.asv
-*.git
+    <param.exclude.filters>*.git
+.gitignore
 dev_on.m
-retest.m
-%
-% A single file in a subfolder of the toolbox folder:
-% example/.svn
-%
-% All files in a subfolder of the toolbox folder:
-% example/*
-%
-% All files of a certain name in all subfolders of the toolbox folder:
-% **/.svn
-%
-% All files matching a pattern in all subfolders of the toolbox folder:
-% **/*.bak
-%</param.exclude.filters>
+retest.m</param.exclude.filters>
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
     <param.examples />
     <param.demosxml />
@@ -110,8 +92,8 @@ retest.m
       <file>${PROJECT_ROOT}\DesktopToolset.xml</file>
       <file>${PROJECT_ROOT}\dev_on.m</file>
       <file>${PROJECT_ROOT}\doc</file>
-      <file>${PROJECT_ROOT}\icon-help.png</file>
-      <file>${PROJECT_ROOT}\icon-update.png</file>
+      <file>${PROJECT_ROOT}\icon-mat-help-outline.png</file>
+      <file>${PROJECT_ROOT}\icon-my-update-daa520.png</file>
       <file>${PROJECT_ROOT}\info.xml</file>
       <file>${PROJECT_ROOT}\README.md</file>
       <file>${PROJECT_ROOT}\resources</file>
