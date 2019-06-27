@@ -49,6 +49,8 @@ classdef ToolboxDev < handle
             obj.gendoc();
             if nargin > 1 && ~isempty(vp)
                 obj.setver(vp);
+            else
+                vp = obj.vp;
             end
             [~, bname] = fileparts(obj.ext.pname);
             bpath = fullfile(obj.ext.root, bname);

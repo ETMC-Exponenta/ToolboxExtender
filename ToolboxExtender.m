@@ -320,7 +320,7 @@ classdef ToolboxExtender < handle
             copyfile(opath, npath);
             obj.txtrep(npath, "obj = " + oname, "obj = " + nname);
             obj.txtrep(npath, "classdef " + oname, "classdef " + nname);
-            obj.txtrep(npath, "obj.ext = IconsExtender", "obj.ext = " + obj.getvalidname + "Extender");
+            obj.txtrep(npath, "obj.ext = ToolboxExtender", "obj.ext = " + obj.getvalidname + "Extender");
         end
         
         function name = getselfname(~)
