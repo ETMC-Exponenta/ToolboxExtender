@@ -7,12 +7,12 @@ classdef ToolboxUpdater < handle
         ext % Toolbox Extender
         vr % latest remote version form internet (GitHub)
         isupd % update is available
-        relsum % release summary
+        relsum % release notes summary
+        rel % release notes
     end
     
     properties (Hidden)
         res % GitHub resources
-        rel % release notes
     end
     
     methods
