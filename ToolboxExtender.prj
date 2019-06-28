@@ -22,7 +22,9 @@ Toolbox Extender address those issues extending built-in MATLAB capabilities of 
     <param.exclude.filters>*.git
 .gitignore
 dev_on.m
-retest.m</param.exclude.filters>
+retest.m
+install.m
+installweb.m</param.exclude.filters>
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
     <param.examples />
     <param.demosxml />
@@ -87,27 +89,20 @@ retest.m</param.exclude.filters>
     </fileset.rootdir>
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+ToolboxExtender</file>
-      <file>${PROJECT_ROOT}\.git</file>
-      <file>${PROJECT_ROOT}\.gitignore</file>
       <file>${PROJECT_ROOT}\DesktopToolset.xml</file>
-      <file>${PROJECT_ROOT}\dev_on.m</file>
       <file>${PROJECT_ROOT}\doc</file>
       <file>${PROJECT_ROOT}\icon-mat-help-outline.png</file>
       <file>${PROJECT_ROOT}\icon-my-update-daa520.png</file>
       <file>${PROJECT_ROOT}\info.xml</file>
       <file>${PROJECT_ROOT}\README.md</file>
       <file>${PROJECT_ROOT}\resources</file>
-      <file>${PROJECT_ROOT}\retest.m</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
-      <file>${PROJECT_ROOT}\ToolboxExtender.mltbx</file>
-      <file>${PROJECT_ROOT}\ToolboxExtender.prj</file>
       <file>${PROJECT_ROOT}\ToolboxExtenderApp.mlapp</file>
       <file>${PROJECT_ROOT}\ToolboxStorage.m</file>
-      <file>${PROJECT_ROOT}\ToolboxUpdater.asv</file>
       <file>${PROJECT_ROOT}\ToolboxUpdater.m</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
