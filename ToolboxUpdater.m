@@ -6,6 +6,8 @@ classdef ToolboxUpdater < handle
     properties
         ext % Toolbox Extender
         vr % latest remote version form internet (GitHub)
+        isupd % update is available
+        relsum % release summary
     end
     
     properties (Hidden)
@@ -34,6 +36,18 @@ classdef ToolboxUpdater < handle
                 obj.res = res;
                 obj.vr = erase(res.tag_name, 'v');
                 obj.rel = res.body;
+                % Extract release summary
+                sum = '';
+                if contains(obj.rel, '# Summary')
+                    sum = extractAfter(obj.rel, '# Summary');
+                    if contains(sum, '#')
+                        sum = extractBefore(sum, '#');
+                    end
+                end
+                sum = char(strtrim(sum));
+                obj.relsum = sum;
+                % Extract update is available
+                obj.isupd = ~isempty(obj.vr) & ~isequal(obj.ext.vc, obj.vr);
             catch err
             end
         end
@@ -56,15 +70,10 @@ classdef ToolboxUpdater < handle
         
         function sum = getrelsum(obj)
             % Get release notes summary
-            rel = obj.getrel();
-            sum = '';
-            if contains(rel, '# Summary')
-                sum = extractAfter(rel, '# Summary');
-                if contains(sum, '#')
-                    sum = extractBefore(sum, '#');
-                end
+            if isempty(obj.res)
+                obj.fetch();
             end
-            sum = string(strtrim(sum));
+            sum = obj.relsum;
         end
         
         function webrel(obj)
@@ -114,8 +123,8 @@ classdef ToolboxUpdater < handle
             if obj.isonline()
                 vc = obj.ext.gvc();
                 if nargin < 2
-                    vr = obj.gvr();
-                    isupd = ~isempty(vr) & ~isequal(vc, vr);
+                    obj.fetch();
+                    isupd = obj.isupd;
                 else
                     if nargin < 3
                         delay = 1;
@@ -184,9 +193,8 @@ classdef ToolboxUpdater < handle
         
         function isupd_async(obj, cbfun, vc)
             % Task for async ver timer
-            vr = obj.gvr();
-            isupd = ~isempty(vr) & ~isequal(vc, vr);
-            cbfun(isupd);
+            obj.fetch();
+            cbfun(obj.isupd);
         end
         
         function installweb_async(obj, t, event, dpath, cname, cbpost)
