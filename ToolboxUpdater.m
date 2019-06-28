@@ -87,7 +87,7 @@ classdef ToolboxUpdater < handle
         
         function webrel(obj)
             % Open GitHub releases webpage
-            web(obj.ext.remote + "/releases");
+            obj.ext.webrel();
         end
         
         function [vc, vr] = ver(obj)

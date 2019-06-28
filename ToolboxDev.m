@@ -132,6 +132,11 @@ classdef ToolboxDev < handle
             disp('Docs have been generated');
         end
         
+        function webrel(obj)
+            % Open GitHub releases webpage
+            obj.ext.webrel();
+        end
+        
         function check(obj)
             % Check deployed release
             upd = ToolboxUpdater(obj.ext);

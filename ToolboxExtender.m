@@ -124,6 +124,11 @@ classdef ToolboxExtender < handle
             web(obj.remote, '-browser');
         end
         
+        function webrel(obj)
+            % Open GitHub releases webpage
+            web(obj.remote + "/releases", '-browser');
+        end
+        
         function addfav(obj, label, code, icon)
             % Add favorite
             favs = com.mathworks.mlwidgets.favoritecommands.FavoriteCommands.getInstance();
@@ -321,7 +326,7 @@ classdef ToolboxExtender < handle
             obj.txtrep(npath, "obj = " + oname, "obj = " + nname);
             obj.txtrep(npath, "classdef " + oname, "classdef " + nname);
             obj.txtrep(npath, "obj.ext = ToolboxExtender", "obj.ext = " + obj.getvalidname + "Extender");
-            obj.txtrep(npath, "upd = ToolboxUpdater", "obj.ext = " + obj.getvalidname + "Updater");
+            obj.txtrep(npath, "upd = ToolboxUpdater", "upd = " + obj.getvalidname + "Updater");
         end
         
         function name = getselfname(~)
