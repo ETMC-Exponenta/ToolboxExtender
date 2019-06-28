@@ -139,8 +139,8 @@ The app can be found in APPS section of main MATLAB Window or
 
 ## Examples of Toolbox Extender usage
 
-- MATLAB WEB API
-- MATLAB Course for Educators
+- [MATLAB WEB API](https://github.com/ETMC-Exponenta/MATLAB-WEB-API)
+- [MATLAB Course for Educators](https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators)
 - (send us your examples)
 
 ***
