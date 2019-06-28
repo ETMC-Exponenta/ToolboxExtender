@@ -9,6 +9,7 @@ classdef ToolboxUpdater < handle
         isupd % update is available
         relsum % release notes summary
         rel % release notes
+        bin % Toolbox binary
     end
     
     properties (Hidden)
@@ -48,6 +49,14 @@ classdef ToolboxUpdater < handle
                 obj.relsum = sum;
                 % Extract update is available
                 obj.isupd = ~isempty(obj.vr) & ~isequal(obj.ext.vc, obj.vr);
+                % Get binary information
+                assets = struct2table(obj.res.assets, 'AsArray', 1);
+                assets = assets(endsWith(assets.name, '.mltbx'), :);
+                if ~isempty(assets)
+                    obj.bin = table2struct(assets(1, :));
+                else
+                    obj.bin = [];
+                end
             catch err
             end
         end
@@ -152,8 +161,11 @@ classdef ToolboxUpdater < handle
             if ~isempty(obj.vr)
                 fprintf('* Installation of %s is started *\n', obj.ext.name);
                 fprintf('Installing the latest version: v%s...\n', obj.vr);
-                fpath = fullfile(dpath, obj.res.assets.name);
-                websave(fpath, obj.res.assets.browser_download_url);
+                if isempty(obj.bin)
+                    error('No toolbox file were found on GitHub. Contact toolbox author');
+                end
+                fpath = fullfile(dpath, obj.bin.name);
+                websave(fpath, obj.bin.browser_download_url);
                 r = obj.ext.install(fpath);
                 fprintf('%s v%s has been installed\n', r.Name{1}, r.Version{1});
                 delete(fpath);
