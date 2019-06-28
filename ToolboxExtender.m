@@ -124,7 +124,7 @@ classdef ToolboxExtender < handle
             web(obj.remote, '-browser');
         end
         
-        function addfav(obj, code, label, icon)
+        function addfav(obj, label, code, icon)
             % Add favorite
             favs = com.mathworks.mlwidgets.favoritecommands.FavoriteCommands.getInstance();
             nfav = com.mathworks.mlwidgets.favoritecommands.FavoriteCommandProperties();
