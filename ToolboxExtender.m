@@ -139,6 +139,12 @@ classdef ToolboxExtender < handle
             favs.addCommand(nfav);
         end
         
+        function rmfavs(obj)
+            % Remove all favorites
+            favs = com.mathworks.mlwidgets.favoritecommands.FavoriteCommands.getInstance();
+            favs.removeCategory(obj.name)
+        end
+        
     end
     
     
