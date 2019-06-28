@@ -107,9 +107,9 @@ classdef ToolboxExtender < handle
             end
             docpath = fullfile(obj.root, 'doc', name);
             if endsWith(name, '.html')
-                web(docpath);
+                web(char(docpath));
             else
-                open(docpath);
+                open(char(docpath));
             end
         end
         
