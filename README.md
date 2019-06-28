@@ -27,14 +27,15 @@ File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/
 - Ability of installed toolbox to automatically update itself to the latest version from GitHub ([Updater](./README.md/#updater-class))
 - Toolbox ability to store any data within itself, i.e. settings ([Storage](./README.md/#storage-class))
 
-
 ## Requirements
 
 - **MATLAB R2019a**
-- Installed **Git** for **Dev** functionality
+- Installed **Git** for **Dev** and **Updater** functionality
 - Public toolbox project on GitHub for **Updater** functionality
 
-## Extender Class
+## Details
+
+### Extender Class
 
 Contains core functions. Required for other classes and functionality.
 
@@ -42,14 +43,16 @@ Can be useful itself:
 
 - open toolbox documentation or examples
 - get current toolbox version
+- add MATLAB favorite and toolbar shortcut
 - uninstall toolbox
 
 See [ToolboxExtender (class) documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/ToolboxExtender.html)
 
-## Dev Class
+### Dev Class
 
 Helps you to build toolbox and deploy it to GitHub:
 
+- generate html-documentation from .mlx-files
 - update toolbox version and build .mltbx
 - commit and push project to GitHub
 - create tag with version number and push it to GitHub
@@ -57,7 +60,7 @@ Helps you to build toolbox and deploy it to GitHub:
 
 See [ToolboxDev (class) documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/ToolboxDev.html)
 
-## Updater Class
+### Updater Class
 
 Updater class will add to your custom evergreen toolbox:
 
@@ -66,7 +69,7 @@ Updater class will add to your custom evergreen toolbox:
 
 See [ToolboxUpdater (class) documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/ToolboxUpdater.html)
 
-## Storage Class
+### Storage Class
 
 Helps you easily store any data within installed toolbox, i.e. user settings
 
@@ -76,31 +79,21 @@ Helps you easily store any data within installed toolbox, i.e. user settings
 
 See [ToolboxStorage (class) documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/ToolboxStorage.html)
 
-## Examples of Toolbox Extender usage
 
-- MATLAB WEB API
-- MATLAB Course for Educators
-- (send us your examples)
+## How to
 
-## Installation
+### Install
 
 Download and run [ToolboxExtender.mltbx](https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx)
 
-## Toolbox Extender App
 
-You can use **Toolbox Extender App** to work with the main Toolbox Extender functionality.
-
-The app can be found in APPS section of main MATLAB Window or
-
-```ToolboxExtenderApp```
-
-## How to open documentation
+## Open documentation
 
 Use [Toolbox Extender App](./README.md/#toolbox-extender-app) or
 
 ```ToolboxExtender.help```
 
-## How to use
+### Use
 
 1. In toolbox project directory create toolbox project file (.prj)
 
@@ -110,7 +103,7 @@ Use [Toolbox Extender App](./README.md/#toolbox-extender-app) or
 
 ```ToolboxExtender.add([classname])```
 
-This will initialize in the curent toolbox project folder a copy of the ToolboxExtender class and classname (optional):
+It will initialize in the curent toolbox project folder a copy of the ToolboxExtender class and classname (optional):
 
 - 'all' - ToolboxExtender, ToolboxDev, ToolboxStorage, ToolboxUpdater classes
 - 'extender' or without argument - only ToolboxExtender class
@@ -124,7 +117,7 @@ Initialized classes will have names depended on the project name, i.e.: *Project
 
 5. Manually add *...Dev.m* class and *dev_on.m* script to excluded files of your project
 
-## How to update installed Toolbox Extender
+### Update installed Toolbox Extender
 
 Use **Toolbox Extender App** or...
 
@@ -136,5 +129,20 @@ Update to the latest version if available
 
 ```ToolboxExtender.update```
 
+## Toolbox Extender App
+
+You can use **Toolbox Extender App** to work with the main Toolbox Extender functionality.
+
+The app can be found in APPS section of main MATLAB Window or
+
+```ToolboxExtenderApp```
+
+## Examples of Toolbox Extender usage
+
+- MATLAB WEB API
+- MATLAB Course for Educators
+- (send us your examples)
+
 ***
-by [Pavel Roslovets](https://www.linkedin.com/in/pavel-roslovets/), [ETMC Exponenta](https://exponenta.ru)
+
+by [Pavel Roslovets](https://roslovets.github.io), [ETMC Exponenta](https://exponenta.ru)
