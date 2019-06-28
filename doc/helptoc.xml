@@ -25,5 +25,9 @@
                  image="$toolbox/matlab/icons/webicon.gif">
         Toolbox Extender on GitHub
         </tocitem>
+        <tocitem target="https://roslovets.github.io" 
+                 image="$toolbox/matlab/icons/webicon.gif">
+        Check out other exciting projects
+        </tocitem>
     </tocitem>
 </toc>
