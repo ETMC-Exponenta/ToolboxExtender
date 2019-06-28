@@ -86,6 +86,11 @@ See [ToolboxStorage (class) documentation](https://htmlpreview.github.io/?https:
 
 Download and run [ToolboxExtender.mltbx](https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx)
 
+OR execute in MATLAB
+
+```MATLAB
+eval(webread('https://git.io/fjo2h'))
+```
 
 ### Open documentation
 
