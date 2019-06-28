@@ -87,7 +87,7 @@ See [ToolboxStorage (class) documentation](https://htmlpreview.github.io/?https:
 Download and run [ToolboxExtender.mltbx](https://github.com/ETMC-Exponenta/ToolboxExtender/raw/master/ToolboxExtender.mltbx)
 
 
-## Open documentation
+### Open documentation
 
 Use [Toolbox Extender App](./README.md/#toolbox-extender-app) or
 

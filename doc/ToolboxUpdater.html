@@ -5,47 +5,25 @@
 .S3 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
 .S4 { margin: 15px 10px 5px 4px; padding: 0px; line-height: 18px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 17px; font-weight: 700; text-align: left;  }
 .CodeBlock { background-color: #F7F7F7; margin: 10px 0 10px 0;}
-.S5 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 4px 4px 0px 0px; padding: 6px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
-.S6 { color: rgb(64, 64, 64); padding: 10px 0px 6px 17px; background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px; overflow-x: hidden; line-height: 17.234px;  }
-.embeddedOutputsErrorElement {min-height: 18px; max-height: 250px; overflow: auto;}
-.embeddedOutputsErrorElement.inlineElement {}
-.embeddedOutputsErrorElement.rightPaneElement {}
-.embeddedOutputsWarningElement{min-height: 18px; max-height: 250px; overflow: auto;}
-.embeddedOutputsWarningElement.inlineElement {}
-.embeddedOutputsWarningElement.rightPaneElement {}
-.diagnosticMessage-wrapper {font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;}
-.diagnosticMessage-wrapper.diagnosticMessage-warningType {color: rgb(255,100,0);}
-.diagnosticMessage-wrapper.diagnosticMessage-warningType a {color: rgb(255,100,0); text-decoration: underline;}
-.diagnosticMessage-wrapper.diagnosticMessage-errorType {color: rgb(230,0,0);}
-.diagnosticMessage-wrapper.diagnosticMessage-errorType a {color: rgb(230,0,0); text-decoration: underline;}
-.diagnosticMessage-wrapper .diagnosticMessage-messagePart {white-space: pre-wrap;}
-.diagnosticMessage-wrapper .diagnosticMessage-stackPart {white-space: pre;}
-.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {white-space: pre; word-wrap: initial; min-height: 18px; max-height: 250px; overflow: auto;}
-.textElement,.rtcDataTipElement .textElement {padding-top: 3px;}
-.embeddedOutputsTextElement.inlineElement,.embeddedOutputsVariableStringElement.inlineElement {}
-.inlineElement .textElement {}
-.embeddedOutputsTextElement.rightPaneElement,.embeddedOutputsVariableStringElement.rightPaneElement {min-height: 16px;}
-.rightPaneElement .textElement {padding-top: 2px; padding-left: 9px;}
-.S7 { margin: 10px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
-.S8 { border-left: 0px none rgb(0, 0, 0); border-right: 0px none rgb(0, 0, 0); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px; line-height: 16px; min-height: 0px; white-space: pre; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;  }</style></head><body><div class = rtcContent><h1  class = 'S0' id = 'T_8311D159' ><span>ToolboxUpdater (class)</span></h1><div  class = 'S1'><span>Add to your toolbox ability to update itself from remote (GitHub)</span></div><h2  class = 'S2'><span>Properties</span></h2><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>TE</span><span> - </span><a href = "matlab:ToolboxExtender.help('ToolboxExtender')"><span>ToolboxExtender</span></a><span> object</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>vr</span><span> - latest remote version from internet (GitHub)</span></div><h2  class = 'S2' id = 'H_CC44416F' ><span>Methods</span></h2><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>TU = ToolboxUpdater(</span><span style=' font-weight: bold; font-style: italic; font-family: monospace;'>[extender]</span><span style=' font-weight: bold; font-family: monospace;'>)</span></div><div  class = 'S1'><span>Create </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> object of </span><span style=' font-style: italic; font-family: monospace;'>ToolboxStorage</span><span> class.</span></div><div  class = 'S1'><span>If you call </span><span style=' font-style: italic; font-family: monospace;'>ToolboxUpdater</span><span> class with optional ToolboxExtender object </span><span style=' font-style: italic; font-family: monospace;'>extender</span><span>, </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> will use this object, otherwise new ToolboxExtender object will be created inside </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> (</span><span style=' font-family: monospace;'>TE</span><span> property)</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>ison = isonline()</span></div><div  class = 'S1'><span>Check internet is available</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>vr = gvr()</span></div><div  class = 'S1'><span>Get latest remote (GitHub) version </span><span style=' font-style: italic; font-family: monospace;'>vr</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>isupd = isupdate()</span></div><div  class = 'S1'><span>Check update is available</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>[vc, vr] = ver()</span></div><div  class = 'S1'><span>Display and get current (</span><span style=' font-style: italic; font-family: monospace;'>vc</span><span>) and remote (</span><span style=' font-style: italic; font-family: monospace;'>vr</span><span>) versions. If update is available show an update hint</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>update()</span></div><div  class = 'S1'><span>Install latest version from remote (GitHub) if update is available</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>installweb()</span></div><div  class = 'S1'><span>Install toolbox from remote (GitHub)</span></div><h2  class = 'S3'><span>Additional information</span></h2><h3  class = 'S4'><span>How to integrate</span></h3><div  class = 'S1'><span>Firstly you need to create a release of your toolbox on GitHub </span><span style=' font-weight: bold;'>with installation binary atached</span><span>. You can use </span><a href = "matlab:ToolboxExtender.help('ToolboxDev')"><span>ToolboxDev</span></a><span> to automate this process.</span></div><div  class = 'S1'><span>After it add to yout toolbox function (or method to your app) that automatically checks that a newer version of toolbox are available, informs a user about it and allows him to install the latest version.</span></div><h2  class = 'S3'><span>Examples</span></h2><div  class = 'S1'><span>Create an object of the ToolboxUpdater</span></div><div class="CodeBlock"><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre;"><span>TU = ToolboxUpdater</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="E85DEF2D" data-testid="output_0" data-width="430" data-height="78" data-hashorizontaloverflow="false" style="width: 460px; max-height: 261px;"><div class="textElement"><div><span class="variableNameElement">TU = </span></div><div>  ToolboxUpdater with properties:
-
-    TE: [1×1 ToolboxExtender]
-    vr: []
-</div></div></div></div></div></div><div  class = 'S7'><span>Check that update is available</span></div><div class="CodeBlock"><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre;"><span>isupd = TU.isupdate</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="8D663EA6" data-testid="output_1" data-width="430" data-height="34" data-hashorizontaloverflow="false" style="width: 460px; max-height: 261px;"><div class="textElement"><div><span class="variableNameElement">isupd = <span class="headerElement">logical</span></span></div><div>   1
-</div></div></div></div></div></div><div  class = 'S7'><span>Install latest version from remote (if available)</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S8'><span style="white-space: pre;"><span>TU.update</span></span></div></div><div  class = 'S1'><span>Force to install latest version from remote</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S8'><span style="white-space: pre;"><span>TU.installweb</span></span></div></div><div  class = 'S1'><span> Check installed (current) and latest (remote) versions</span></div><div class="CodeBlock"><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre;"><span>[vc, vr] = TU.ver</span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper embeddedOutputsTextElement" uid="E3AD976B" data-testid="output_2" data-width="430" data-height="60" data-hashorizontaloverflow="false" style="width: 460px; max-height: 261px;"><div class="textElement">Installed version: 1.0
-Latest version: 0.3
-* Update is available: 1.0-&gt;0.3 *
-To update call 'update' method</div></div><div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="ECBBC7C6" data-testid="output_3" data-width="430" data-height="21" data-hashorizontaloverflow="false" style="width: 460px; max-height: 261px;"><div class="textElement"><div><span class="variableNameElement">vc = </span>'1.0'</div></div></div><div class="inlineElement eoOutputWrapper embeddedOutputsVariableStringElement" uid="37AFD069" data-testid="output_4" data-width="430" data-height="20" data-hashorizontaloverflow="false" style="width: 460px; max-height: 261px;"><div class="textElement"><div><span class="variableNameElement">vr = </span>'0.3'</div></div></div></div></div></div></div>
+.S5 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 4px; padding: 6px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }</style></head><body><div class = rtcContent><h1  class = 'S0' id = 'T_8311D159' ><span>ToolboxUpdater (class)</span></h1><div  class = 'S1'><span>Add to your toolbox ability to update itself from remote (GitHub)</span></div><h2  class = 'S2'><span>Properties</span></h2><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>ext</span><span> - </span><a href = "matlab:ToolboxExtender.help('ToolboxExtender')"><span>ToolboxExtender</span></a><span> object</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>vr</span><span> - latest remote version from internet (GitHub), </span><span style=' font-family: monospace;'>char</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>isupd</span><span> - update is available, </span><span style=' font-family: monospace;'>logical</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>relsum</span><span style=' font-family: monospace;'> </span><span>- latest release notes summary</span><span style=' font-family: monospace;'>, char</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>rel</span><span> - latest release notes</span><span style=' font-family: monospace;'>, char</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>bin</span><span> - toolbox binary information</span><span style=' font-family: monospace;'>, struct</span></div><h2  class = 'S2' id = 'H_CC44416F' ><span>Methods</span></h2><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>TU = ToolboxUpdater(</span><span style=' font-weight: bold; font-style: italic; font-family: monospace;'>[extender]</span><span style=' font-weight: bold; font-family: monospace;'>)</span></div><div  class = 'S1'><span>Create </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> object of </span><span style=' font-style: italic; font-family: monospace;'>ToolboxStorage</span><span> class.</span></div><div  class = 'S1'><span>If you call </span><span style=' font-style: italic; font-family: monospace;'>ToolboxUpdater</span><span> class with optional ToolboxExtender object </span><span style=' font-style: italic; font-family: monospace;'>extender</span><span>, </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> will use this object, otherwise new ToolboxExtender object will be created inside </span><span style=' font-style: italic; font-family: monospace;'>TU</span><span> (</span><span style=' font-style: italic; font-family: monospace;'>ext</span><span> property)</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>ison = isonline()</span></div><div  class = 'S1'><span>Check internet is available</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>[data, err] = fetch()</span></div><div  class = 'S1'><span>Get information about latest release from GitHub (optional to use)</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>vr = gvr()</span></div><div  class = 'S1'><span>Get latest remote (GitHub) version </span><span style=' font-style: italic; font-family: monospace;'>vr</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>isupd = isupdate(</span><span style=' font-weight: bold; font-style: italic; font-family: monospace;'>[callback], [delay]</span><span style=' font-weight: bold; font-family: monospace;'>)</span></div><div  class = 'S1'><span>Check update is available.</span></div><div  class = 'S1'><span>If you call this method with </span><span style=' font-family: monospace;'>callback </span><span>function it will perform asynchronous request for a new version and after </span><span style=' font-family: monospace;'>delay</span><span> seconds (default: 1) will call callback function with </span><span style=' font-family: monospace;'>isupd</span><span> argument. This use helps you to design responsive App Designer apps with the update feature (see an example below)</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>[vc, vr] = ver()</span></div><div  class = 'S1'><span>Display and get current (</span><span style=' font-style: italic; font-family: monospace;'>vc</span><span>) and remote (</span><span style=' font-style: italic; font-family: monospace;'>vr</span><span>) versions. If update is available show an update hint</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>rel = getrel()</span></div><div  class = 'S1'><span>Get full release notes of the latest release</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>rel = getrelsum()</span></div><div  class = 'S1'><span>Get only summary release notes of the latest release</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>webrel()</span></div><div  class = 'S1'><span>Open full release notes on GitHub</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>update(</span><span style=' font-weight: bold; font-style: italic; font-family: monospace;'>[delay], [precallback], [postcallback]</span><span style=' font-weight: bold; font-family: monospace;'>)</span></div><div  class = 'S1'><span>Install the latest version from the remote (GitHub) if update is available.</span></div><div  class = 'S1'><span>You can specify </span><span style=' font-family: monospace;'>delay</span><span> in seconds before update process will be started (default: 1). </span><span style=' font-family: monospace;'>precallback</span><span> function will be executed just before update, </span><span style=' font-family: monospace;'>postcallback</span><span> will be executed after update process. This use helps you to design responsive App Designer apps with the update feature (see an example below)</span></div><div  class = 'S1'><span style=' font-weight: bold; font-family: monospace;'>installweb(</span><span style=' font-weight: bold; font-style: italic; font-family: monospace;'>[dpath]</span><span style=' font-weight: bold; font-family: monospace;'>)</span></div><div  class = 'S1'><span>Install toolbox from the remote (GitHub). Toolbox file will be downloaded to </span><span style=' font-family: monospace;'>dpath</span><span> folder if specified (default: temporary directory)</span></div><h2  class = 'S3'><span>Additional information</span></h2><h3  class = 'S4'><span>How to integrate</span></h3><div  class = 'S1'><span>Firstly you need to create a release of your toolbox on GitHub </span><span style=' font-weight: bold;'>with release notes and installation binary atached</span><span>. You can use </span><a href = "matlab:ToolboxExtender.help('ToolboxDev')"><span>ToolboxDev</span></a><span> to automate this process.</span></div><div  class = 'S1'><span>After it add to your toolbox function (or method to your app) that automatically checks that a newer version of toolbox are available, informs a user about it and allows him to install the latest version.</span></div><div  class = 'S1'><a href = "matlab:open ToolboxExtenderApp"><span>Examine ToolboxExtenderApp</span></a><span> as a good reference of integrating </span><span style=' font-family: monospace;'>ToolboxUpdater</span><span> to an App Designer application.</span></div><h2  class = 'S3'><span>Examples</span></h2><div  class = 'S1'><span>Create an object of the ToolboxUpdater</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre;"><span>TU = ToolboxUpdater</span></span></div></div></div><div  class = 'S1'><span>Check that update is available</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre;"><span>isupd = TU.isupdate</span></span></div></div></div><div  class = 'S1'><span>Install the latest version from remote (if available)</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre;"><span>TU.update</span></span></div></div></div><div  class = 'S1'><span>Force to install the latest version from the remote</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre;"><span>TU.installweb</span></span></div></div></div><div  class = 'S1'><span>Check installed (current) and the latest (remote) versions</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre;"><span>[vc, vr] = TU.ver</span></span></div></div></div><div  class = 'S1'><span>Also </span><a href = "matlab:open ToolboxExtenderApp"><span>examine ToolboxExtenderApp</span></a><span> as a good reference of integrating </span><span style=' font-family: monospace;'>ToolboxUpdater</span><span> to an App Designer application.</span></div></div>
 <br>
 <!-- 
 ##### SOURCE BEGIN #####
 %% ToolboxUpdater (class)
 % Add to your toolbox ability to update itself from remote (GitHub)
 %% Properties
-% |*TE*| - <matlab:ToolboxExtender.help('ToolboxExtender') ToolboxExtender> 
+% |*ext*| - <matlab:ToolboxExtender.help('ToolboxExtender') ToolboxExtender> 
 % object
 % 
-% |*vr*| - latest remote version from internet (GitHub)
+% |*vr*| - latest remote version from internet (GitHub), |char|
+% 
+% |*isupd*| - update is available, |logical|
+% 
+% |*relsum* |- latest release notes summary|, char|
+% 
+% |*rel*| - latest release notes|, char|
+% 
+% |*bin*| - toolbox binary information|, struct|
 %% Methods
 % |*TU = ToolboxUpdater(_[extender]_)*|
 % 
@@ -53,41 +31,71 @@ To update call 'update' method</div></div><div class="inlineElement eoOutputWrap
 % 
 % If you call |_ToolboxUpdater_| class with optional ToolboxExtender object 
 % |_extender_|, |_TU_| will use this object, otherwise new ToolboxExtender object 
-% will be created inside |_TU_| (|TE| property)
+% will be created inside |_TU_| (|_ext_| property)
 % 
 % |*ison = isonline()*|
 % 
 % Check internet is available
 % 
+% |*[data, err] = fetch()*|
+% 
+% Get information about latest release from GitHub (optional to use)
+% 
 % |*vr = gvr()*|
 % 
 % Get latest remote (GitHub) version |_vr_|
 % 
-% |*isupd = isupdate()*|
+% |*isupd = isupdate(_[callback], [delay]_)*|
 % 
-% Check update is available
+% Check update is available.
+% 
+% If you call this method with |callback |function it will perform asynchronous 
+% request for a new version and after |delay| seconds (default: 1) will call callback 
+% function with |isupd| argument. This use helps you to design responsive App 
+% Designer apps with the update feature (see an example below)
 % 
 % |*[vc, vr] = ver()*|
 % 
 % Display and get current (|_vc_|) and remote (|_vr_|) versions. If update is 
 % available show an update hint
 % 
-% |*update()*|
+% |*rel = getrel()*|
 % 
-% Install latest version from remote (GitHub) if update is available
+% Get full release notes of the latest release
 % 
-% |*installweb()*|
+% |*rel = getrelsum()*|
 % 
-% Install toolbox from remote (GitHub)
+% Get only summary release notes of the latest release
+% 
+% |*webrel()*|
+% 
+% Open full release notes on GitHub
+% 
+% |*update(_[delay], [precallback], [postcallback]_)*|
+% 
+% Install the latest version from the remote (GitHub) if update is available.
+% 
+% You can specify |delay| in seconds before update process will be started (default: 
+% 1). |precallback| function will be executed just before update, |postcallback| 
+% will be executed after update process. This use helps you to design responsive 
+% App Designer apps with the update feature (see an example below)
+% 
+% |*installweb(_[dpath]_)*|
+% 
+% Install toolbox from the remote (GitHub). Toolbox file will be downloaded 
+% to |dpath| folder if specified (default: temporary directory)
 %% Additional information
 % How to integrate
-% Firstly you need to create a release of your toolbox on GitHub *with installation 
-% binary atached*. You can use <matlab:ToolboxExtender.help('ToolboxDev') ToolboxDev> 
-% to automate this process.
+% Firstly you need to create a release of your toolbox on GitHub *with release 
+% notes and installation binary atached*. You can use <matlab:ToolboxExtender.help('ToolboxDev') 
+% ToolboxDev> to automate this process.
 % 
-% After it add to yout toolbox function (or method to your app) that automatically 
+% After it add to your toolbox function (or method to your app) that automatically 
 % checks that a newer version of toolbox are available, informs a user about it 
 % and allows him to install the latest version.
+% 
+% <matlab:open ToolboxExtenderApp Examine ToolboxExtenderApp> as a good reference 
+% of integrating |ToolboxUpdater| to an App Designer application.
 %% Examples
 % Create an object of the ToolboxUpdater
 
@@ -97,20 +105,19 @@ TU = ToolboxUpdater
 
 isupd = TU.isupdate
 %% 
-% Install latest version from remote (if available)
-%%
-% 
-%   TU.update
-%
+% Install the latest version from remote (if available)
+
+TU.update
 %% 
-% Force to install latest version from remote
-%%
-% 
-%   TU.installweb
-%
+% Force to install the latest version from the remote
+
+TU.installweb
 %% 
-% Check installed (current) and latest (remote) versions
+% Check installed (current) and the latest (remote) versions
 
 [vc, vr] = TU.ver
+%% 
+% Also <matlab:open ToolboxExtenderApp examine ToolboxExtenderApp> as a good 
+% reference of integrating |ToolboxUpdater| to an App Designer application.
 ##### SOURCE END #####
 --></body></html>
