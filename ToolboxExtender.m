@@ -45,14 +45,14 @@ classdef ToolboxExtender < handle
                 tbx = matlab.addons.toolbox.installedToolboxes;
                 tbx = struct2table(tbx, 'AsArray', true);
                 idx = strcmp(tbx.Name, obj.name);
-                vc = tbx.Version(idx);
+                vcs = string(tbx.Version(idx));
                 guid = tbx.Guid(idx);
-                if isscalar(vc)
-                    vc = char(vc);
-                elseif isempty(vc)
-                    vc = '';
-                else
-                    vc = char(vc(end));
+                vc = '';
+                for i = 1 : length(vcs)
+                    if matlab.addons.isAddonEnabled(guid{i}, vcs(i))
+                        vc = char(vcs(i));
+                        break
+                    end
                 end
             else
                 tbx = matlab.apputil.getInstalledAppInfo;
