@@ -1,3 +1,4 @@
+% Generated with Toolbox Extender https://github.com/ETMC-Exponenta/ToolboxExtender
 instURL = '%%REMOTE%%';
 [~, instName] = fileparts(instURL);
 instRes = webread(instURL);

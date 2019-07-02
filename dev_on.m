@@ -1,5 +1,6 @@
+% Generated with Toolbox Extender https://github.com/ETMC-Exponenta/ToolboxExtender
 clear all
-dev = ToolboxDev
+dev = ToolboxExtenderDev
 fprintf('Dev: %s v%s\n(%s)\n', dev.ext.name, dev.vp, dev.ext.root)
 % to deploy run: dev.deploy(v) i.e. dev.deploy('0.1.1')
 % to build run dev.build or dev.build(v)

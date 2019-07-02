@@ -1,3 +1,4 @@
+% Generated with Toolbox Extender https://github.com/ETMC-Exponenta/ToolboxExtender
 clear all
 dev = ToolboxDev
 fprintf('Dev: %s v%s\n(%s)\n', dev.ext.name, dev.vp, dev.ext.root)

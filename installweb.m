@@ -1,3 +1,4 @@
+% Generated with Toolbox Extender https://github.com/ETMC-Exponenta/ToolboxExtender
 instURL = 'https://api.github.com/repos/ETMC-Exponenta/ToolboxExtender/releases/latest';
 [~, instName] = fileparts(instURL);
 instRes = webread(instURL);
