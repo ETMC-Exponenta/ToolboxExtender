@@ -1,4 +1,4 @@
-instURL = 'https://api.github.com/repos/ETMC-Exponenta/ToolboxExtender/releases/latest';
+instURL = '%%REMOTE%%';
 [~, instName] = fileparts(instURL);
 instRes = webread(instURL);
 fprintf('Downloading %s %s\n', instName, instRes.name);

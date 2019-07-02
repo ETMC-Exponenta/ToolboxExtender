@@ -15,31 +15,43 @@ classes = classes(classes ~= "extender");
 fprintf('* Toolbox Extender will be initialized in current directory *\n');
 
 TE = ToolboxExtender;
-confpath = fullfile(targetpath, TE.config);
-if isfile(confpath)
-    delete(confpath);
-end
 v = TE.vc;
 TE.root = targetpath;
-[nname, npath] = TE.cloneclass('Extender', getroot());
-TE.echo(": " + npath + " was created");
+if ~isscalar(classes) || ~strcmpi(classes, 'install')
+    useext = true;
+else
+    useext = false;
+end
+if useext
+    confpath = fullfile(targetpath, TE.config);
+    if isfile(confpath)
+        delete(confpath);
+    end
+    [nname, npath] = TE.cloneclass('Extender', getroot());
+    TE.echo(": " + npath + " was created");
+end
 isdev = false;
 for i = 1 : length(classes)
-    [cname, cpath] = TE.cloneclass(classes(i), getroot());
-    TE.echo(": " + cpath + " was created");
-    if strcmpi(classes(i), "dev")
-        isdev = true;
-        nfname = copyscript(TE, 'dev_on', cname);
-        TE.echo(": " + nfname + " was created");
-        fprintf("! Don't forget to exclude %s and %s.m from project\n", nfname, cname);
+    if strcmpi(classes(i), 'install')
+        copy_install(TE);
+    else
+        [cname, cpath] = TE.cloneclass(classes(i), getroot());
+        TE.echo(": " + cpath + " was created");
+        if strcmpi(classes(i), "dev")
+            isdev = true;
+            nfname = copy_dev_on(TE, cname);
+            fprintf("! Don't forget to exclude %s and %s.m from project\n", nfname, cname);
+        end
     end
 end
-p1 = cd(TE.root);
-TE = feval(nname);
-TE.extv = v;
-writeconfig(TE);
-TE.echo(": " + TE.config + " was created");
-cd(p1);
+if useext
+    p1 = cd(TE.root);
+    TE = feval(nname);
+    TE.extv = v;
+    writeconfig(TE);
+    TE.echo(": " + TE.config + " was created");
+    cd(p1);
+end
 if isdev && isempty(TE.remote)
     disp('! If you want to use full Dev features please add GitHub remote address to project folder (via Git) and add Toolbox Extender again');
 end
@@ -68,15 +80,32 @@ confname = obj.config;
 xmlwrite(confpath, docNode);
 end
 
-function nname = copyscript(obj, sname, newclass)
+function [nname, npath] = copyscript(obj, sname)
 % Copy script to Project folder
 spath = fullfile(getroot(), 'scripts', sname + ".m");
 nname = sname + ".m";
 npath = fullfile(obj.root, nname);
 copyfile(spath, npath);
-if nargin > 2
+obj.echo(": " + nname + " was created");
+end
+
+function nname = copy_dev_on(obj, newclass)
+% Copy dev_on script
+nname = copyscript(obj, 'dev_on');
+if nargin > 1
     obj.txtrep(nname, 'ToolboxDev', newclass);
 end
+end
+
+function sname = copy_install(obj)
+% Copy dev_on script
+[~, bname] = obj.getbinpath();
+url = obj.getlatesturl();
+sname = copyscript(obj, 'install');
+obj.txtrep(sname, '%%BINNAME%%', bname);
+obj.txtrep(sname, '%%NAME%%', obj.name);
+sname = copyscript(obj, 'installweb');
+obj.txtrep(sname, '%%REMOTE%%', url);
 end
 
 function root = getroot()
