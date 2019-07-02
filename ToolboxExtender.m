@@ -222,7 +222,7 @@ classdef ToolboxExtender < handle
             if ~isempty(remote)
                 remote = remote(end);
             end
-            remote = char(remote);
+            remote = obj.cleargit(remote);
             obj.remote = remote;
         end
         
@@ -259,7 +259,7 @@ classdef ToolboxExtender < handle
             obj.writetxt(txt, fpath);
         end
         
-        function bpath = getbinpath(obj)
+        function [bpath, bname] = getbinpath(obj)
             % Get generated binary file path
             [~, name] = fileparts(obj.pname);
             if obj.type == "toolbox"
@@ -267,7 +267,8 @@ classdef ToolboxExtender < handle
             else
                 ext = ".mlappinstall";
             end
-            bpath = fullfile(obj.root, name + ext);
+            bname = name + ext;
+            bpath = fullfile(obj.root, bname);
         end
         
         function ok = readconfig(obj)
@@ -280,7 +281,7 @@ classdef ToolboxExtender < handle
                 obj.name = obj.getxmlitem(conf, 'name');
                 obj.pname = obj.getxmlitem(conf, 'pname');
                 obj.type = obj.getxmlitem(conf, 'type');
-                obj.remote = erase(obj.getxmlitem(conf, 'remote'), '.git');
+                obj.remote = obj.cleargit(obj.getxmlitem(conf, 'remote'));
                 obj.extv = obj.getxmlitem(conf, 'extv');
             end
         end
@@ -338,6 +339,29 @@ classdef ToolboxExtender < handle
         function webrel(obj)
             % Open GitHub releases webpage
             web(obj.remote + "/releases", '-browser');
+        end
+        
+        function url = getlatesturl(obj)
+            % Get latest release URL
+            url = obj.getapiurl(obj.remote) + "/releases/latest";
+        end
+        
+    end
+    
+    methods (Hidden, Static)
+        
+        function remote = cleargit(remote)
+            % Delete .git
+            remote = char(remote);
+            if endsWith(remote, '.git')
+                remote = remote(1:end-4);
+            end
+        end
+        
+        function url = getapiurl(remote)
+            % Get GitHub API URL
+            iname = string(extractAfter(remote, 'https://github.com/'));
+            url = "https://api.github.com/repos/" + iname;
         end
         
     end
