@@ -341,9 +341,24 @@ classdef ToolboxExtender < handle
             web(obj.remote + "/releases", '-browser');
         end
         
+        function repo = getrepo(obj)
+            % Get repo string from remote URL
+            repo = extractAfter(obj.remote, 'https://github.com/');
+        end
+        
         function url = getlatesturl(obj)
             % Get latest release URL
-            url = obj.getapiurl(obj.remote) + "/releases/latest";
+            url = obj.getapiurl() + "/releases/latest";
+        end
+        
+        function url = getapiurl(obj)
+            % Get GitHub API URL
+            url = "https://api.github.com/repos/" + obj.getrepo();
+        end
+        
+        function url = getrawurl(obj, fname)
+            % Get GitHub raw source URL
+            url = sprintf("https://raw.githubusercontent.com/%s/master/%s", obj.getrepo(), fname);
         end
         
     end
@@ -356,12 +371,6 @@ classdef ToolboxExtender < handle
             if endsWith(remote, '.git')
                 remote = remote(1:end-4);
             end
-        end
-        
-        function url = getapiurl(remote)
-            % Get GitHub API URL
-            iname = string(extractAfter(remote, 'https://github.com/'));
-            url = "https://api.github.com/repos/" + iname;
         end
         
     end
