@@ -12,7 +12,7 @@
 - how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
 Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>1.7</param.version>
+    <param.version>1.8</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -20,6 +20,7 @@ Toolbox Extender address those issues extending built-in MATLAB capabilities of 
     <param.platforms />
     <param.guid>b1e0dde9-3478-4965-a2ff-90642308ab18</param.guid>
     <param.exclude.filters>*.git
+**/*.asv
 .gitignore
 dev_on.m
 retest.m
@@ -89,26 +90,18 @@ installweb.m</param.exclude.filters>
     </fileset.rootdir>
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+ToolboxExtender</file>
-      <file>${PROJECT_ROOT}\.git</file>
-      <file>${PROJECT_ROOT}\.gitignore</file>
       <file>${PROJECT_ROOT}\DesktopToolset.xml</file>
-      <file>${PROJECT_ROOT}\dev_on.m</file>
       <file>${PROJECT_ROOT}\doc</file>
       <file>${PROJECT_ROOT}\icon-mat-help-outline.png</file>
       <file>${PROJECT_ROOT}\icon-my-update-daa520.png</file>
       <file>${PROJECT_ROOT}\info.xml</file>
-      <file>${PROJECT_ROOT}\install.m</file>
-      <file>${PROJECT_ROOT}\installweb.m</file>
       <file>${PROJECT_ROOT}\README.md</file>
       <file>${PROJECT_ROOT}\resources</file>
-      <file>${PROJECT_ROOT}\retest.m</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
-      <file>${PROJECT_ROOT}\ToolboxExtender.mltbx</file>
-      <file>${PROJECT_ROOT}\ToolboxExtender.prj</file>
       <file>${PROJECT_ROOT}\ToolboxExtenderApp.mlapp</file>
       <file>${PROJECT_ROOT}\ToolboxStorage.m</file>
       <file>${PROJECT_ROOT}\ToolboxUpdater.m</file>
