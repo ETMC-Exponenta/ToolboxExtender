@@ -3,7 +3,7 @@
    <name>Toolbox Extender</name>
    <pname>ToolboxExtender.prj</pname>
    <type>toolbox</type>
-   <remote>https://github.com/ETMC-Exponenta/ToolboxExtender.git</remote>
-   <extv>1.0</extv>
+   <remote>https://github.com/ETMC-Exponenta/ToolboxExtender</remote>
+   <extv>1.8</extv>
 </config>
 <!--Toolbox Extender configuration file. DO NOT DELETE-->
