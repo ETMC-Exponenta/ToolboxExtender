@@ -1,6 +1,6 @@
 % Generated with Toolbox Extender https://github.com/ETMC-Exponenta/ToolboxExtender
 instURL = '%%REMOTE%%';
-[~, instName] = fileparts(instURL);
+[~, instName] = fileparts(fileparts(fileparts(instURL)));
 instRes = webread(instURL);
 fprintf('Downloading %s %s\n', instName, instRes.name);
 websave(instRes.assets.name, instRes.assets.browser_download_url);

@@ -92,16 +92,15 @@ end
 function nname = copy_dev_on(obj)
 % Copy dev_on script
 nname = copyscript(obj, 'dev_on');
-extc = obj.getselfname();
-devc = extractBefore(extc, 'Extender') + "Dev";
+devc = obj.getvalidname('Dev');
 obj.txtrep(nname, '%%DEVCLASS%%', devc);
 end
 
 function sname = copy_install(obj)
 % Copy dev_on script
 url = obj.getlatesturl();
-extc = obj.getselfname();
-devc = extractBefore(extc, 'Extender') + "Dev";
+extc = obj.getvalidname('Extender');
+devc = obj.getvalidname('Dev');
 sname = copyscript(obj, 'install');
 obj.txtrep(sname, '%%EXTCLASS%%', extc);
 obj.txtrep(sname, '%%DEVCLASS%%', devc);
