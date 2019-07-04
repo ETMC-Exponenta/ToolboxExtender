@@ -8,8 +8,10 @@ if nargin < 1
 else
     classes = lower(string(classes));
 end
+useext = false;
 if ismember(classes, "all")
-    classes = ["Dev" "Storage" "Updater"];
+    classes = ["Dev" "Storage" "Updater" "install"];
+    useext = true;
 end
 classes = classes(classes ~= "extender");
 fprintf('* Toolbox Extender will be initialized in current directory *\n');
@@ -19,8 +21,6 @@ v = TE.vc;
 TE.root = targetpath;
 if ~isscalar(classes) || ~strcmpi(classes, 'install')
     useext = true;
-else
-    useext = false;
 end
 if useext
     confpath = fullfile(targetpath, TE.config);
