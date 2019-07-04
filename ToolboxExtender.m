@@ -99,17 +99,20 @@ classdef ToolboxExtender < handle
         
         function doc(obj, name)
             % Open page from documentation
-            if (nargin < 2) || isempty(name)
-                name = 'GettingStarted';
-            end
-            if ~any(endsWith(name, {'.mlx' '.html'}))
-                name = name + ".html";
-            end
-            docpath = fullfile(obj.root, 'doc', name);
-            if endsWith(name, '.html')
-                web(char(docpath));
-            else
-                open(char(docpath));
+            docdir = fullfile(obj.root, 'doc');
+            if isfolder(docdir)
+                if (nargin < 2) || isempty(name)
+                    name = 'GettingStarted';
+                end
+                if ~any(endsWith(name, {'.mlx' '.html'}))
+                    name = name + ".html";
+                end
+                docpath = fullfile(docdir, name);
+                if endsWith(name, '.html')
+                    web(char(docpath));
+                else
+                    open(char(docpath));
+                end
             end
         end
         
@@ -226,10 +229,13 @@ classdef ToolboxExtender < handle
             obj.remote = remote;
         end
         
-        function name = getvalidname(obj)
+        function name = getvalidname(obj, cname)
             % Get valid variable name
             name = char(obj.name);
             name = name(isstrprop(name, 'alpha'));
+            if nargin > 1
+                name = char(name + string(cname));
+            end
         end
         
         function txt = readtxt(~, fpath)
