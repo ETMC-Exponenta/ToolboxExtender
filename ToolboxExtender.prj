@@ -19,11 +19,10 @@ Toolbox Extender address those issues extending built-in MATLAB capabilities of 
     <param.products.version />
     <param.platforms />
     <param.guid>b1e0dde9-3478-4965-a2ff-90642308ab18</param.guid>
-    <param.exclude.filters>*.git
-**/*.asv
+    <param.exclude.filters>.git
 .gitignore
+**/*.asv
 dev_on.m
-retest.m
 install.m
 installweb.m</param.exclude.filters>
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
@@ -104,6 +103,7 @@ installweb.m</param.exclude.filters>
       <file>${PROJECT_ROOT}\resources</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
+      <file>${PROJECT_ROOT}\ToolboxDev.asv</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>

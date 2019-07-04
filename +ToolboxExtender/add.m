@@ -19,6 +19,7 @@ fprintf('* Toolbox Extender will be initialized in current directory *\n');
 TE = ToolboxExtender;
 v = TE.vc;
 TE.root = targetpath;
+ToolboxDev.exclude(TE.getppath(), {'.git' '.gitignore' '**/*.asv'});
 if ~isscalar(classes) || ~strcmpi(classes, 'install')
     useext = true;
 end
@@ -40,7 +41,7 @@ for i = 1 : length(classes)
         if strcmpi(classes(i), "dev")
             isdev = true;
             nfname = copy_dev_on(TE);
-            fprintf("! Don't forget to exclude %s and %s.m from project\n", nfname, cname);
+            ToolboxDev.exclude(TE.getppath(), cname);
         end
     end
 end
@@ -94,6 +95,7 @@ function nname = copy_dev_on(obj)
 nname = copyscript(obj, 'dev_on');
 devc = obj.getvalidname('Dev');
 obj.txtrep(nname, '%%DEVCLASS%%', devc);
+ToolboxDev.exclude(obj.getppath(), 'dev_on.m');
 end
 
 function sname = copy_install(obj)
@@ -107,6 +109,7 @@ obj.txtrep(sname, '%%DEVCLASS%%', devc);
 sname = copyscript(obj, 'installweb');
 obj.txtrep(sname, '%%REMOTE%%', url);
 obj.txtrep(sname, '%%EXTCLASS%%', extc);
+ToolboxDev.exclude(obj.getppath(), {'install.m' 'installweb.m'});
 end
 
 function root = getroot()
