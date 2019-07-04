@@ -39,7 +39,7 @@ for i = 1 : length(classes)
         TE.echo(": " + cpath + " was created");
         if strcmpi(classes(i), "dev")
             isdev = true;
-            nfname = copy_dev_on(TE, cname);
+            nfname = copy_dev_on(TE);
             fprintf("! Don't forget to exclude %s and %s.m from project\n", nfname, cname);
         end
     end
@@ -89,23 +89,25 @@ copyfile(spath, npath);
 obj.echo(": " + nname + " was created");
 end
 
-function nname = copy_dev_on(obj, newclass)
+function nname = copy_dev_on(obj)
 % Copy dev_on script
 nname = copyscript(obj, 'dev_on');
-if nargin > 1
-    obj.txtrep(nname, 'ToolboxDev', newclass);
-end
+extc = obj.getselfname();
+devc = extractBefore(extc, 'Extender') + "Dev";
+obj.txtrep(nname, '%%DEVCLASS%%', devc);
 end
 
 function sname = copy_install(obj)
 % Copy dev_on script
-[~, bname] = obj.getbinpath();
 url = obj.getlatesturl();
+extc = obj.getselfname();
+devc = extractBefore(extc, 'Extender') + "Dev";
 sname = copyscript(obj, 'install');
-obj.txtrep(sname, '%%BINNAME%%', bname);
-obj.txtrep(sname, '%%NAME%%', obj.name);
+obj.txtrep(sname, '%%EXTCLASS%%', extc);
+obj.txtrep(sname, '%%DEVCLASS%%', devc);
 sname = copyscript(obj, 'installweb');
 obj.txtrep(sname, '%%REMOTE%%', url);
+obj.txtrep(sname, '%%EXTCLASS%%', extc);
 end
 
 function root = getroot()
