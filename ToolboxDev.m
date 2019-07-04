@@ -167,10 +167,10 @@ classdef ToolboxDev < handle
         function updateroot(obj)
             % Update project root
             service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
-            configKey = service.openProject(obj.ext.getppath());
-            service.removeToolboxRoot(configKey);
-            service.setToolboxRoot(configKey, obj.ext.root);
-            service.closeProject(configKey);
+            pr = service.openProject(obj.ext.getppath());
+            service.removeToolboxRoot(pr);
+            service.setToolboxRoot(pr, obj.ext.root);
+            service.closeProject(pr);
         end
         
         function setver(obj, vp)
@@ -219,7 +219,7 @@ classdef ToolboxDev < handle
             system('git push --tags');
             obj.ext.echo('has been tagged');
         end
-
+        
         function url = shorturl(obj, url)
             % Shorten URL by git.io
             host = "https://git.io/";
@@ -227,6 +227,28 @@ classdef ToolboxDev < handle
             url = host + url;
         end
         
+    end
+    
+    methods (Static)
+        
+        function exclude(ppath, fmask)
+            if isfile(ppath)
+                % Exclude file or folder from Toolbox Project
+                service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
+                pr = service.openProject(ppath);
+                ex = service.getExcludeFilter(pr);
+                ex = split(string(ex), newline);
+                fmask = string(fmask);
+                for i = 1 : length(fmask)
+                    if ~ismember(fmask(i), ex)
+                        ex = [ex; fmask(i)];
+                        service.setExcludeFilter(pr, join(ex, newline));
+                    end
+                end
+                service.closeProject(pr);
+            end
+        end
+
     end
     
 end
