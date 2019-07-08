@@ -43,10 +43,12 @@ classdef ToolboxDev < handle
             obj.vp = vp;
         end
         
-        function build(obj, vp)
+        function build(obj, vp, gendoc)
             % Build toolbox for specified version
             ppath = obj.ext.getppath();
-            obj.gendoc();
+            if nargin > 2 && gendoc
+                obj.gendoc();
+            end
             if nargin > 1 && ~isempty(vp)
                 obj.setver(vp);
             else

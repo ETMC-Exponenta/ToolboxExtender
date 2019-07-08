@@ -43,19 +43,24 @@ classdef ToolboxExtender < handle
             % Get current installed version
             if obj.type == "toolbox"
                 tbx = matlab.addons.toolbox.installedToolboxes;
-                tbx = struct2table(tbx, 'AsArray', true);
-                idx = strcmp(tbx.Name, obj.name);
-                vcs = string(tbx.Version(idx));
-                guid = tbx.Guid(idx);
-                vc = '';
-                for i = 1 : length(vcs)
-                    if matlab.addons.isAddonEnabled(guid{i}, vcs(i))
-                        vc = char(vcs(i));
-                        break
+                if ~isempty(tbx)
+                    tbx = struct2table(tbx, 'AsArray', true);
+                    idx = strcmp(tbx.Name, obj.name);
+                    vcs = string(tbx.Version(idx));
+                    guid = tbx.Guid(idx);
+                    vc = '';
+                    for i = 1 : length(vcs)
+                        if matlab.addons.isAddonEnabled(guid{i}, vcs(i))
+                            vc = char(vcs(i));
+                            break
+                        end
                     end
+                else
+                    vc = '';
+                    guid = '';
                 end
             else
-                tbx = matlab.apputil.getInstalledAppInfo;
+                apps = matlab.apputil.getInstalledAppInfo;
                 vc = '';
                 guid = '';
             end
