@@ -21,6 +21,9 @@
         <tocitem target="ToolboxStorage.html" image="HelpIcon.FUNCTION">
             ToolboxStorage (class)
         </tocitem>
+        <tocitem target="Installers.html" image="HelpIcon.FUNCTION">
+            Installers
+        </tocitem>
         <tocitem target="https://github.com/ETMC-Exponenta/ToolboxExtender" 
                  image="$toolbox/matlab/icons/webicon.gif">
         Toolbox Extender on GitHub
