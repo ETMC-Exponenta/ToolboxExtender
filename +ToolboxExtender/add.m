@@ -110,6 +110,9 @@ sname = copyscript(obj, 'installweb');
 obj.txtrep(sname, '%%REMOTE%%', url);
 obj.txtrep(sname, '%%EXTCLASS%%', extc);
 ToolboxDev.exclude(obj.getppath(), {'install.m' 'installweb.m'});
+dev = ToolboxDev(obj);
+i = dev.webinstaller();
+fprintf('  -> Web installer command:\n     %s\n', i);
 end
 
 function root = getroot()
