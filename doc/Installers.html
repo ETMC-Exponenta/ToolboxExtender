@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB R2019a"><title>Installers</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.8px; min-height: 0px; white-space: pre-wrap; color: rgb(213, 80, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: 400; text-align: left;  }
+.S1 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.S2 { margin-bottom: 20px; padding-bottom: 4px;  }
+.S3 { margin: 0px; padding: 10px 0px 10px 5px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 700; text-align: start;  }
+.S4 { margin: -1px 0px 0px; padding: 10px 0px 10px 7px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: start;  }
+.S5 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
+.CodeBlock { background-color: #F7F7F7; margin: 10px 0 10px 0;}
+.S6 { border-left: 1px solid rgb(233, 233, 233); border-right: 1px solid rgb(233, 233, 233); border-top: 1px solid rgb(233, 233, 233); border-bottom: 1px solid rgb(233, 233, 233); border-radius: 4px; padding: 6px 45px 4px 13px; line-height: 17.234px; min-height: 18px; white-space: nowrap; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S7 { margin: 10px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.S8 { margin: 15px 10px 5px 4px; padding: 0px; line-height: 18px; min-height: 0px; white-space: pre-wrap; color: rgb(60, 60, 60); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 17px; font-weight: 700; text-align: left;  }
+.S9 { border-left: 0px none rgb(0, 0, 0); border-right: 0px none rgb(0, 0, 0); border-top: 0px none rgb(0, 0, 0); border-bottom: 0px none rgb(0, 0, 0); border-radius: 0px; padding: 0px; line-height: 16px; min-height: 0px; white-space: pre; color: rgb(0, 0, 0); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 12px;  }</style></head><body><div class = rtcContent><h1  class = 'S0' id = 'T_8311D159' ><span>Installers</span></h1><div  class = 'S1'><span>You can add installer and web installer to your toolbox</span></div><div  class = 'S2'><div  class = 'S3'><span style=' font-weight: bold;'>Table of Contents</span></div><div  class = 'S4'><a href = "#H_729683D1"><span>How to add
+</span></a><a href = "#H_53276584"><span>Web installer: installweb.m
+</span></a><span>    </span><a href = "#H_2FD9CC90"><span>Why to use
+</span></a><span>    </span><a href = "#H_E8C75ED1"><span>How to use
+</span></a><span>    </span><a href = "#H_DA1DA3ED"><span>Use case
+</span></a><a href = "#H_E0CF5820"><span>Local installer: install.m
+</span></a><span>    </span><a href = "#H_BEFA816C"><span>Why to use
+</span></a><span>    </span><a href = "#H_4091B3A0"><span>How to use
+</span></a><span>    </span><a href = "#H_906BF65A"><span>Use case</span></a></div></div><h2  class = 'S5' id = 'H_729683D1' ><span>How to add</span></h2><div  class = 'S1'><span>To add </span><span style=' font-weight: bold;'>install.m</span><span> and</span><span style=' font-weight: bold;'> instalweb.m</span><span> scripts class to current project folder execute</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre;"><span>ToolboxExtender.add(</span><span style="color: rgb(160, 32, 240);">'install'</span><span>)</span></span></div></div></div><div  class = 'S7'><span> </span></div><h2  class = 'S5' id = 'H_53276584' ><span>Web installer: installweb.m</span></h2><div  class = 'S1'><span>installweb.m script downloads the latest version of </span><span style=' font-style: italic;'>.mltbx</span><span> file from GitHub and installs it as a toolbox.</span></div><h3  class = 'S8' id = 'H_2FD9CC90' ><span>Why to use</span></h3><div  class = 'S1'><span>This is the easiest way for users to install the latest version of your toolbox directly from the web via the only one command.</span></div><h3  class = 'S8' id = 'H_E8C75ED1' ><span>How to use</span></h3><div  class = 'S1'><span>First of all create release of new version of your toolbox on GitHub.</span></div><div  class = 'S1'><span>Then add install scripts to your project:</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre;"><span>ToolboxExtender.add(</span><span style="color: rgb(160, 32, 240);">'install'</span><span>)</span></span></div></div></div><div  class = 'S7'><span>After it you will see in command window '</span><span style=' font-family: monospace;'>Web installer command</span><span>', i.e. for Toolbox Extender:</span></div><div class = 'preformatted-matlab' style = 'margin: 10px 3px 10px 55px; padding: 10px 10px 10px 5px; '><div  class = 'S9'><span style="white-space: pre;"><span>eval(webread(</span><span style="color: rgb(160, 32, 240);">'https://git.io/fjo2h'</span><span>))</span></span></div></div><div  class = 'S1'><span>The URL leads to </span><span style=' font-weight: bold;'>installweb.m</span><span> script on GitHub.</span></div><div  class = 'S1'><span>Share this command with users via README.md or another way. When user executes this command he will have toolbox installed. </span></div><h3  class = 'S8' id = 'H_DA1DA3ED' ><span>Use case</span></h3><div  class = 'S1'><span>Provide your users with one-line MATLAB command that installs your toolbox directly form GitHub to MATLAB or MATLAB Online.</span></div><div  class = 'S1'><span> </span></div><h2  class = 'S5' id = 'H_E0CF5820' ><span>Local installer: install.m</span></h2><div  class = 'S1'><span>install.m script builds </span><span style=' font-style: italic;'>.mltbx</span><span> file from current folder and installs it as a toolbox.</span></div><h3  class = 'S8' id = 'H_BEFA816C' ><span>Why to use</span></h3><div  class = 'S1'><span>It's a bad idea to commit a </span><span style=' font-style: italic;'>.mltbx</span><span> binary file to GitHub among projeсt files because it's a generated not source file.</span></div><div  class = 'S1'><span>Instead of </span><span style=' font-style: italic;'>.mltbx</span><span> you can commit </span><span style=' font-weight: bold;'>install.m</span><span> and users who download your project as an archive will run this script and get toolbox installed.</span></div><h3  class = 'S8' id = 'H_4091B3A0' ><span>How to use</span></h3><div  class = 'S1'><span>Execute from current project folder</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre;"><span>install</span></span></div></div></div><h3  class = 'S8' id = 'H_906BF65A' ><span>Use case</span></h3><div  class = 'S1'><span>If user has downloaded an archive of your toolbox project files from GitHub, he unpacks the archive, goes to the project folder and executes </span><span style=' font-family: monospace;'>install</span><span> to get toolbox compilated and installed.</span></div></div>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+%% Installers
+% You can add installer and web installer to your toolbox
+%% How to add
+% To add *install.m* and* instalweb.m* scripts class to current project folder 
+% execute
+
+ToolboxExtender.add('install')
+%% 
+% %% Web installer: installweb.m
+% installweb.m script downloads the latest version of _.mltbx_ file from GitHub 
+% and installs it as a toolbox.
+% Why to use
+% This is the easiest way for users to install the latest version of your toolbox 
+% directly from the web via the only one command.
+% How to use
+% First of all create release of new version of your toolbox on GitHub.
+% 
+% Then add install scripts to your project:
+
+ToolboxExtender.add('install')
+%% 
+% After it you will see in command window '|Web installer command|', i.e. for 
+% Toolbox Extender:
+%%
+% 
+%   eval(webread('https://git.io/fjo2h'))
+%
+%% 
+% The URL leads to *installweb.m* script on GitHub.
+% 
+% Share this command with users via README.md or another way. When user executes 
+% this command he will have toolbox installed. 
+% Use case
+% Provide your users with one-line MATLAB command that installs your toolbox 
+% directly form GitHub to MATLAB or MATLAB Online.
+% 
+% %% Local installer: install.m
+% install.m script builds _.mltbx_ file from current folder and installs it 
+% as a toolbox.
+% Why to use
+% It's a bad idea to commit a _.mltbx_ binary file to GitHub among projeсt files 
+% because it's a generated not source file.
+% 
+% Instead of _.mltbx_ you can commit *install.m* and users who download your 
+% project as an archive will run this script and get toolbox installed.
+% How to use
+% Execute from current project folder
+
+install
+% Use case
+% If user has downloaded an archive of your toolbox project files from GitHub, 
+% he unpacks the archive, goes to the project folder and executes |install| to 
+% get toolbox compilated and installed.
+##### SOURCE END #####
+--></body></html>

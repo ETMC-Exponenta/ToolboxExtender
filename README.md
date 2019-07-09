@@ -26,6 +26,7 @@ File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/
 - Automatic toolbox building and deployment to GitHub ([Dev](./README.md/#dev-class))
 - Ability of installed toolbox to automatically update itself to the latest version from GitHub ([Updater](./README.md/#updater-class))
 - Toolbox ability to store any data within itself, i.e. settings ([Storage](./README.md/#storage-class))
+- Web installer that allows to install your toolbox from web with one-line command ([installers](./README.md/#installers))
 
 ## Requirements
 
@@ -78,6 +79,13 @@ Helps you easily store any data within installed toolbox, i.e. user settings
 - clear storage if you don't need it
 
 See [ToolboxStorage (class) documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/ToolboxStorage.html)
+
+### Installers
+Optimize distribution of your toolbox:
+- Exclude .mltbx binary from source files
+- Provide your users with one-line MATLAB command that installs your toolbox directly form GitHub to MATLAB or MATLAB Online
+
+See [Installers documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ETMC-Exponenta/ToolboxExtender/master/doc/Installers.html)
 
 
 ## How to
