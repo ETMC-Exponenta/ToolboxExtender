@@ -102,7 +102,7 @@ eval(webread('https://git.io/fjo2h'))
 
 #### 2nd approach
 
-[Download](https://github.com/ETMC-Exponenta/ToolboxExtender/releases) and install ToolboxExtender.mltbx
+Download and install [ToolboxExtender.mltbx](https://roslovets.github.io/ghbin#ETMC-Exponenta/ToolboxExtender#ToolboxExtender.mltbx.mltbx)
 
 #### 3rd approach (not recommended, olny for testing)
 
