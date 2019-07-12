@@ -140,8 +140,6 @@ Initialized classes will have names depended on the project name, i.e.: *Project
 
 4. Also files will be generated in project directory: **ToolboxConfig.xml** with project and Extender info, **dev_on.m** script to activate developer tools (optionally). **Do not delete ToolboxConfig.xml**!
 
-5. Manually add *...Dev.m* class and *dev_on.m* script to excluded files of your project
-
 ### Update installed Toolbox Extender
 
 Use **Toolbox Extender App** or...
@@ -165,6 +163,7 @@ The app can be found in APPS section of main MATLAB Window or
 ## Examples of Toolbox Extender usage
 
 - [MATLAB WEB API](https://github.com/ETMC-Exponenta/MATLAB-WEB-API)
+- [Icons for MATLAB](https://github.com/roslovets/Icons-for-MATLAB)
 - [MATLAB Course for Educators](https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators)
 - (send us your examples)
 
