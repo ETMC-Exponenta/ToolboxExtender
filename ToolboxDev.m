@@ -235,19 +235,22 @@ classdef ToolboxDev < handle
         
         function exclude(ppath, fmask)
             if isfile(ppath)
-                % Exclude file or folder from Toolbox Project
-                service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
-                pr = service.openProject(ppath);
-                ex = service.getExcludeFilter(pr);
-                ex = split(string(ex), newline);
-                fmask = string(fmask);
-                for i = 1 : length(fmask)
-                    if ~ismember(fmask(i), ex)
-                        ex = [ex; fmask(i)];
-                        service.setExcludeFilter(pr, join(ex, newline));
+                try
+                    % Exclude file or folder from Toolbox Project
+                    service = com.mathworks.toolbox_packaging.services.ToolboxPackagingService;
+                    pr = service.openProject(ppath);
+                    ex = service.getExcludeFilter(pr);
+                    ex = split(string(ex), newline);
+                    fmask = string(fmask);
+                    for i = 1 : length(fmask)
+                        if ~ismember(fmask(i), ex)
+                            ex = [ex; fmask(i)];
+                            service.setExcludeFilter(pr, join(ex, newline));
+                        end
                     end
+                    service.closeProject(pr);
+                catch
                 end
-                service.closeProject(pr);
             end
         end
 

@@ -15,6 +15,7 @@ classdef ToolboxExtender < handle
     
     properties (Hidden)
         config = 'ToolboxConfig.xml' % configuration file name
+        project % MATLAB Project handle
     end
     
     methods
@@ -41,28 +42,31 @@ classdef ToolboxExtender < handle
         
         function [vc, guid] = gvc(obj)
             % Get current installed version
-            if obj.type == "toolbox"
-                tbx = matlab.addons.toolbox.installedToolboxes;
-                if ~isempty(tbx)
-                    tbx = struct2table(tbx, 'AsArray', true);
-                    idx = strcmp(tbx.Name, obj.name);
-                    vcs = string(tbx.Version(idx));
-                    guid = tbx.Guid(idx);
-                    vc = '';
-                    for i = 1 : length(vcs)
-                        if matlab.addons.isAddonEnabled(guid{i}, vcs(i))
-                            vc = char(vcs(i));
-                            break
+            switch obj.type
+                case "toolbox"
+                    tbx = matlab.addons.toolbox.installedToolboxes;
+                    if ~isempty(tbx)
+                        tbx = struct2table(tbx, 'AsArray', true);
+                        idx = strcmp(tbx.Name, obj.name);
+                        vcs = string(tbx.Version(idx));
+                        guid = tbx.Guid(idx);
+                        vc = '';
+                        for i = 1 : length(vcs)
+                            if matlab.addons.isAddonEnabled(guid{i}, vcs(i))
+                                vc = char(vcs(i));
+                                break
+                            end
                         end
+                    else
+                        vc = '';
+                        guid = '';
                     end
-                else
+                case "app"
+                    apps = matlab.apputil.getInstalledAppInfo;
                     vc = '';
                     guid = '';
-                end
-            else
-                apps = matlab.apputil.getInstalledAppInfo;
-                vc = '';
-                guid = '';
+                otherwise
+                    vc = '';
             end
             obj.vc = vc;
         end
@@ -72,10 +76,13 @@ classdef ToolboxExtender < handle
             if nargin < 2
                 fpath = obj.getbinpath();
             end
-            if obj.type == "toolbox"
-                res = matlab.addons.install(fpath);
-            else
-                res = matlab.apputil.install(fpath);
+            switch obj.type
+                case "toolbox"
+                    res = matlab.addons.install(fpath);
+                case "app"
+                    res = matlab.apputil.install(fpath);
+                otherwise
+                    error('Unsupported for %s\n', obj.type);
             end
             obj.gvc();
             obj.echo('has been installed');
@@ -89,10 +96,13 @@ classdef ToolboxExtender < handle
             else
                 guid = string(guid);
                 for i = 1 : length(guid)
-                    if obj.type == "toolbox"
-                        matlab.addons.uninstall(char(guid(i)));
-                    else
-                        matlab.apputil.uninstall(char(guid(i)));
+                    switch obj.type
+                        case "toolbox"
+                            matlab.addons.uninstall(char(guid(i)));
+                        case "app"
+                            matlab.apputil.uninstall(char(guid(i)));
+                        otherwise
+                            error('Unsupported for %s\n', obj.type);
                     end
                 end
                 disp(obj.name + " was uninstalled");
@@ -168,8 +178,13 @@ classdef ToolboxExtender < handle
             name = '';
             ppath = obj.getppath();
             if isfile(ppath)
-                txt = obj.readtxt(ppath);
-                name = char(extractBetween(txt, '<param.appname>', '</param.appname>'));
+                switch obj.type
+                    case "toolbox"
+                        txt = obj.readtxt(ppath);
+                        name = char(extractBetween(txt, '<param.appname>', '</param.appname>'));
+                    case "project"
+                        name = obj.project.Name;
+                end
             end
             obj.name = name;
         end
@@ -182,7 +197,7 @@ classdef ToolboxExtender < handle
                 isproj = false(1, length(names));
                 for i = 1 : length(names)
                     txt = obj.readtxt(fullfile(obj.root, names{i}));
-                    isproj(i) = ~contains(txt, '<MATLABProject');
+                    isproj(i) = ~contains(txt, '<MATLABProject111111');
                 end
                 if any(isproj)
                     names = names(isproj);
@@ -213,8 +228,21 @@ classdef ToolboxExtender < handle
                 type = 'toolbox';
             elseif contains(txt, 'plugin.apptool')
                 type = 'app';
+            elseif contains(txt, '<MATLABProject')
+                type = 'project';
+                p = [];
+                try
+                    p = currentProject;
+                catch
+                    p = openProject(obj.pname);
+                end
+                if isempty(p)
+                    error('Corrupted project file: %s\n', ppath);
+                else
+                    obj.project = p;
+                end
             else
-                type = '';
+                type = 'package';
             end
             obj.type = type;
         end
@@ -273,10 +301,13 @@ classdef ToolboxExtender < handle
         function [bpath, bname] = getbinpath(obj)
             % Get generated binary file path
             [~, name] = fileparts(obj.pname);
-            if obj.type == "toolbox"
-                ext = ".mltbx";
-            else
-                ext = ".mlappinstall";
+            switch obj.type
+                case "toolbox"
+                    ext = ".mltbx";
+                case "app"
+                    ext = ".mlappinstall";
+                otherwise
+                    error('Unsupported for %s\n', obj.type);
             end
             bname = name + ext;
             bpath = fullfile(obj.root, bname);

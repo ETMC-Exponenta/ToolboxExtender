@@ -1,4 +1,4 @@
-function add(classes, targetpath)
+function add(classes, targetpath, name)
 % Add Toolbox Builder tools to current project folder
 if nargin < 2
     targetpath = pwd;
@@ -19,7 +19,12 @@ fprintf('* Toolbox Extender will be initialized in current directory *\n');
 TE = ToolboxExtender;
 v = TE.vc;
 TE.root = targetpath;
-ToolboxDev.exclude(TE.getppath(), {'.git' '.gitignore' '**/*.asv'});
+if nargin > 2
+    TE.name = name;
+end
+if TE.type == "toolbox"
+    ToolboxDev.exclude(TE.getppath(), {'.git' '.gitignore' '**/*.asv'});
+end
 if ~isscalar(classes) || ~strcmpi(classes, 'install')
     useext = true;
 end
@@ -41,13 +46,18 @@ for i = 1 : length(classes)
         if strcmpi(classes(i), "dev")
             isdev = true;
             nfname = copy_dev_on(TE);
-            ToolboxDev.exclude(TE.getppath(), cname);
+            if TE.type == "toolbox"
+                ToolboxDev.exclude(TE.getppath(), cname);
+            end
         end
     end
 end
 if useext
     p1 = cd(TE.root);
     TE = feval(nname);
+    if nargin > 2
+        TE.name = name;
+    end
     TE.extv = v;
     writeconfig(TE);
     TE.echo(": " + TE.config + " was created");
@@ -95,7 +105,9 @@ function nname = copy_dev_on(obj)
 nname = copyscript(obj, 'dev_on');
 devc = obj.getvalidname('Dev');
 obj.txtrep(nname, '%%DEVCLASS%%', devc);
-ToolboxDev.exclude(obj.getppath(), 'dev_on.m');
+if obj.type == "toolbox"
+    ToolboxDev.exclude(obj.getppath(), 'dev_on.m');
+end
 end
 
 function sname = copy_install(obj)
