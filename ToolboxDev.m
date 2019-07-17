@@ -91,7 +91,7 @@ classdef ToolboxDev < handle
                 vp = '';
             end
             if ~isempty(obj.ext.pname)
-                obj.build(vp);
+                obj.build(vp, true);
             end
             obj.push();
             obj.tag();
