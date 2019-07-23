@@ -47,7 +47,7 @@ for i = 1 : length(classes)
             isdev = true;
             nfname = copy_dev_on(TE);
             if TE.type == "toolbox"
-                ToolboxDev.exclude(TE.getppath(), cname);
+                ToolboxDev.exclude(TE.getppath(), cname + ".m");
             end
         end
     end
