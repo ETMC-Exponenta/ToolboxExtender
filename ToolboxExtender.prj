@@ -105,7 +105,6 @@ installweb.m</param.exclude.filters>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
-      <file>${PROJECT_ROOT}\ToolboxExtender.asv</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.mltbx</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.prj</file>

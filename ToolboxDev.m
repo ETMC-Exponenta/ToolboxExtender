@@ -46,7 +46,7 @@ classdef ToolboxDev < handle
         function build(obj, vp, gendoc)
             % Build toolbox for specified version
             ppath = obj.ext.getppath();
-            if nargin > 2 && gendoc
+            if nargin < 3 || gendoc
                 obj.gendoc();
             end
             if nargin > 1 && ~isempty(vp)
@@ -134,6 +134,20 @@ classdef ToolboxDev < handle
             disp('Docs have been generated');
         end
         
+        function setver(obj, vp)
+            % Set version
+            ppath = obj.ext.getppath();
+            if obj.ext.type == "toolbox"
+                matlab.addons.toolbox.toolboxVersion(ppath, vp);
+            else
+                txt = obj.ext.readtxt(ppath);
+                txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
+                txt = strrep(txt, '<param.version />', '');
+                obj.ext.writetxt(txt, ppath);
+            end
+            obj.gvp();
+        end
+        
         function webrel(obj)
             % Open GitHub releases webpage
             obj.ext.webrel();
@@ -173,20 +187,6 @@ classdef ToolboxDev < handle
             service.removeToolboxRoot(pr);
             service.setToolboxRoot(pr, obj.ext.root);
             service.closeProject(pr);
-        end
-        
-        function setver(obj, vp)
-            % Set version
-            ppath = obj.ext.getppath();
-            if obj.ext.type == "toolbox"
-                matlab.addons.toolbox.toolboxVersion(ppath, vp);
-            else
-                txt = obj.ext.readtxt(ppath);
-                txt = regexprep(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', vp);
-                txt = strrep(txt, '<param.version />', '');
-                obj.ext.writetxt(txt, ppath);
-            end
-            obj.gvp();
         end
         
         function seticons(obj)
