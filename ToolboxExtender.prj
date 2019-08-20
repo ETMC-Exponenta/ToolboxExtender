@@ -109,6 +109,7 @@ installweb.m</param.exclude.filters>
       <file>${PROJECT_ROOT}\ToolboxExtender.mltbx</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.prj</file>
       <file>${PROJECT_ROOT}\ToolboxExtenderApp.mlapp</file>
+      <file>${PROJECT_ROOT}\ToolboxStorage.asv</file>
       <file>${PROJECT_ROOT}\ToolboxStorage.m</file>
       <file>${PROJECT_ROOT}\ToolboxUpdater.m</file>
     </fileset.rootfiles>

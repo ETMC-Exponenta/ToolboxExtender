@@ -5,6 +5,7 @@ classdef ToolboxStorage < handle
     
     properties
         ext % Toolbox Extender
+        type % Storage type
         root % data folder
         fdir % Folder directory in the root
         fname % File name
@@ -17,6 +18,7 @@ classdef ToolboxStorage < handle
         function obj = ToolboxStorage(varargin)
             %% Constructor
             p = inputParser();
+            p.addParameter('type', 'mat');
             p.addParameter('fname', '', @(x)ischar(x)||isstring(x));
             p.addParameter('fdir', '', @(x)ischar(x)||isstring(x));
             p.addParameter('ext', []);
@@ -29,13 +31,14 @@ classdef ToolboxStorage < handle
             else
                 obj.ext = ToolboxExtender;
             end
+            obj.type = args.type;
             obj.local = args.local;
             obj.auto = args.auto;
             obj.getroot();
             obj.fdir = args.fdir;
             fname = string(args.fname);
             if fname == ""
-                fname = matlab.lang.makeValidName(obj.ext.name) + "_data";
+                fname = matlab.lang.makeValidName(obj.ext.name);
             end
             obj.fname = fname;
         end
@@ -50,9 +53,11 @@ classdef ToolboxStorage < handle
         
         function set.fdir(obj, fdir)
             %% Set file directory in the root
-            obj.fdir = fdir;
-            if obj.auto
-                obj.load();
+            if obj.type == "mat"
+                obj.fdir = fdir;
+                if obj.auto
+                    obj.load();
+                end
             end
         end
         
@@ -72,14 +77,18 @@ classdef ToolboxStorage < handle
         end
         
         function data = load(obj, fpath)
-            %% Load data from file
-            if nargin < 2
-                fpath = obj.getpath();
-            end
-            if isfile(fpath)
-                data = load(fpath);
-            else
-                data = [];
+            %% Load data from file or preferences
+            data = [];
+            switch obj.type
+                case "mat"
+                    if nargin < 2
+                        fpath = obj.getpath();
+                    end
+                    if isfile(fpath)
+                        data = load(fpath);
+                    end
+                case "pref"
+                    data = getpref(obj.fname);
             end
             obj.data = data;
         end
@@ -91,10 +100,18 @@ classdef ToolboxStorage < handle
             else
                 obj.data = data;
             end
-            if nargin < 3
-                fpath = obj.getpath();
+            switch obj.type
+                case "mat"
+                    if nargin < 3
+                        fpath = obj.getpath();
+                    end
+                    save(fpath, '-struct', 'data');
+                case "pref"
+                    fs = string(fieldnames(data));
+                    for i = 1 : length(fs)
+                        setpref(obj.fname, fs(i), data.(fs(i)));
+                    end
             end
-            save(fpath, '-struct', 'data');
         end
         
         function [value, isf] = get(obj, varname, type)
