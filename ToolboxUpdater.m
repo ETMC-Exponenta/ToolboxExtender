@@ -190,8 +190,16 @@ classdef ToolboxUpdater < handle
                     cbpre();
                 end
                 taskfcn = @(~, ~) obj.installweb_async(dpath, cname, varargin{:});
-                obj.run_task(@(~, ~) taskfcn, delay);
+                obj.run_task(taskfcn, delay);
             end
+        end
+        
+        function run_task(obj, fcn, delay)
+            %% Run delayed asynchronous task
+            tmr = timer('ExecutionMode', 'singleShot', 'StartDelay', delay,...
+                'TimerFcn', fcn, 'StopFcn', @(tmr,~,~) delete(tmr),...
+                'Name', obj.ext.name + " task");
+            start(tmr);
         end
         
     end
@@ -210,17 +218,9 @@ classdef ToolboxUpdater < handle
             TU = eval(cname);
             TU.installweb(dpath);
             cd(p0);
-            if nargin > 5
+            if nargin > 3
                 cbpost();
             end
-        end
-        
-        function run_task(obj, fcn, delay)
-            %% Run delayed asynchronous task
-            tmr = timer('ExecutionMode', 'singleShot', 'StartDelay', delay,...
-                'TimerFcn', fcn, 'StopFcn', @(tmr,~,~) delete(tmr),...
-                'Name', obj.ext.name + " task");
-            start(tmr);
         end
         
     end
