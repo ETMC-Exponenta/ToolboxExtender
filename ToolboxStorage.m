@@ -78,7 +78,6 @@ classdef ToolboxStorage < handle
             end
             if isfile(fpath)
                 data = load(fpath);
-                data = data.data;
             else
                 data = [];
             end
@@ -95,7 +94,7 @@ classdef ToolboxStorage < handle
             if nargin < 3
                 fpath = obj.getpath();
             end
-            save(fpath, 'data');
+            save(fpath, '-struct', 'data');
         end
         
         function [value, isf] = get(obj, varname, type)
