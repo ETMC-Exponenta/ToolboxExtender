@@ -5,13 +5,14 @@ classdef ToolboxStorage < handle
     
     properties
         ext % Toolbox Extender
-        type % Storage type
+        type {mustBeMember(type,{'mat','json','pref'})} = 'mat' % Storage type
         root % data folder
         fdir % Folder directory in the root
         fname % File name
         data % storage data
         local
         auto % Automatically save and load data
+        jsonopts
     end
     
     methods
@@ -23,7 +24,8 @@ classdef ToolboxStorage < handle
             p.addParameter('fdir', '', @(x)ischar(x)||isstring(x));
             p.addParameter('ext', []);
             p.addParameter('local', false);
-            p.addParameter('auto', true);
+            p.addParameter('auto', false);
+            p.addParameter('jsonopts', struct, @isstruct);
             p.parse(varargin{:});
             args = p.Results;
             if ~isempty(args.ext)
@@ -41,6 +43,7 @@ classdef ToolboxStorage < handle
                 fname = matlab.lang.makeValidName(obj.ext.name);
             end
             obj.fname = fname;
+            obj.jsonopts = args.jsonopts;
         end
         
         function set.fname(obj, fname)
@@ -53,7 +56,7 @@ classdef ToolboxStorage < handle
         
         function set.fdir(obj, fdir)
             %% Set file directory in the root
-            if obj.type == "mat"
+            if obj.type == "mat" || obj.type == "json"
                 obj.fdir = fdir;
                 if obj.auto
                     obj.load();
@@ -61,9 +64,29 @@ classdef ToolboxStorage < handle
             end
         end
         
+        function set.jsonopts(obj, opts)
+            %% Set json storage options
+            p = inputParser();
+            p.addParameter('useJsonlab', false);
+            p.addParameter('encoding', 'UTF-8', @(x)ischar(x)||isstring(x));
+            p.addParameter('readTable', true);
+            p.addParameter('writeArray', true);
+            opts = [fieldnames(opts) struct2cell(opts)]';
+            p.parse(opts{:});
+            obj.jsonopts = p.Results;
+        end
+        
         function [fpath, fname] = getpath(obj)
             %% Generate data file name
-            fname = obj.fname + ".mat";
+            switch obj.type
+                case 'mat'
+                    ex = ".mat";
+                case 'json'
+                    ex = ".json";
+                otherwise
+                    ex = "";
+            end
+            fname = obj.fname + ex;
             fpath = fullfile(obj.root, obj.fdir, fname);
         end
         
@@ -89,6 +112,8 @@ classdef ToolboxStorage < handle
                     end
                 case "pref"
                     data = getpref(obj.fname);
+                case "json"
+                    data = obj.json_read(obj.getpath());
             end
             obj.data = data;
         end
@@ -111,6 +136,8 @@ classdef ToolboxStorage < handle
                     for i = 1 : length(fs)
                         setpref(obj.fname, fs(i), data.(fs(i)));
                     end
+                case "json"
+                    obj.json_write(obj.getpath(), obj.data);
             end
         end
         
@@ -163,6 +190,45 @@ classdef ToolboxStorage < handle
             end
         end
         
+        function data = json_read(obj, fpath)
+            %% Read data from .json file
+            enc = obj.jsonopts.encoding;
+            if obj.jsonopts.useJsonlab
+                obj.check_jsonlab()
+                data = loadjson(fpath, 'SimplifyCell', 1, 'ParseLogical', 1,...
+                    'Encoding', enc);
+            else
+                fid = fopen(fpath, 'r', 'n', enc);
+                txt = fread(fid, '*char')';
+                fclose(fid);
+                data = jsondecode(txt);
+            end
+            if obj.jsonopts.readTable && ~(isstruct(data) && isscalar(data))
+                data = struct2table(data, 'AsArray', true);
+            end
+        end
+        
+        function json_write(obj, fpath, data)
+            %% Write data to .json file
+            enc = obj.jsonopts.encoding;
+            if obj.jsonopts.useJsonlab
+                obj.check_jsonlab()
+                if istable(data)
+                    data = reshape(table2struct(data), 1, []);
+                end
+                if obj.jsonopts.writeArray
+                    data = arrayfun(@(x) {x}, data);
+                end
+                savejson('', data, 'FileName', fpath, 'ParseLogical', 1,...
+                    'Encoding', enc);
+            else
+                txt = jsonencode(data);
+                fid = fopen(fpath, 'wt', 'n', enc);
+                fwrite(fid, txt, 'char');
+                fclose(fid);
+            end
+        end
+        
     end
     
     methods (Hidden)
@@ -182,6 +248,19 @@ classdef ToolboxStorage < handle
                     end
                 end
                 obj.root = root;
+            end
+        end
+        
+    end
+    
+    methods (Static)
+        
+        function check_jsonlab()
+            %% Check jsonlab is installed
+            w1 = which('loadjson');
+            w2 = which('savejson');
+            if isempty(w1) || isempty(w2)
+                error('You need to install <a href="https://github.com/fangq/jsonlab">jsonlab</a> to use it');
             end
         end
         
