@@ -250,8 +250,8 @@ classdef ToolboxStorage < handle
                         mkdir(root);
                     end
                 end
-                obj.root = root;
             end
+            obj.root = root;
         end
         
     end
