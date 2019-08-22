@@ -141,7 +141,7 @@ classdef ToolboxStorage < handle
             end
         end
         
-        function [value, isf] = get(obj, varname, type)
+        function [value, isf] = get(obj, varname, type, def)
             %% Get variable from data
             if isstruct(obj.data) && isfield(obj.data, varname)
                 value = obj.data.(varname);
@@ -150,8 +150,11 @@ classdef ToolboxStorage < handle
                 value = [];
                 isf = false;
             end
-            if nargin > 2
+            if nargin > 2 && ~isempty(type)
                 value = cast(value, type);
+            end
+            if nargin > 3 && isempty(value)
+                value = def;
             end
         end
         
