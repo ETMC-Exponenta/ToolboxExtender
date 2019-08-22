@@ -150,8 +150,9 @@ classdef ToolboxExtender < handle
             nfav.setCategoryLabel(obj.name);
             nfav.setCode(code);
             if nargin > 3
-                nfav.setIconPath(obj.root);
-                nfav.setIconName(icon);
+                [ipath, iname, iext] = fileparts(icon);
+                nfav.setIconPath(fullfile(obj.root, ipath));
+                nfav.setIconName(iname + string(iext));
             end
             nfav.setIsOnQuickToolBar(true);
             favs.addCommand(nfav);
