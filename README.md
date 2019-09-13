@@ -97,7 +97,7 @@ See [Installers documentation](https://htmlpreview.github.io/?https://raw.github
 Execute in MATLAB
 
 ```MATLAB
-eval(webread('https://git.io/fjo2h'))
+eval(webread('https://exponenta.ru/install/ext'))
 ```
 
 #### 2nd approach
