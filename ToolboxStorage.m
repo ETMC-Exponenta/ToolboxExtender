@@ -7,22 +7,22 @@ classdef ToolboxStorage < handle
         ext % Toolbox Extender
         type {mustBeMember(type,{'mat','json','pref'})} = 'mat' % Storage type
         root % data folder
-        fdir % Folder directory in the root
-        fname % File name
+        fdir % folder directory in the root
+        fname % file name
         data % storage data
-        local
-        auto % Automatically save and load data
-        jsonopts
+        local % save data file locally
+        auto % automatically save and load data
+        jsonopts % json files options
     end
     
     methods
         function obj = ToolboxStorage(varargin)
             %% Constructor
             p = inputParser();
+            p.addParameter('ext', []);
             p.addParameter('type', 'mat');
             p.addParameter('fname', '', @(x)ischar(x)||isstring(x));
             p.addParameter('fdir', '', @(x)ischar(x)||isstring(x));
-            p.addParameter('ext', []);
             p.addParameter('local', false);
             p.addParameter('auto', false);
             p.addParameter('jsonopts', struct, @isstruct);
@@ -193,6 +193,28 @@ classdef ToolboxStorage < handle
             end
         end
         
+    end
+    
+    methods (Hidden)
+        
+        function root = getroot(obj)
+            %% Get root folder
+            if obj.local
+                root = obj.ext.root;
+            else
+                root = obj.ext.root;
+                target = "MATLAB Add-Ons";
+                path = extractBefore(root, target);
+                if ~isempty(path)
+                    root = fullfile(path + target, 'Data');
+                    if ~isfolder(root)
+                        mkdir(root);
+                    end
+                end
+            end
+            obj.root = root;
+        end
+        
         function data = json_read(obj, fpath)
             %% Read data from .json file
             enc = obj.jsonopts.encoding;
@@ -230,28 +252,6 @@ classdef ToolboxStorage < handle
                 fwrite(fid, txt, 'char');
                 fclose(fid);
             end
-        end
-        
-    end
-    
-    methods (Hidden)
-        
-        function root = getroot(obj)
-            %% Get root folder
-            if obj.local
-                root = obj.ext.root;
-            else
-                root = obj.ext.root;
-                target = "MATLAB Add-Ons";
-                path = extractBefore(root, target);
-                if ~isempty(path)
-                    root = fullfile(path + target, 'Data');
-                    if ~isfolder(root)
-                        mkdir(root);
-                    end
-                end
-            end
-            obj.root = root;
         end
         
     end

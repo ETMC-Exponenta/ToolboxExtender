@@ -18,7 +18,7 @@ classdef ToolboxUpdater < handle
     
     methods
         function obj = ToolboxUpdater(extender)
-            % Init
+            %% Constructor
             if nargin < 1
                 obj.ext = ToolboxExtender;
             else
@@ -27,7 +27,7 @@ classdef ToolboxUpdater < handle
         end
         
         function [res, err] = fetch(obj)
-            % Fetch resources from GitHub
+            %% Fetch resources from GitHub
             url = obj.ext.getlatesturl();
             res = '';
             try
@@ -61,7 +61,7 @@ classdef ToolboxUpdater < handle
         end
         
         function vr = gvr(obj)
-            % Get remote version from GitHub
+            %% Get remote version from GitHub
             if isempty(obj.vr)
                 obj.fetch();
             end
@@ -69,7 +69,7 @@ classdef ToolboxUpdater < handle
         end
         
         function rel = getrel(obj)
-            % Get release notes
+            %% Get release notes
             if isempty(obj.res)
                 obj.fetch();
             end
@@ -77,7 +77,7 @@ classdef ToolboxUpdater < handle
         end
         
         function sum = getrelsum(obj)
-            % Get release notes summary
+            %% Get release notes summary
             if isempty(obj.res)
                 obj.fetch();
             end
@@ -85,12 +85,12 @@ classdef ToolboxUpdater < handle
         end
         
         function webrel(obj)
-            % Open GitHub releases webpage
+            %% Open GitHub releases webpage
             obj.ext.webrel();
         end
         
         function [vc, vr] = ver(obj)
-            % Check curent installed and remote versions
+            %% Check curent installed and remote versions
             vc = obj.ext.gvc();
             if nargout == 0
                 if isempty(vc)
@@ -117,7 +117,7 @@ classdef ToolboxUpdater < handle
         end
         
         function yes = isonline(~)
-            % Check connection to internet is available
+            %% Check connection to internet is available
             try
                 java.net.InetAddress.getByName('google.com');
                 yes = true;
@@ -127,7 +127,7 @@ classdef ToolboxUpdater < handle
         end
         
         function isupd = isupdate(obj, cbfun, delay)
-            % Check that update is available
+            %% Check that update is available
             if obj.isonline()
                 vc = obj.ext.gvc();
                 if nargin < 2
@@ -146,7 +146,7 @@ classdef ToolboxUpdater < handle
         end
         
         function installweb(obj, dpath)
-            % Download and install latest version from remote (GitHub)
+            %% Download and install the latest version from remote (GitHub)
             if nargin < 2
                 dpath = tempname;
                 mkdir(dpath);
@@ -169,7 +169,7 @@ classdef ToolboxUpdater < handle
         end
         
         function update(obj, delay, cbpre, varargin)
-            % Update installed version to the latest from remote (GitHub)
+            %% Update installed version to the latest from remote (GitHub)
             if obj.isupdate()
                 if nargin < 2
                     delay = 1;
@@ -194,26 +194,18 @@ classdef ToolboxUpdater < handle
             end
         end
         
-        function run_task(obj, fcn, delay)
-            %% Run delayed asynchronous task
-            tmr = timer('ExecutionMode', 'singleShot', 'StartDelay', delay,...
-                'TimerFcn', fcn, 'StopFcn', @(tmr,~,~) delete(tmr),...
-                'Name', obj.ext.name + " task");
-            start(tmr);
-        end
-        
     end
     
     methods (Hidden)
         
-        function isupd_async(obj, cbfun, vc)
-            % Task for async ver timer
+        function isupd_async(obj, cbfun)
+            %% Task for async ver timer
             obj.fetch();
             cbfun(obj.isupd);
         end
         
-        function installweb_async(obj, dpath, cname, cbpost)
-            % Task for update timer
+        function installweb_async(~, dpath, cname, cbpost)
+            %% Task for update timer
             p0 = cd(dpath);
             TU = eval(cname);
             TU.installweb(dpath);
@@ -221,6 +213,14 @@ classdef ToolboxUpdater < handle
             if nargin > 3
                 cbpost();
             end
+        end
+        
+        function run_task(obj, fcn, delay)
+            %% Run delayed asynchronous task
+            tmr = timer('ExecutionMode', 'singleShot', 'StartDelay', delay,...
+                'TimerFcn', fcn, 'StopFcn', @(tmr,~,~) delete(tmr),...
+                'Name', obj.ext.name + " task");
+            start(tmr);
         end
         
     end
