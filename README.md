@@ -30,8 +30,8 @@ File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/
 
 ## Requirements
 
-- **MATLAB R2019a**
-- Installed **Git** for **Dev** and **Updater** functionality
+- **MATLAB R2019a** or later
+- Installed Git for **Dev** and **Updater** functionality
 - Public toolbox project on GitHub for **Updater** functionality
 
 ## Details
@@ -74,7 +74,8 @@ See [ToolboxUpdater (class) documentation](https://htmlpreview.github.io/?https:
 
 Helps you easily store any data within installed toolbox, i.e. user settings
 
-- store all toolbox data in one .mat file in convenient Add-ons folder
+- store all toolbox data in .mat-file, .json-file or MATLAB preferences
+- files are stored in convenient Add-ons folder
 - load any data you need by name
 - clear storage if you don't need it
 
