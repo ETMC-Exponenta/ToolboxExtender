@@ -129,7 +129,6 @@ classdef ToolboxUpdater < handle
         function isupd = isupdate(obj, cbfun, delay)
             %% Check that update is available
             if obj.isonline()
-                vc = obj.ext.gvc();
                 if nargin < 2
                     obj.fetch();
                     isupd = obj.isupd;
@@ -138,7 +137,7 @@ classdef ToolboxUpdater < handle
                         delay = 1;
                     end
                     isupd = false;
-                    obj.run_task(@(~, ~) obj.isupd_async(cbfun, vc), delay);
+                    obj.run_task(@(~, ~) obj.isupd_async(cbfun), delay);
                 end
             else
                 isupd = false;
