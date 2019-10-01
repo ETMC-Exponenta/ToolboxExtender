@@ -120,7 +120,11 @@ classdef ToolboxExtender < handle
                     name = 'GettingStarted';
                 end
                 if ~any(endsWith(name, {'.mlx' '.html'}))
-                    name = name + ".html";
+                    if computer == "GLNXA64" %% Linux and MATLAB Online
+                        name = name + ".mlx";
+                    else
+                        name = name + ".html";
+                    end
                 end
                 docpath = fullfile(docdir, name);
                 if endsWith(name, '.html')
