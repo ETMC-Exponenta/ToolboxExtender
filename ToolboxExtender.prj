@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="D:\MATLAB\ToolboxExtender\ToolboxExtender.prj" location="D:\MATLAB\ToolboxExtender" name="ToolboxExtender" target="target.toolbox" target-name="Package Toolbox">
+  <configuration file="E:\MATLAB\ToolboxExtender\ToolboxExtender.prj" location="E:\MATLAB\ToolboxExtender" name="ToolboxExtender" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>Toolbox Extender</param.appname>
     <param.authnamewatermark>Pavel Roslovets</param.authnamewatermark>
     <param.email>roslovets@exponenta.ru</param.email>
@@ -12,7 +12,7 @@
 - how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
 Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>2.0</param.version>
+    <param.version>2.0.1</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -116,7 +116,7 @@ installweb.m</param.exclude.filters>
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}" name="Toolbox Extender.mltbx" optional="false">D:\MATLAB\ToolboxExtender\Toolbox Extender.mltbx</file>
+      <file location="${PROJECT_ROOT}" name="Toolbox Extender.mltbx" optional="false">E:\MATLAB\ToolboxExtender\Toolbox Extender.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>
