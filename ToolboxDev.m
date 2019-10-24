@@ -120,6 +120,7 @@ classdef ToolboxDev < handle
             if nargin < 3
                 docdir = fullfile(obj.ext.root, 'doc');
             end
+            docdir = strip(docdir, '/');
             fs = struct2table(dir(fullfile(docdir, '*.mlx')), 'AsArray', true);
             fs = convertvars(fs, 1:3, 'string');
             for i = 1 : height(fs)
