@@ -110,7 +110,7 @@ classdef ToolboxDev < handle
             web(obj.ext.remote + "/releases/edit/v" + obj.vp, '-browser')
         end
         
-        function gendoc(obj, format, docdir)
+        function gendoc(obj, format, docdir, showcred)
             % Generate html, pdf or md (beta) from mlx
             if nargin < 2
                 format = "html";
@@ -119,6 +119,9 @@ classdef ToolboxDev < handle
             end
             if nargin < 3
                 docdir = fullfile(obj.ext.root, 'doc');
+            end
+            if nargin < 4
+                showcred = false;
             end
             docdir = strip(docdir, '/');
             fs = struct2table(dir(fullfile(docdir, '*.mlx')), 'AsArray', true);
@@ -137,7 +140,7 @@ classdef ToolboxDev < handle
                 if convert
                     fprintf('Converting %s.mlx...\n', fname);
                     if format == "md"
-                        obj.mlx2md(fpath, htmlpath);
+                        obj.mlx2md(fpath, htmlpath, showcred);
                     else
                         matlab.internal.liveeditor.openAndConvert(fpath, htmlpath);
                     end
@@ -246,8 +249,11 @@ classdef ToolboxDev < handle
     
     methods (Hidden = true)
         
-        function mlx2md(obj, fpath, htmlpath)
+        function mlx2md(obj, fpath, htmlpath, showcred)
             % Convert mlx-script to markdown md-file (beta)
+            if nargin < 4
+                showcred = false;
+            end
             [~, fname] = fileparts(fpath);
             tempf = "_temp_" + fname + ".m";
             matlab.internal.liveeditor.openAndConvert(fpath, char(tempf));
@@ -307,6 +313,9 @@ classdef ToolboxDev < handle
             urls = extractBefore(links, ' ');
             names = extractAfter(links, ' ');
             txt = replace(txt, "<" + links + ">", "[" + names + "](" + urls + ")");
+            if showcred
+                txt(end+1) = sprintf("***\n*Generated from %s.mlx with ToolboxExtender*", fname);
+            end
             obj.ext.writetxt(join(txt, newline), htmlpath, 'utf-8');
         end
         

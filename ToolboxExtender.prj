@@ -103,6 +103,7 @@ installweb.m</param.exclude.filters>
       <file>${PROJECT_ROOT}\resources</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
+      <file>${PROJECT_ROOT}\ToolboxDev.asv</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>
