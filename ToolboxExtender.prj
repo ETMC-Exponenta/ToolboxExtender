@@ -12,7 +12,7 @@
 - how to easily store toolbox data (i.e. user preferences) not in the curent folder but in some convinient location
 Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.</param.description>
     <param.screenshot>${PROJECT_ROOT}\ToolboxExtender-icon.png</param.screenshot>
-    <param.version>2.1.0</param.version>
+    <param.version>2.0.2</param.version>
     <param.output>${PROJECT_ROOT}\Toolbox Extender.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -103,7 +103,6 @@ installweb.m</param.exclude.filters>
       <file>${PROJECT_ROOT}\resources</file>
       <file>${PROJECT_ROOT}\scripts</file>
       <file>${PROJECT_ROOT}\ToolboxConfig.xml</file>
-      <file>${PROJECT_ROOT}\ToolboxDev.asv</file>
       <file>${PROJECT_ROOT}\ToolboxDev.m</file>
       <file>${PROJECT_ROOT}\ToolboxExtender-icon.png</file>
       <file>${PROJECT_ROOT}\ToolboxExtender.m</file>

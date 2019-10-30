@@ -314,7 +314,8 @@ classdef ToolboxDev < handle
             names = extractAfter(links, ' ');
             txt = replace(txt, "<" + links + ">", "[" + names + "](" + urls + ")");
             if showcred
-                txt(end+1) = sprintf("***\n*Generated from %s.mlx with ToolboxExtender*", fname);
+                txt(end+1) = sprintf("***\n*Generated from %s.mlx with [Toolbox Extender](%s)*",...
+                    fname, 'https://github.com/ETMC-Exponenta/ToolboxExtender');
             end
             obj.ext.writetxt(join(txt, newline), htmlpath, 'utf-8');
         end
