@@ -229,9 +229,12 @@ classdef ToolboxDev < handle
             obj.ext.echo('has been pushed');
         end
         
-        function tag(obj)
+        function tag(obj, vp)
             % Tag git project and push tag
-            tagcmd = sprintf('git tag -a v%s -m v%s', obj.vp, obj.vp);
+            if nargin < 2
+                vp = obj.vp;
+            end
+            tagcmd = sprintf('git tag -a v%s -m v%s', vp, vp);
             system(tagcmd);
             system('git push --tags');
             obj.ext.echo('has been tagged');
