@@ -110,39 +110,32 @@ classdef ToolboxDev < handle
             web(obj.ext.remote + "/releases/edit/v" + obj.vp, '-browser')
         end
         
-        function gendoc(obj, format, docdir, showcred)
+        function gendoc(obj, format, docdir, options)
             % Generate html, pdf or md (beta) from mlx
-            if nargin < 2
-                format = "html";
-            else
-                format = string(format);
+            arguments
+                obj
+                format = "html"
+                docdir = fullfile(obj.ext.root, 'doc')
+                options.TargetDir = docdir
+                options.ShowCredentials = false
             end
-            if nargin < 3
-                docdir = fullfile(obj.ext.root, 'doc');
-            end
-            if nargin < 4
-                showcred = false;
-            end
+            format = string(format);
             docdir = strip(docdir, '/');
-            fs = struct2table(dir(fullfile(docdir, '*.mlx')), 'AsArray', true);
-            fs = convertvars(fs, 1:3, 'string');
+            [fs, ~] = obj.ext.dir(fullfile(docdir, '*.mlx'));
             for i = 1 : height(fs)
                 [~, fname] = fileparts(fs.name(i));
-                fpath = char(fullfile(fs.folder(i), fs.name{i}));
-                htmlpath = char(fullfile(docdir, fname + "." + format));
-                htmlinfo = dir(htmlpath);
-                convert = isempty(htmlinfo);
+                respath = char(fullfile(options.TargetDir, fname + "." + format));
+                resinfo = obj.ext.dir(respath);
+                convert = isempty(resinfo);
                 if ~convert
-                    fdate = datetime(fs.datenum(i), 'ConvertFrom', 'datenum');
-                    htmldate = datetime(htmlinfo.datenum, 'ConvertFrom', 'datenum');
-                    convert = fdate >= htmldate;
+                    convert = fs.date(i) >= resinfo.date(1);
                 end
                 if convert
                     fprintf('Converting %s.mlx...\n', fname);
                     if format == "md"
-                        obj.mlx2md(fpath, htmlpath, showcred);
+                        obj.mlx2md(fs.path(i), respath, options.ShowCredentials);
                     else
-                        matlab.internal.liveeditor.openAndConvert(fpath, htmlpath);
+                        matlab.internal.liveeditor.openAndConvert(fs.path(i), respath);
                     end
                 end
             end
