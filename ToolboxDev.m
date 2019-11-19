@@ -6,6 +6,7 @@ classdef ToolboxDev < handle
     properties
         ext % Toolbox Extender
         vp % project version
+        vp_fcn % get version callback function
     end
     
     methods
@@ -29,16 +30,20 @@ classdef ToolboxDev < handle
         
         function vp = gvp(obj)
             % Get project version
-            ppath = obj.ext.getppath();
-            if isfile(ppath)
-                if obj.ext.type == "toolbox"
-                    vp = matlab.addons.toolbox.toolboxVersion(ppath);
-                else
-                    txt = obj.ext.readtxt(ppath);
-                    vp = char(regexp(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', 'match'));
-                end
+            if ~isempty(obj.vp_fcn)
+                vp = obj.vp_fcn();
             else
-                vp = '';
+                ppath = obj.ext.getppath();
+                if isfile(ppath)
+                    if obj.ext.type == "toolbox"
+                        vp = matlab.addons.toolbox.toolboxVersion(ppath);
+                    else
+                        txt = obj.ext.readtxt(ppath);
+                        vp = char(regexp(txt, '(?<=(<param.version>))(.*?)(?=(</param.version>))', 'match'));
+                    end
+                else
+                    vp = '';
+                end
             end
             obj.vp = vp;
         end
@@ -135,7 +140,7 @@ classdef ToolboxDev < handle
                     if format == "md"
                         obj.mlx2md(fs.path(i), respath, options.AddCredentials);
                     else
-                        matlab.internal.liveeditor.openAndConvert(fs.path(i), respath);
+                        matlab.internal.liveeditor.openAndConvert(char(fs.path(i)), char(respath));
                     end
                 end
             end
