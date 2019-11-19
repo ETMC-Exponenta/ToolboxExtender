@@ -138,7 +138,7 @@ classdef ToolboxDev < handle
                 if convert
                     fprintf('Converting %s.mlx...\n', fname);
                     if format == "md"
-                        obj.mlx2md(fs.path(i), respath, options.AddCredentials);
+                        obj.mlx2md(char(fs.path(i)), char(respath), options.AddCredentials);
                     else
                         matlab.internal.liveeditor.openAndConvert(char(fs.path(i)), char(respath));
                     end
