@@ -4,6 +4,6 @@
    <pname>ToolboxExtender.prj</pname>
    <type>toolbox</type>
    <remote>https://github.com/ETMC-Exponenta/ToolboxExtender</remote>
-   <extv>1.9.2</extv>
+   <extv>2.2.0</extv>
 </config>
 <!--Toolbox Extender configuration file. DO NOT DELETE-->

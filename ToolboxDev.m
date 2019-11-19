@@ -117,7 +117,7 @@ classdef ToolboxDev < handle
                 format = "html"
                 docdir = fullfile(obj.ext.root, 'doc')
                 options.TargetDir = docdir
-                options.ShowCredentials = false
+                options.AddCredentials = false
             end
             format = string(format);
             docdir = strip(docdir, '/');
@@ -133,7 +133,7 @@ classdef ToolboxDev < handle
                 if convert
                     fprintf('Converting %s.mlx...\n', fname);
                     if format == "md"
-                        obj.mlx2md(fs.path(i), respath, options.ShowCredentials);
+                        obj.mlx2md(fs.path(i), respath, options.AddCredentials);
                     else
                         matlab.internal.liveeditor.openAndConvert(fs.path(i), respath);
                     end
@@ -245,10 +245,10 @@ classdef ToolboxDev < handle
     
     methods (Hidden = true)
         
-        function mlx2md(obj, fpath, htmlpath, showcred)
+        function mlx2md(obj, fpath, htmlpath, addcred)
             % Convert mlx-script to markdown md-file (beta)
             if nargin < 4
-                showcred = false;
+                addcred = false;
             end
             [~, fname] = fileparts(fpath);
             tempf = "_temp_" + fname + ".m";
@@ -309,7 +309,7 @@ classdef ToolboxDev < handle
             urls = extractBefore(links, ' ');
             names = extractAfter(links, ' ');
             txt = replace(txt, "<" + links + ">", "[" + names + "](" + urls + ")");
-            if showcred
+            if addcred
                 txt(end+1) = sprintf("***\n*Generated from %s.mlx with [Toolbox Extender](%s)*",...
                     fname, 'https://github.com/ETMC-Exponenta/ToolboxExtender');
             end
