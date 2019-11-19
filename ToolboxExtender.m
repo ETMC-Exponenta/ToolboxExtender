@@ -214,17 +214,16 @@ classdef ToolboxExtender < handle
         
         function pname = getpname(obj)
             % Get project file name
-            fs = dir(fullfile(obj.root, '*.prj'));
+            fs = obj.dir(fullfile(obj.root, '*.prj'));
             if ~isempty(fs)
-                names = {fs.name};
-                isproj = false(1, length(names));
-                for i = 1 : length(names)
-                    txt = obj.readtxt(fullfile(obj.root, names{i}));
+                isproj = false(1, length(fs.name));
+                for i = 1 : length(fs.name)
+                    txt = obj.readtxt(fs.path(i));
                     isproj(i) = ~contains(txt, '<MATLABProject111111');
                 end
                 if any(isproj)
-                    names = names(isproj);
-                    pname = names{1};
+                    names = fs.name(isproj);
+                    pname = names(1);
                     obj.pname = pname;
                 else
                     %warning('Project file was not found in a current folder');
@@ -430,6 +429,24 @@ classdef ToolboxExtender < handle
     end
     
     methods (Hidden, Static)
+        
+        function [fs, ds] = dir(dpath)
+            % Get directory content in convenient format
+            if nargin < 1
+                dpath = pwd;
+            end
+            fs = struct2table(dir(dpath), 'AsArray', true);
+            fs = convertvars(fs, 1:2, 'string');
+            fs = fs(~ismember(fs.name, ["." ".."]), :);
+            fs.date = datetime(fs.datenum, 'ConvertFrom', 'datenum');
+            fs.datenum = [];
+            fs.path = fullfile(fs.folder, fs.name);
+            fs = movevars(fs, "path", 'After', 'folder');
+            if nargout > 1
+                ds = fs(fs.isdir, :);
+                fs = fs(~fs.isdir, :);
+            end
+        end
         
         function remote = cleargit(remote)
             % Delete .git
