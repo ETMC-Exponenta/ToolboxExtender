@@ -9,7 +9,7 @@ When you [create toolbox](https://www.mathworks.com/help/matlab/matlab_prog/crea
 
 **Toolbox Extender address those issues extending built-in MATLAB capabilities of toolbox creating.**
 
-File Exchange entry: [Toolbox Extender](https://www.mathworks.com/matlabcentral/fileexchange/69126)
+[![View Toolbox Extender on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/69126)
 
 ## Why should I use?
 
