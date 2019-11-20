@@ -165,6 +165,8 @@ The app can be found in APPS section of main MATLAB Window or
 
 - [MATLAB WEB API](https://github.com/ETMC-Exponenta/MATLAB-WEB-API)
 - [Icons for MATLAB](https://github.com/roslovets/Icons-for-MATLAB)
+- [App Designer Pro](https://github.com/roslovets/AppDesignerPro)
+- [Exponenta Toolbox](https://github.com/ETMC-Exponenta/ExponentaToolbox)
 - [MATLAB Course for Educators](https://github.com/ETMC-Exponenta/MATLAB-Course-for-Educators)
 - (send us your examples)
 
