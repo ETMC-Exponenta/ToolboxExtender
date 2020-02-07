@@ -293,10 +293,13 @@ classdef ToolboxExtender < handle
             name = matlab.lang.makeValidName(name);
         end
         
-        function txt = readtxt(~, fpath)
+        function txt = readtxt(~, fpath, encoding)
             % Read text from file
+            if nargin < 3
+                encoding = 'windows-1251';
+            end
             if isfile(fpath)
-                f = fopen(fpath, 'r', 'n', 'windows-1251');
+                f = fopen(fpath, 'r', 'n', encoding);
                 txt = fread(f, '*char')';
                 fclose(f);
             else
