@@ -293,30 +293,6 @@ classdef ToolboxExtender < handle
             name = matlab.lang.makeValidName(name);
         end
         
-        function txt = readtxt(~, fpath, encoding)
-            % Read text from file
-            if nargin < 3
-                encoding = 'windows-1251';
-            end
-            if isfile(fpath)
-                f = fopen(fpath, 'r', 'n', encoding);
-                txt = fread(f, '*char')';
-                fclose(f);
-            else
-                txt = '';
-            end
-        end
-        
-        function writetxt(~, txt, fpath, encoding)
-            % Wtite text to file
-            if nargin < 4
-                encoding = 'windows-1251';
-            end
-            fid = fopen(fpath, 'w', 'n', encoding);
-            fwrite(fid, unicode2native(txt, encoding));
-            fclose(fid);
-        end
-        
         function txt = txtrep(obj, fpath, old, new)
             % Replace in txt file
             txt = obj.readtxt(fpath);
@@ -457,6 +433,30 @@ classdef ToolboxExtender < handle
             if endsWith(remote, '.git')
                 remote = remote(1:end-4);
             end
+        end
+        
+        function txt = readtxt(fpath, encoding)
+            % Read text from file
+            if nargin < 3
+                encoding = 'windows-1251';
+            end
+            if isfile(fpath)
+                f = fopen(fpath, 'r', 'n', encoding);
+                txt = fread(f, '*char')';
+                fclose(f);
+            else
+                txt = '';
+            end
+        end
+        
+        function writetxt(txt, fpath, encoding)
+            % Wtite text to file
+            if nargin < 4
+                encoding = 'windows-1251';
+            end
+            fid = fopen(fpath, 'w', 'n', encoding);
+            fwrite(fid, unicode2native(txt, encoding));
+            fclose(fid);
         end
         
     end
