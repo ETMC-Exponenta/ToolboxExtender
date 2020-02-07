@@ -437,7 +437,7 @@ classdef ToolboxExtender < handle
         
         function txt = readtxt(fpath, encoding)
             % Read text from file
-            if nargin < 3
+            if nargin < 2
                 encoding = 'windows-1251';
             end
             if isfile(fpath)
@@ -451,7 +451,7 @@ classdef ToolboxExtender < handle
         
         function writetxt(txt, fpath, encoding)
             % Wtite text to file
-            if nargin < 4
+            if nargin < 3
                 encoding = 'windows-1251';
             end
             fid = fopen(fpath, 'w', 'n', encoding);
