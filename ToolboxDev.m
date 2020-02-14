@@ -67,7 +67,7 @@ classdef ToolboxDev < handle
                 matlab.addons.toolbox.packageToolbox(ppath, bname);
             else
                 matlab.apputil.package(ppath);
-                movefile(fullfile(obj.ext.root, obj.ext.name + ".mlappinstall"), bpath + ".mlappinstall",'f');
+                %movefile(fullfile(obj.ext.root, obj.ext.name + ".mlappinstall"), bpath + ".mlappinstall",'f');
             end
             obj.ext.echo("v" + vp + " has been built");
         end

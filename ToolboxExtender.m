@@ -42,6 +42,7 @@ classdef ToolboxExtender < handle
         
         function [vc, guid] = gvc(obj)
             % Get current installed version
+            vc = '';
             switch obj.type
                 case "toolbox"
                     tbx = matlab.addons.toolbox.installedToolboxes;
@@ -59,14 +60,19 @@ classdef ToolboxExtender < handle
                         end
                     else
                         vc = '';
-                        guid = '';
                     end
                 case "app"
-                    apps = matlab.apputil.getInstalledAppInfo;
-                    vc = '';
-                    guid = '';
-                otherwise
-                    vc = '';
+                    if ~isdeployed()
+                        adds = matlab.addons.installedAddons;
+                    else
+                        adds = [];
+                    end
+                    if ~isempty(adds)
+                        app = adds(adds.Name == obj.name, :);
+                        if ~isempty(app)
+                            vc = app.Version{1};
+                        end
+                    end
             end
             obj.vc = vc;
         end
