@@ -444,7 +444,7 @@ classdef ToolboxExtender < handle
         function txt = readtxt(fpath, encoding)
             % Read text from file
             if nargin < 2
-                encoding = 'windows-1251';
+                encoding = 'utf-8';
             end
             if isfile(fpath)
                 f = fopen(fpath, 'r', 'n', encoding);
@@ -458,7 +458,7 @@ classdef ToolboxExtender < handle
         function writetxt(txt, fpath, encoding)
             % Wtite text to file
             if nargin < 3
-                encoding = 'windows-1251';
+                encoding = 'utf-8';
             end
             fid = fopen(fpath, 'w', 'n', encoding);
             fwrite(fid, unicode2native(txt, encoding));
