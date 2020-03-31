@@ -351,7 +351,7 @@ classdef ToolboxDev < handle
             v = version();
             v = split(v, '.');
             v = str2double(join(v(1:2), '.'));
-            r = ['R' version('-release')];
+            r = "R" + version('-release');
         end
 
     end
