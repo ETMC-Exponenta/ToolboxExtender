@@ -346,6 +346,13 @@ classdef ToolboxDev < handle
                 end
             end
         end
+        
+        function [v, r] = mlver()
+            v = version();
+            v = split(v, '.');
+            v = str2double(join(v(1:2), '.'));
+            r = ['R' version('-release')];
+        end
 
     end
     
