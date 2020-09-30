@@ -20,6 +20,7 @@ classdef ToolboxStorage < handle
             %% Constructor
             p = inputParser();
             p.addParameter('ext', []);
+            p.addParameter('root', []);
             p.addParameter('type', 'mat');
             p.addParameter('fname', '', @(x)ischar(x)||isstring(x));
             p.addParameter('fdir', '', @(x)ischar(x)||isstring(x));
@@ -30,8 +31,8 @@ classdef ToolboxStorage < handle
             args = p.Results;
             if ~isempty(args.ext)
                 obj.ext = args.ext;
-            else
-                obj.ext = ToolboxExtender;
+            %else
+            %    obj.ext = ToolboxExtender;
             end
             obj.type = args.type;
             obj.local = args.local;
@@ -199,20 +200,24 @@ classdef ToolboxStorage < handle
         
         function root = getroot(obj)
             %% Get root folder
-            if obj.local
-                root = obj.ext.root;
+            if isempty(obj.ext)
+                root = obj.root;
             else
-                root = obj.ext.root;
-                target = "MATLAB Add-Ons";
-                path = extractBefore(root, target);
-                if ~isempty(path)
-                    root = fullfile(path + target, 'Data');
-                    if ~isfolder(root)
-                        mkdir(root);
+                if obj.local
+                    root = obj.ext.root;
+                else
+                    root = obj.ext.root;
+                    target = "MATLAB Add-Ons";
+                    path = extractBefore(root, target);
+                    if ~isempty(path)
+                        root = fullfile(path + target, 'Data');
+                        if ~isfolder(root)
+                            mkdir(root);
+                        end
                     end
                 end
+                obj.root = root;
             end
-            obj.root = root;
         end
         
         function data = json_read(obj, fpath)
